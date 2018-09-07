@@ -1,0 +1,10 @@
+<resources>
+    <string name="logo">logo</string>
+
+    <!--login hint-->
+    <string name="account_hint">Account:</string>
+    <string name="password_hint">Password:</string>
+
+    <!--button-->
+    <string name="login_text">Login</string>
+</resources>

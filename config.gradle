@@ -1,0 +1,325 @@
+ext {
+    androidConfig = [
+
+            applicationId    : "com.toaok.study",
+            appName          : "AndroidDemo",
+            compileSdkVersion: 27,
+            minSdkVersion    : 15,
+            targetSdkVersion : 27,
+            versionCode      : 1_0_0,
+            versionName      : '1.0.0',
+            flavorDimensions : 'efault'
+    ]
+
+    /**
+     * host
+     */
+    host = [
+            /**
+             * 生产环境
+             */
+            host_prod: 'iwtoaok.iask.in:41346',
+            /**
+             * 开发环境
+             */
+            host_dev : '127.0.0.1:8080',
+    ]
+
+    //base version info
+    baseVsCfg = [
+            //gradle
+            gradle : '3.1.3',
+
+            //support
+            support: [
+                    appcompat_v7     : '27.1.1',
+                    constraint_layout: '1.1.2'
+            ],
+
+            //test
+            test   : [
+                    junit        : '4.12',
+                    runner       : '1.0.2',
+                    espresso_core: '3.0.2'
+            ]
+
+    ]
+
+    //base dependence info
+    baseDepCfg = [
+            //gradle
+            gradle           : "com.android.tools.build:gradle:$baseVsCfg.gradle",
+
+            //support
+            appcompat_v7     : "com.android.support:appcompat-v7:$baseVsCfg.support.appcompat_v7",
+            constraint_layout: "com.android.support.constraint:constraint-layout:$baseVsCfg.support.constraint_layout",
+
+            //test
+            junit            : "junit:junit:$baseVsCfg.test.junit",
+            runner           : "com.android.support.test:runner:$baseVsCfg.test.runner",
+            espresso_core    : "com.android.support.test.espresso:espresso-core:$baseVsCfg.test.espresso_core"
+    ]
+
+    //the third-party library version info
+    depLibVersion = [
+            rxjava  : '2.0.1',
+            okhttp  : '3.11.0',
+            retrofit: '2.4.0',
+            util    : '1.19.3'
+    ]
+
+    //the third-party library dependences info
+    depLibConfig = [
+            //rx
+            rxjava        : "io.reactivex.rxjava2:rxjava:$depLibVersion.rxjava",
+            rxandroid     : "io.reactivex.rxjava2:rxandroid:$depLibVersion.rxjava",
+            //okhttp
+            okhttp        : "com.squareup.okhttp3:okhttp:$depLibVersion.okhttp",
+            //retrofit
+            retrofit      : "com.squareup.retrofit2:retrofit:$depLibVersion.retrofit",
+            converter_gson: "com.squareup.retrofit2:converter-gson:$depLibVersion.retrofit",
+            adapter_rxjava: "com.squareup.retrofit2:adapter-rxjava:$depLibVersion.retrofit",
+
+            //android utils
+            utilcode      : "com.blankj:utilcode:$depLibVersion.util"
+
+    ]
+
+    configAndroidDomain = this.&configAndroidDomain
+    configBaseDependences = this.&configBaseDependences
+    configLibDependences = this.&configLibDependences
+
+    /**
+     * 默认环境
+     */
+    host_default = host.host_dev
+
+    /**
+     * release 生产 环境
+     */
+    host_prod = host.host_prod
+}
+
+def configBaseDependences(Project pro) {
+    pro.dependencies {
+
+        implementation baseDepCfg.appcompat_v7
+        implementation baseDepCfg.constraint_layout
+
+        testImplementation baseDepCfg.junit
+
+        androidTestImplementation baseDepCfg.runner
+        androidTestImplementation baseDepCfg.espresso_core
+    }
+}
+
+def configLibDependences(Project pro) {
+    pro.dependencies {
+        //rx
+        implementation depLibConfig.rxjava
+        implementation depLibConfig.rxandroid
+        //okhttp
+        implementation depLibConfig.okhttp
+        //retrofit
+        implementation depLibConfig.retrofit
+        implementation depLibConfig.converter_gson
+        implementation depLibConfig.adapter_rxjava
+
+        //android utils
+        api depLibConfig.utilcode
+        //module
+        /**
+         * leaks 必须使用 debugImplementation 来依赖，不然会解析失败
+         * 这是因为在子模块中进行注册依赖是也用的是debugImplementation
+         */
+        debugImplementation project(':Leaks')
+    }
+}
+
+def configAndroidDomain(Project pro) {
+    if (pro.plugins.hasPlugin("com.android.application")) {
+        configAppAndroidDomain(pro)
+    } else {
+        configLibAndroidDomain(pro)
+    }
+}
+
+
+def configAppAndroidDomain(Project pro) {
+    configDefault(pro)
+    configField(pro)
+    configSigningAndBuildType(pro)
+    configProductFlavors(pro)
+    configApkName(pro)
+    configSourceSets(pro)
+    configOption(pro)
+}
+
+//config Option
+def configOption(Project pro) {
+    pro.android {
+        lintOptions {
+            abortOnError false
+        }
+
+        dexOptions {
+//            incremental = true
+//            javaMaxHeapSize "4g"
+//            jumboMode = true
+        }
+        //打包时排出以下文件
+        packagingOptions {
+            exclude 'META-INF/rxjava.properties'
+        }
+    }
+
+}
+
+//config sourceSets
+def configSourceSets(Project pro) {
+    pro.android.sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+        // special build type variants
+        dev.setRoot('src/debug')
+        debug.setRoot('src/debug')
+    }
+}
+
+//config signing and buildType
+def configSigningAndBuildType(Project pro) {
+    File signPropertiesFile = file('sign/keystore.properties')
+    if (!signPropertiesFile.exists()) return
+    pro.android {
+        Properties properties = new Properties()
+        properties.load(new FileInputStream(signPropertiesFile))
+        signingConfigs {
+            release {
+                storeFile file(properties['keystore'])
+                storePassword(properties['storePassword'])
+                keyAlias(properties['keyAlias'])
+                keyPassword(properties['keyPassword'])
+                v1SigningEnabled true
+                v2SigningEnabled false
+            }
+        }
+        buildTypes{
+            /*
+           * minifyEnabled　是否开启混淆
+           * zipAlignEnabled　是否优化apk文件，将apk文件中未压缩的数据在4个字节边界上对齐，具体见改善android性能工具：Zipalign
+           * shrinkResources 是否去除无用资源，任何在编译过程中没有用到的资源或者代码都会被删除，可以有效减小apk体积
+           * proguardFiles 指定混淆规则文件
+           * */
+            release {
+                signingConfig signingConfigs.release
+                minifyEnabled true
+                shrinkResources true
+                zipAlignEnabled true
+
+                buildConfigField "String", "API_HOST", "\"${host_prod}\""
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            }
+
+            dev {
+                signingConfig signingConfigs.release
+                applicationIdSuffix ".dev"
+                minifyEnabled true
+                shrinkResources true
+                zipAlignEnabled true
+                buildConfigField "String", "API_HOST", "\"${host_default}\""
+                manifestPlaceholders.put("Application", "App")
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            }
+
+            debug {
+                signingConfig signingConfigs.release
+                applicationIdSuffix ".debug"
+                buildConfigField "String", "API_HOST", "\"${host_default}\""
+                manifestPlaceholders.put("Application", "AppTest")
+            }
+        }
+    }
+}
+
+//config ProductFlavors
+def configProductFlavors(Project pro) {
+    pro.android.productFlavors {
+        androidDemo {}
+
+    }
+}
+
+//config defaltConfig
+def configDefault(Project pro) {
+    pro.android {
+        compileSdkVersion androidConfig.compileSdkVersion
+        defaultConfig {
+            applicationId androidConfig.applicationId
+            minSdkVersion androidConfig.minSdkVersion
+            targetSdkVersion androidConfig.targetSdkVersion
+            versionCode androidConfig.versionCode
+            versionName androidConfig.versionName
+            //flavorDimensions
+            flavorDimensions androidConfig.flavorDimensions
+        }
+    }
+
+}
+
+//config Field
+def configField(Project pro) {
+    pro.android.defaultConfig {
+        resValue "string", "app_name", androidConfig.appName
+    }
+}
+
+//config apk name
+def configApkName(Project pro) {
+    pro.android.applicationVariants.all { variant ->
+
+        variant.getPackageApplication().outputDirectory = new File(project.rootDir.absolutePath + "/apk")
+        variant.getPackageApplication().outputScope.apkDatas.forEach {
+            apkData ->
+                apkData.outputFileName = androidConfig.appName + "_" + getUpperCase(variant.buildType.name) + "_" + variant.versionName.replace(".", "_") + ".apk"
+        }
+
+    }
+}
+
+//大写
+def getUpperCase(String word) {
+    return word.substring(0, 1).toUpperCase() + word.substring(1, word.length())
+}
+
+def configLibAndroidDomain(Project pro) {
+    pro.android {
+        compileSdkVersion androidConfig.compileSdkVersion
+        defaultConfig {
+            minSdkVersion androidConfig.minSdkVersion
+            versionCode androidConfig.versionCode
+            versionName androidConfig.versionName
+        }
+
+        buildTypes {
+            release {
+                minifyEnabled false
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            }
+        }
+
+        sourceSets {
+
+        }
+
+        lintOptions {
+            abortOnError false
+        }
+
+        testOptions.unitTests.all {
+            testLogging {
+
+            }
+        }
+    }
+}
