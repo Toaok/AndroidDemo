@@ -4,7 +4,7 @@
     package="com.toaok.study">
 
     <application
-        android:name="com.toaok.study.${Application}"
+        android:name="com.toaok.study.App"
         tools:replace="android:name">
         <activity
             android:name=".activity.SplashActivity_BT"
@@ -16,9 +16,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-       <!-- <activity
-            android:name=".activity.SplashActivity_BT" />-->
 
         <activity
             android:name=".module.home.SplashActivity"

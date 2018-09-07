@@ -87,6 +87,7 @@ ext {
 
     configAndroidDomain = this.&configAndroidDomain
     configBaseDependences = this.&configBaseDependences
+    configModuleBaseDependences=this.&configModuleBaseDependences
     configLibDependences = this.&configLibDependences
 
     /**
@@ -133,6 +134,8 @@ def configLibDependences(Project pro) {
          * 这是因为在子模块中进行注册依赖是也用的是debugImplementation
          */
         debugImplementation project(':Leaks')
+        //The MVP
+//        implementation project(':Themvp')
     }
 }
 
@@ -182,8 +185,8 @@ def configSourceSets(Project pro) {
             jniLibs.srcDirs = ['libs']
         }
         // special build type variants
-        dev.setRoot('src/debug')
-        debug.setRoot('src/debug')
+        dev.setRoot('src/buildtype/dev')
+        debug.setRoot('src/buildtype/debug')
     }
 }
 
@@ -204,7 +207,7 @@ def configSigningAndBuildType(Project pro) {
                 v2SigningEnabled false
             }
         }
-        buildTypes{
+        buildTypes {
             /*
            * minifyEnabled　是否开启混淆
            * zipAlignEnabled　是否优化apk文件，将apk文件中未压缩的数据在4个字节边界上对齐，具体见改善android性能工具：Zipalign
@@ -300,26 +303,28 @@ def configLibAndroidDomain(Project pro) {
             versionCode androidConfig.versionCode
             versionName androidConfig.versionName
         }
-
         buildTypes {
             release {
                 minifyEnabled false
                 proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             }
+            dev {}
+            debug {}
         }
-
-        sourceSets {
-
-        }
-
         lintOptions {
             abortOnError false
         }
+    }
+}
 
-        testOptions.unitTests.all {
-            testLogging {
+def configModuleBaseDependences(Project pro){
+    pro.dependencies {
+        compileOnly baseDepCfg.appcompat_v7
+        compileOnly baseDepCfg.constraint_layout
 
-            }
-        }
+        testImplementation baseDepCfg.junit
+
+        androidTestImplementation baseDepCfg.runner
+        androidTestImplementation baseDepCfg.espresso_core
     }
 }

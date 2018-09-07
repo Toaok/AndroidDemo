@@ -1,2 +1,3 @@
-include ':app', ':Leaks'
+include ':app', ':Leaks', ':Themvp'
 project(':Leaks').projectDir = new File('librarys/Leaks')
+project(':Themvp').projectDir = new File('librarys/Themvp')
