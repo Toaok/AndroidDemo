@@ -1,36 +1,44 @@
 package com.toaok.study.activity;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
+import android.support.annotation.Nullable;
 
-import com.blankj.utilcode.util.AppUtils;
-import com.toaok.study.BuildConfig;
-import com.toaok.study.R;
-import com.toaok.study.module.home.SplashActivity;
+import com.toaok.study.databind.SplashDataBinder_BT;
+import com.toaok.study.model.vo.AppInfo;
+import com.toaok.study.module.home.activity.BaseSplashActivity;
+import com.toaok.study.view.SplashDetagate_BT;
+import com.toaok.study.vo.SplashBean_BT;
+import com.toaok.themvp.databind.DataBinder;
 
 /**
  * Created by sj on 2016/11/25.
  */
 
-public class SplashActivity_BT extends SplashActivity {
+public class SplashActivity_BT extends BaseSplashActivity<SplashDetagate_BT> {
+
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (mSplashBean == null) {
+            mSplashBean = new SplashBean_BT(AppInfo.getInstance());
+        } else {
+            if (mSplashBean instanceof SplashBean_BT) {
+                ((SplashBean_BT) mSplashBean).setAppInfo(AppInfo.getInstance());
+            }
+        }
+        notifyModelChanged(mSplashBean);
     }
 
     @Override
-    public void setContentView(int layoutResID) {
-        super.setContentView(layoutResID);
-        FrameLayout frameLayout = findViewById(R.id.frame_layout);
-        View view = getLayoutInflater().inflate(R.layout.activity_splash_bt, frameLayout);
-        TextView tv_env = view.findViewById(R.id.tv_env);
-        TextView tv_channel = view.findViewById(R.id.tv_channel);
-        TextView tv_version = view.findViewById(R.id.tv_version);
-        tv_env.setText(tv_env.getText().toString() + BuildConfig.API_HOST);
-        tv_channel.setText(tv_channel.getText().toString() + BuildConfig.APPLICATION_ID);
-        tv_version.setText(tv_version.getText().toString() + AppUtils.getAppVersionName());
+    protected Class<SplashDetagate_BT> getDelegateClass() {
+
+        return SplashDetagate_BT.class;
+    }
+
+
+    @Override
+    public DataBinder getDataBinder() {
+        return new SplashDataBinder_BT();
     }
 }

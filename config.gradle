@@ -65,7 +65,8 @@ ext {
             rxjava  : '2.0.1',
             okhttp  : '3.11.0',
             retrofit: '2.4.0',
-            util    : '1.19.3'
+            util    : '1.19.3',
+            glide   : '4.8.0'
     ]
 
     //the third-party library dependences info
@@ -81,13 +82,17 @@ ext {
             adapter_rxjava: "com.squareup.retrofit2:adapter-rxjava:$depLibVersion.retrofit",
 
             //android utils
-            utilcode      : "com.blankj:utilcode:$depLibVersion.util"
+            utilcode      : "com.blankj:utilcode:$depLibVersion.util",
+
+            //glide
+            glide         : "com.github.bumptech.glide:glide:$depLibVersion.glide",
+            compiler      : "com.github.bumptech.glide:compiler:$depLibVersion.glide"
 
     ]
 
     configAndroidDomain = this.&configAndroidDomain
     configBaseDependences = this.&configBaseDependences
-    configModuleBaseDependences=this.&configModuleBaseDependences
+    configModuleBaseDependences = this.&configModuleBaseDependences
     configLibDependences = this.&configLibDependences
 
     /**
@@ -99,6 +104,9 @@ ext {
      * release 生产 环境
      */
     host_prod = host.host_prod
+
+
+    splash_url = 'https://baijiahao.baidu.com/s?id=1574517843319982&wfr=spider&for=pc&isFailFlag=1'
 }
 
 def configBaseDependences(Project pro) {
@@ -116,26 +124,47 @@ def configBaseDependences(Project pro) {
 
 def configLibDependences(Project pro) {
     pro.dependencies {
+
+        /**
+         * Lib
+         */
         //rx
         implementation depLibConfig.rxjava
         implementation depLibConfig.rxandroid
+
         //okhttp
         implementation depLibConfig.okhttp
+
         //retrofit
         implementation depLibConfig.retrofit
         implementation depLibConfig.converter_gson
         implementation depLibConfig.adapter_rxjava
 
+        //glide
+        implementation depLibConfig.glide
+        annotationProcessor depLibConfig.compiler
+
         //android utils
         api depLibConfig.utilcode
-        //module
+
         /**
+         * jar
+         */
+        implementation files('app/libs/jsoup-1.10.3.jar')
+
+
+        /**
+         * module
+         */
+
+        /*
          * leaks 必须使用 debugImplementation 来依赖，不然会解析失败
          * 这是因为在子模块中进行注册依赖是也用的是debugImplementation
          */
         debugImplementation project(':Leaks')
+
         //The MVP
-//        implementation project(':Themvp')
+        implementation project(':Themvp')
     }
 }
 
@@ -231,7 +260,6 @@ def configSigningAndBuildType(Project pro) {
                 shrinkResources true
                 zipAlignEnabled true
                 buildConfigField "String", "API_HOST", "\"${host_default}\""
-                manifestPlaceholders.put("Application", "App")
                 proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             }
 
@@ -239,7 +267,6 @@ def configSigningAndBuildType(Project pro) {
                 signingConfig signingConfigs.release
                 applicationIdSuffix ".debug"
                 buildConfigField "String", "API_HOST", "\"${host_default}\""
-                manifestPlaceholders.put("Application", "AppTest")
             }
         }
     }
@@ -265,6 +292,10 @@ def configDefault(Project pro) {
             versionName androidConfig.versionName
             //flavorDimensions
             flavorDimensions androidConfig.flavorDimensions
+
+            buildConfigField "String", "API_HOST", "\"${host_default}\""
+
+            buildConfigField "String", "SPLAH_URL", "\"${splash_url}\""
         }
     }
 
@@ -317,7 +348,7 @@ def configLibAndroidDomain(Project pro) {
     }
 }
 
-def configModuleBaseDependences(Project pro){
+def configModuleBaseDependences(Project pro) {
     pro.dependencies {
         compileOnly baseDepCfg.appcompat_v7
         compileOnly baseDepCfg.constraint_layout
