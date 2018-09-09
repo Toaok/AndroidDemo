@@ -3,12 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".module.home.SplashActivity">
+    tools:context=".module.home.activity.BaseSplashActivity">
     <ImageView
         android:id="@+id/iv_splash"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
+        android:src="@drawable/ic_launcher_background"
         />
 
     <FrameLayout

@@ -35,6 +35,11 @@ public abstract class ActivityPresenter<T extends IDelegate> extends AppCompatAc
         viewDelegate.create(getLayoutInflater(),null,savedInstanceState);
         setContentView(viewDelegate.getRootView());
         initToolbar();
+        viewDelegate.initWidget();
+        bindEvenListener();
+    }
+
+    protected void bindEvenListener(){
 
     }
 

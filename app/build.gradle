@@ -5,6 +5,3 @@ plugins {
 configAndroidDomain project
 configBaseDependences project
 configLibDependences project
-dependencies {
-    implementation project(':Themvp')
-}

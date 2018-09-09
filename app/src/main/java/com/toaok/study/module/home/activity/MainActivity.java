@@ -1,4 +1,4 @@
-package com.toaok.study.module.home;
+package com.toaok.study.module.home.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,11 +10,11 @@ import com.toaok.study.R;
 public class MainActivity extends AppCompatActivity {
 
 
-    public static Intent getIntent(Context context){
+    public static void startActivity(Context context){
 
         Intent intent=new Intent();
         intent.setClass(context,MainActivity.class);
-        return intent;
+        context.startActivity(intent);
     }
 
     @Override
