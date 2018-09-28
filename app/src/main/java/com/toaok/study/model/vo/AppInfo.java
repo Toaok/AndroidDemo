@@ -1,8 +1,8 @@
 package com.toaok.study.model.vo;
 
-import com.blankj.utilcode.util.AppUtils;
 import com.toaok.study.BuildConfig;
 import com.toaok.themvp.model.IModel;
+import com.toaok.utilcode.util.AppUtils;
 
 /**
  * APP 基本信息

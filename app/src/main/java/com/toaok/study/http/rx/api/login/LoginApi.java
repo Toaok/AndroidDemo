@@ -24,7 +24,5 @@ public class LoginApi {
         api= RequestManager.getRequest(Api.class);
     }
 
-
-
 }
 

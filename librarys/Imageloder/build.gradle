@@ -1,0 +1,10 @@
+apply plugin: 'com.android.library'
+
+configAndroidDomain project
+configModuleBaseDependences project
+
+dependencies{
+    implementation depLibConfig.glide
+    annotationProcessor depLibConfig.compiler
+    api project(path: ':Utilcode')
+}

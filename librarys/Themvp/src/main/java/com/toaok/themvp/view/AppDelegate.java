@@ -71,12 +71,31 @@ public abstract class AppDelegate implements IDelegate {
         return bindView(id);
     }
 
+    /**
+     * 传递控件id
+     * @param listener
+     * @param ids
+     */
     public void setOnClickListener(View.OnClickListener listener, int... ids) {
         if (ids == null) {
             return;
         }
         for (int id : ids) {
             get(id).setOnClickListener(listener);
+        }
+    }
+
+    /**
+     * 直接传View对象
+     * @param listener
+     * @param views
+     */
+    public void setOnClickListener(View.OnClickListener listener, View... views) {
+        if (views == null) {
+            return;
+        }
+        for (View view : views) {
+            view.setOnClickListener(listener);
         }
     }
 

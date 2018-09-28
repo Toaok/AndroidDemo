@@ -24,6 +24,13 @@ public class SplashBean_BT extends SplashBean {
         this.appInfo = appInfo;
     }
 
+    //继承父类的值
+    public SplashBean_BT(AppInfo appInfo, SplashBean splashBean) {
+        this.appInfo = appInfo;
+        //
+        setSelf(splashBean);
+    }
+
     public AppInfo getAppInfo() {
         return appInfo;
     }

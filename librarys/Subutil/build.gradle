@@ -1,0 +1,10 @@
+apply plugin: 'com.android.library'
+
+// in config.gradle
+configAndroidDomain project
+configModuleBaseDependences project
+dependencies{
+    compileOnly baseDepCfg.design
+    implementation depLibConfig.gson
+
+}

@@ -11,6 +11,8 @@ import com.toaok.themvp.model.IModel;
 public class SplashBean implements IModel{
     private Bitmap image;
     private String url;
+    private String countDownTimer;
+    private boolean isAvailableByPing=true;
 
     public SplashBean() {
     }
@@ -28,6 +30,14 @@ public class SplashBean implements IModel{
         this.url = url;
     }
 
+    public void setSelf(SplashBean splashBean){
+        this.url=splashBean.url;
+        this.image=splashBean.image;
+        this.countDownTimer=splashBean.countDownTimer;
+        this.isAvailableByPing=splashBean.isAvailableByPing;
+
+    }
+
     public Bitmap getImage() {
         return image;
     }
@@ -42,5 +52,21 @@ public class SplashBean implements IModel{
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getCountDownTimer() {
+        return countDownTimer;
+    }
+
+    public void setCountDownTimer(String countDownTimer) {
+        this.countDownTimer = countDownTimer;
+    }
+
+    public boolean isAvailableByPing() {
+        return isAvailableByPing;
+    }
+
+    public void setAvailableByPing(boolean availableByPing) {
+        isAvailableByPing = availableByPing;
     }
 }

@@ -11,7 +11,9 @@
     RxJava:     https://github.com/ReactiveX/RxJava
 3.为了使项目更完善，项目中引用了AndroidUtilCode库中的很多工具类
     https://github.com/Blankj/AndroidUtilCode
-4.使用Glide进行网络图片的加载
+4.封装网络图片的加载框架
+
+    默认glide
     https://github.com/bumptech/glide
 5.
     ...

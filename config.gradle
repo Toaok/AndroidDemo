@@ -1,16 +1,5 @@
+apply from: "version.gradle"
 ext {
-    androidConfig = [
-
-            applicationId    : "com.toaok.study",
-            appName          : "AndroidDemo",
-            compileSdkVersion: 27,
-            minSdkVersion    : 15,
-            targetSdkVersion : 27,
-            versionCode      : 1_0_0,
-            versionName      : '1.0.0',
-            flavorDimensions : 'efault'
-    ]
-
     /**
      * host
      */
@@ -24,77 +13,6 @@ ext {
              */
             host_dev : '127.0.0.1:8080',
     ]
-
-    //base version info
-    baseVsCfg = [
-            //gradle
-            gradle : '3.1.3',
-
-            //support
-            support: [
-                    appcompat_v7     : '27.1.1',
-                    constraint_layout: '1.1.2'
-            ],
-
-            //test
-            test   : [
-                    junit        : '4.12',
-                    runner       : '1.0.2',
-                    espresso_core: '3.0.2'
-            ]
-
-    ]
-
-    //base dependence info
-    baseDepCfg = [
-            //gradle
-            gradle           : "com.android.tools.build:gradle:$baseVsCfg.gradle",
-
-            //support
-            appcompat_v7     : "com.android.support:appcompat-v7:$baseVsCfg.support.appcompat_v7",
-            constraint_layout: "com.android.support.constraint:constraint-layout:$baseVsCfg.support.constraint_layout",
-
-            //test
-            junit            : "junit:junit:$baseVsCfg.test.junit",
-            runner           : "com.android.support.test:runner:$baseVsCfg.test.runner",
-            espresso_core    : "com.android.support.test.espresso:espresso-core:$baseVsCfg.test.espresso_core"
-    ]
-
-    //the third-party library version info
-    depLibVersion = [
-            rxjava  : '2.0.1',
-            okhttp  : '3.11.0',
-            retrofit: '2.4.0',
-            util    : '1.19.3',
-            glide   : '4.8.0'
-    ]
-
-    //the third-party library dependences info
-    depLibConfig = [
-            //rx
-            rxjava        : "io.reactivex.rxjava2:rxjava:$depLibVersion.rxjava",
-            rxandroid     : "io.reactivex.rxjava2:rxandroid:$depLibVersion.rxjava",
-            //okhttp
-            okhttp        : "com.squareup.okhttp3:okhttp:$depLibVersion.okhttp",
-            //retrofit
-            retrofit      : "com.squareup.retrofit2:retrofit:$depLibVersion.retrofit",
-            converter_gson: "com.squareup.retrofit2:converter-gson:$depLibVersion.retrofit",
-            adapter_rxjava: "com.squareup.retrofit2:adapter-rxjava:$depLibVersion.retrofit",
-
-            //android utils
-            utilcode      : "com.blankj:utilcode:$depLibVersion.util",
-
-            //glide
-            glide         : "com.github.bumptech.glide:glide:$depLibVersion.glide",
-            compiler      : "com.github.bumptech.glide:compiler:$depLibVersion.glide"
-
-    ]
-
-    configAndroidDomain = this.&configAndroidDomain
-    configBaseDependences = this.&configBaseDependences
-    configModuleBaseDependences = this.&configModuleBaseDependences
-    configLibDependences = this.&configLibDependences
-
     /**
      * 默认环境
      */
@@ -105,8 +23,19 @@ ext {
      */
     host_prod = host.host_prod
 
+    configAndroidDomain = this.&configAndroidDomain
+    configBaseDependences = this.&configBaseDependences
+    configModuleBaseDependences = this.&configModuleBaseDependences
+    configLibDependences = this.&configLibDependences
 
-    splash_url = 'https://baijiahao.baidu.com/s?id=1574517843319982&wfr=spider&for=pc&isFailFlag=1'
+    /**
+     * 启动页图片资源
+     */
+    splash_resource = [
+            splash_url         : 'https://baijiahao.baidu.com/s?id=1574517843319982&wfr=spider&for=pc&isFailFlag=1',
+            splash_cssquery    : 'div.article-content>div.img-container>img.large',
+            splash_attributekey: 'src'
+    ]
 }
 
 def configBaseDependences(Project pro) {
@@ -114,6 +43,7 @@ def configBaseDependences(Project pro) {
 
         implementation baseDepCfg.appcompat_v7
         implementation baseDepCfg.constraint_layout
+        implementation baseDepCfg.design
 
         testImplementation baseDepCfg.junit
 
@@ -140,18 +70,15 @@ def configLibDependences(Project pro) {
         implementation depLibConfig.converter_gson
         implementation depLibConfig.adapter_rxjava
 
-        //glide
-        implementation depLibConfig.glide
-        annotationProcessor depLibConfig.compiler
+        //jsoup
+        implementation depLibConfig.jsoup
 
-        //android utils
-        api depLibConfig.utilcode
+        //rxpermissions
+        implementation depLibConfig.rxpermissions
 
         /**
          * jar
          */
-        implementation files('app/libs/jsoup-1.10.3.jar')
-
 
         /**
          * module
@@ -161,10 +88,14 @@ def configLibDependences(Project pro) {
          * leaks 必须使用 debugImplementation 来依赖，不然会解析失败
          * 这是因为在子模块中进行注册依赖是也用的是debugImplementation
          */
-        debugImplementation project(':Leaks')
-
+        implementation project(':Leaks')
         //The MVP
         implementation project(':Themvp')
+        //android utils
+        implementation project(':Utilcode')
+        implementation project(':Subutil')
+        //ImageLoader
+        implementation project(':Imageloder')
     }
 }
 
@@ -293,9 +224,9 @@ def configDefault(Project pro) {
             //flavorDimensions
             flavorDimensions androidConfig.flavorDimensions
 
-            buildConfigField "String", "API_HOST", "\"${host_default}\""
-
-            buildConfigField "String", "SPLAH_URL", "\"${splash_url}\""
+            buildConfigField "String", "SPLASH_URL", "\"${splash_resource.splash_url}\""
+            buildConfigField "String", "SPLASH_CSSQUERY", "\"${splash_resource.splash_cssquery}\""
+            buildConfigField "String", "SPLASH_ATTRIBUTEKEY", "\"${splash_resource.splash_attributekey}\""
         }
     }
 
@@ -310,14 +241,14 @@ def configField(Project pro) {
 
 //config apk name
 def configApkName(Project pro) {
+
     pro.android.applicationVariants.all { variant ->
-
-        variant.getPackageApplication().outputDirectory = new File(project.rootDir.absolutePath + "/apk")
-        variant.getPackageApplication().outputScope.apkDatas.forEach {
-            apkData ->
+        if (variant.buildType.name != "debug") {//不做判断，会在debug时不能直接调试安装
+            variant.getPackageApplication().outputDirectory = new File(project.rootDir.absolutePath + "/apk")
+            variant.getPackageApplication().outputScope.apkDatas.forEach { apkData ->
                 apkData.outputFileName = androidConfig.appName + "_" + getUpperCase(variant.buildType.name) + "_" + variant.versionName.replace(".", "_") + ".apk"
+            }
         }
-
     }
 }
 

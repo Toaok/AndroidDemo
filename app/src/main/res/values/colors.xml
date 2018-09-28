@@ -4,6 +4,11 @@
     <color name="colorPrimaryDark">@color/color_4169E1</color>
     <color name="colorAccent">@color/color_1976D2</color>
 
+
+    <!--Sys Color-->
+    <!--系统默认字体颜色-->
+    <color name="color_80000000">#80000000</color>
+
     <!--baseColor-->
     <color name="colorWhite">@color/color_FFFFFF</color>
     <color name="colorBlack">@color/color_000000</color>
@@ -33,5 +38,7 @@
     <color name="color_4169E1">#4169E1</color>
     <color name="color_1976D2">#1976D2</color>
 
+    <!--ARGB Color-->
+    <color name="color_60EAEDEE">#60EAEDEE</color>
 
 </resources>

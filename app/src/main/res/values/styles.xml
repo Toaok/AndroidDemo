@@ -8,4 +8,20 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+
+    <!--按钮点击效果1-->
+    <style name="RippleBtnTheme">
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <!--按钮点击效果2 超出边界效果-->
+    <style name="RippleBorderBtnTheme">
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+
+
 </resources>

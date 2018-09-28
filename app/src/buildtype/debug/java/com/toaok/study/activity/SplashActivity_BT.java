@@ -25,6 +25,8 @@ public class SplashActivity_BT extends BaseSplashActivity<SplashDetagate_BT> {
         } else {
             if (mSplashBean instanceof SplashBean_BT) {
                 ((SplashBean_BT) mSplashBean).setAppInfo(AppInfo.getInstance());
+            }else {
+                mSplashBean=new SplashBean_BT(AppInfo.getInstance(),mSplashBean);
             }
         }
         notifyModelChanged(mSplashBean);
@@ -32,13 +34,14 @@ public class SplashActivity_BT extends BaseSplashActivity<SplashDetagate_BT> {
 
     @Override
     protected Class<SplashDetagate_BT> getDelegateClass() {
-
         return SplashDetagate_BT.class;
     }
-
 
     @Override
     public DataBinder getDataBinder() {
         return new SplashDataBinder_BT();
     }
+
+
+
 }

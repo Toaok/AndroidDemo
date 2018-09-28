@@ -5,6 +5,11 @@
     <string name="account_hint">Account:</string>
     <string name="password_hint">Password:</string>
 
+    <!--home-->
+    <string name="home_map">Map</string>
+    <string name="home_kline">KLine</string>
+    <string name="home_other">Other</string>
+
     <!--button-->
     <string name="login_text">Login</string>
 </resources>
