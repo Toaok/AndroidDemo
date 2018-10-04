@@ -1,7 +1,7 @@
 package com.toaok.study.vo;
 
 import com.toaok.study.model.vo.AppInfo;
-import com.toaok.study.model.vo.SplashBean;
+import com.toaok.study.module.home.bean.SplashBean;
 
 /**
  * @author Toaok

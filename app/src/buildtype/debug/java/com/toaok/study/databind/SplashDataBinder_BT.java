@@ -1,10 +1,10 @@
 package com.toaok.study.databind;
 
 
+import com.toaok.study.module.base.databinder.BaseDataBinder;
 import com.toaok.study.module.home.databinder.SplashDataBinder;
 import com.toaok.study.view.SplashDetagate_BT;
 import com.toaok.study.vo.SplashBean_BT;
-import com.toaok.themvp.databind.DataBinder;
 
 
 /**
@@ -13,7 +13,7 @@ import com.toaok.themvp.databind.DataBinder;
  * @author Toaok
  * @version 1.0  2018/9/8.
  */
-public class SplashDataBinder_BT implements DataBinder<SplashDetagate_BT, SplashBean_BT> {
+public class SplashDataBinder_BT extends BaseDataBinder<SplashDetagate_BT, SplashBean_BT> {
 
     /**
      * 使用组合模式实现数据绑定的继承实现

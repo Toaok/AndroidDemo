@@ -1,3 +1,1 @@
-db里放各种数据库相关的javabean类
-sp里放各种SharedPreferences的javabean类
-vo里放一般的javabean类
+db里放各种数据库相关的javabean类sp里放各种SharedPreferences的javabean类vo里放一般的javabean类

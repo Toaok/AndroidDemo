@@ -41,7 +41,7 @@ public abstract class FragmentPresenter<T extends IDelegate> extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        viewDelegate.create(inflater,container,savedInstanceState);
+        viewDelegate.create(inflater,null,savedInstanceState);
         return viewDelegate.getRootView();
     }
 

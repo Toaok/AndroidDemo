@@ -143,6 +143,13 @@ def configSourceSets(Project pro) {
     pro.android.sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
+            //自定义资源文件目录，注意备份
+            res.srcDirs =
+                    [
+                            'src/main/res/resource/main',
+                            'src/main/res/resource',
+                            'src/main/res/'
+                    ]
         }
         // special build type variants
         dev.setRoot('src/buildtype/dev')

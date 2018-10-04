@@ -22,7 +22,7 @@ public class SplashDetagate_BT extends SplashDelegate {
     @Override
     public void initWidget() {
         super.initWidget();
-        View view= LayoutInflater.from(rootView.getContext()).inflate(R.layout.activity_splash_bt,getFrameLayout());
+        View view= LayoutInflater.from(getActivity()).inflate(R.layout.activity_splash_bt,getFrameLayout());
         mEnvironment = view.findViewById(R.id.tv_env);
         mChannel = view.findViewById(R.id.tv_channel);
         mVersion = view.findViewById(R.id.tv_version);

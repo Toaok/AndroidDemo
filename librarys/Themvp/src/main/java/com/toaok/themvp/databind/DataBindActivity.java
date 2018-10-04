@@ -29,7 +29,7 @@ public abstract class DataBindActivity<T extends IDelegate> extends
     public abstract DataBinder getDataBinder();
 
     public <D extends IModel> void notifyModelChanged(D data){
-        if(binder!=null){
+        if(binder!=null&&viewDelegate!=null){
             binder.viewBindModel(viewDelegate,data);
         }
     }

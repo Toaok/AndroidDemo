@@ -1,51 +1,1 @@
-package com.toaok.study.module.home.activity;
-
-import android.content.Context;
-import android.content.Intent;
-import android.view.View;
-
-import com.toaok.study.R;
-import com.toaok.study.base.BaseActivity;
-import com.toaok.study.module.home.view.MainDelegate;
-
-/**
- * 主界面
- */
-public class MainActivity extends BaseActivity<MainDelegate> implements View.OnClickListener {
-
-    public static void startActivity(Context context) {
-
-        Intent intent = new Intent();
-        intent.setClass(context, MainActivity.class);
-        context.startActivity(intent);
-    }
-
-    @Override
-    protected void bindEvenListener() {
-        super.bindEvenListener();
-    }
-
-    @Override
-    protected Class getDelegateClass() {
-        return MainDelegate.class;
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_map:
-                viewDelegate.setTabBackground(MainDelegate.MAP_PAGER);
-                break;
-            case R.id.btn_kline:
-                viewDelegate.setTabBackground(MainDelegate.KLINE_PAGER);
-                break;
-            case R.id.btn_other:
-                viewDelegate.setTabBackground(MainDelegate.OTHER_PAGER);
-                break;
-
-        }
-
-    }
-
-
-}
+package com.toaok.study.module.home.activity;import android.content.Context;import android.content.Intent;import android.os.Bundle;import android.support.annotation.Nullable;import android.support.v4.app.Fragment;import android.view.View;import com.toaok.study.R;import com.toaok.study.module.base.presenter.activity.BaseActivity;import com.toaok.study.module.home.bean.MainBean;import com.toaok.study.module.home.databinder.MainDataBinder;import com.toaok.study.module.home.view.MainDelegate;import com.toaok.study.module.other.fragment.OtherFragment;import com.toaok.themvp.databind.DataBinder;import java.util.ArrayList;import java.util.List;/** * 主界面 */public class MainActivity extends BaseActivity<MainDelegate> implements View.OnClickListener {    private MainBean mBean;    public static void startActivity(Context context) {        Intent intent = new Intent();        intent.setClass(context, MainActivity.class);        context.startActivity(intent);    }    @Override    protected void onCreate(@Nullable Bundle savedInstanceState) {        super.onCreate(savedInstanceState);        initData();    }    private void initData() {        Fragment mapFragment = OtherFragment.getInstance();        Fragment klineFragment = OtherFragment.getInstance();        Fragment otherFragment = OtherFragment.getInstance();        List<Fragment> fragmentList = new ArrayList<>();        fragmentList.add(mapFragment);        fragmentList.add(klineFragment);        fragmentList.add(otherFragment);        mBean = new MainBean(getSupportFragmentManager(), fragmentList);        notifyModelChanged(mBean);    }    @Override    protected void bindEvenListener() {        super.bindEvenListener();        viewDelegate.setOnClickListener(this, R.id.btn_map, R.id.btn_kline, R.id.btn_other);    }    @Override    protected Class getDelegateClass() {        return MainDelegate.class;    }    @Override    public DataBinder getDataBinder() {        return new MainDataBinder();    }    @Override    public void onClick(View v) {//        super.onClick(v);        switch (v.getId()) {            case R.id.btn_map:                viewDelegate.setTabBackground(MainDelegate.MAP_PAGER);                break;            case R.id.btn_kline:                viewDelegate.setTabBackground(MainDelegate.KLINE_PAGER);                break;            case R.id.btn_other:                viewDelegate.setTabBackground(MainDelegate.OTHER_PAGER);                break;        }    }    @Override    protected void onDestroy() {        super.onDestroy();       if(mBean!=null){           mBean.onDestroy();       }        mBean=null;    }}
