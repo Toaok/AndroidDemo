@@ -20,7 +20,7 @@
  * Weibo:   http://weibo.com/GcsSloop
  */
 
-package com.leaks;
+package com.toaok.study.leaks;
 
 import android.app.Activity;
 import android.app.Application;

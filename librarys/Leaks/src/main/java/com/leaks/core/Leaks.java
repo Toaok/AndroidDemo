@@ -38,4 +38,5 @@ public class Leaks {
         }
         LeakCanary.install((Application) context.getApplicationContext());
     }
+
 }

@@ -97,9 +97,9 @@ public final class NetworkUtils {
     @RequiresPermission(INTERNET)
     public static boolean isAvailableByPing(String ip) {
         if (ip == null || ip.length() <= 0) {
-            ip = "223.5.5.5";// default ping ip
+            ip = "www.baidu.com";// default ping ip
         }
-        ShellUtils.CommandResult result = ShellUtils.execCmd(String.format("ping -c 1 %s", ip), false);
+        ShellUtils.CommandResult result = ShellUtils.execCmd(String.format("ping -c 3 %s", ip), false);
         boolean ret = result.result == 0;
         if (result.errorMsg != null) {
             Log.d("NetworkUtils", "isAvailableByPing() called" + result.errorMsg);

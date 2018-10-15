@@ -88,7 +88,7 @@ def configLibDependences(Project pro) {
          * leaks 必须使用 debugImplementation 来依赖，不然会解析失败
          * 这是因为在子模块中进行注册依赖是也用的是debugImplementation
          */
-        implementation project(':Leaks')
+        debugImplementation project(':Leaks')
         //The MVP
         implementation project(':Themvp')
         //android utils

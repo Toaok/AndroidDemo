@@ -6,7 +6,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.toaok.imageloder.core.BaseImageLoaderStrategy;
 import com.toaok.imageloder.core.ImageLoader;
-import com.toaok.utilcode.util.NetworkUtils;
 
 /**
  * 使用glide来加载图片
@@ -24,16 +23,7 @@ public class GlideImageLoaderStrategy implements BaseImageLoaderStrategy {
 
     @Override
     public void loadImage(Context context, ImageLoader imageLoader) {
-
-        if (NetworkUtils.isAvailableByPing()) {
-            //网络可用
-            loadNormal(context, imageLoader);
-        } else {
-            //网络不可用
-            loadNormal(context, imageLoader);
-        }
-
-
+        loadNormal(context, imageLoader);
     }
 
 

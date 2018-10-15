@@ -1,7 +1,7 @@
 package com.toaok.study.databind;
 
 
-import com.toaok.study.module.base.databinder.BaseDataBinder;
+import com.toaok.study.base.databinder.BaseDataBinder;
 import com.toaok.study.module.home.databinder.SplashDataBinder;
 import com.toaok.study.view.SplashDetagate_BT;
 import com.toaok.study.vo.SplashBean_BT;
