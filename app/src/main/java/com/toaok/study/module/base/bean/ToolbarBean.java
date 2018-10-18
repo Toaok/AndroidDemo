@@ -7,25 +7,15 @@ import com.toaok.themvp.model.IModel;
  * @version 1.0  2018/10/8.
  */
 public class ToolbarBean implements IModel{
-    private String leftText;
-    private String centerText;
+    private String titleText;
     private String rightText;
 
-
-    public String getLeftText() {
-        return leftText;
+    public String getTitleText() {
+        return titleText;
     }
 
-    public void setLeftText(String leftText) {
-        this.leftText = leftText;
-    }
-
-    public String getCenterText() {
-        return centerText;
-    }
-
-    public void setCenterText(String centerText) {
-        this.centerText = centerText;
+    public void setTitleText(String titleText) {
+        this.titleText = titleText;
     }
 
     public String getRightText() {
