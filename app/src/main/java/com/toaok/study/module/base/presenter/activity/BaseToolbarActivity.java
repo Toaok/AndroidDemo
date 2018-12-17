@@ -13,10 +13,12 @@ import com.toaok.study.module.base.view.BaseToolbarDelegate;
 import com.toaok.themvp.databind.DataBinder;
 
 /**
+ * 带有toolbar的基类
  * @author Toaok
  * @version 1.0  2018/10/8.
  */
-public abstract class BaseToolbarActivity extends BaseActivity<BaseToolbarDelegate> implements BaseToolbarDelegate.OnClickToolBarListener {
+public abstract class BaseToolbarActivity<T extends BaseToolbarDelegate> extends BaseActivity<T> implements BaseToolbarDelegate.OnClickToolBarListener {
+
     protected ToolbarBean mToolbarBean;
 
     @Override
@@ -37,13 +39,23 @@ public abstract class BaseToolbarActivity extends BaseActivity<BaseToolbarDelega
         }
     }
 
+    @Override
+    protected void initToolbar() {
+        super.initToolbar();
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(false);
+        }
+    }
+
     /**
      * 初始化Toolbar的显示
      * leftImageButtong是返回
      * 若要定义左边的图标重写该方法
      */
     protected void initToolbarView() {
-        viewDelegate.getLeftImageButton().setImageResource(R.drawable.ic_arrow_back_white);
+        viewDelegate.setLeftIcon(R.drawable.ic_arrow_back_white);
     }
 
 
@@ -53,7 +65,7 @@ public abstract class BaseToolbarActivity extends BaseActivity<BaseToolbarDelega
     @Override
     public void onClickLeftButton() {
         viewDelegate.toast("onClickLeftButton");
-        finish();
+        this.finish();
     }
 
     /**
@@ -61,7 +73,7 @@ public abstract class BaseToolbarActivity extends BaseActivity<BaseToolbarDelega
      */
     @Override
     public void onClickRightText() {
-        viewDelegate.toast("onClickLeftButton");
+        viewDelegate.toast("onClickRightText");
     }
 
     /**
@@ -69,19 +81,19 @@ public abstract class BaseToolbarActivity extends BaseActivity<BaseToolbarDelega
      */
     @Override
     public void onClickRightButton() {
-        viewDelegate.toast("onClickLeftButton");
+        viewDelegate.toast("onClickRightButton");
     }
 
+
+    /**
+     * 创建fragment
+     * @return Fragment
+     */
     protected abstract Fragment createFragment();
 
     @Override
     public DataBinder getDataBinder() {
         return new BaseToolbarDataBinder();
-    }
-
-    @Override
-    protected Class<BaseToolbarDelegate> getDelegateClass() {
-        return BaseToolbarDelegate.class;
     }
 
     @Override
@@ -95,4 +107,5 @@ public abstract class BaseToolbarActivity extends BaseActivity<BaseToolbarDelega
         }
 
     }
+
 }

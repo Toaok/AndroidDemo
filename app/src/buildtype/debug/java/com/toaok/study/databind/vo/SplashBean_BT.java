@@ -28,7 +28,7 @@ public class SplashBean_BT extends SplashBean {
     public SplashBean_BT(AppInfo appInfo, SplashBean splashBean) {
         this.appInfo = appInfo;
         //
-        setSelf(splashBean);
+        setSplashBean(splashBean);
     }
 
     public AppInfo getAppInfo() {

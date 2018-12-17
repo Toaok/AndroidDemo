@@ -83,7 +83,6 @@ def configLibDependences(Project pro) {
         /**
          * module
          */
-
         /*
          * leaks 必须使用 debugImplementation 来依赖，不然会解析失败
          * 这是因为在子模块中进行注册依赖是也用的是debugImplementation
@@ -92,8 +91,7 @@ def configLibDependences(Project pro) {
         //The MVP
         implementation project(':Themvp')
         //android utils
-        implementation project(':Utilcode')
-        implementation project(':Subutil')
+        implementation project(':Utils')
         //ImageLoader
         implementation project(':Imageloder')
     }
@@ -146,8 +144,7 @@ def configSourceSets(Project pro) {
             //自定义资源文件目录，注意备份
             res.srcDirs =
                     [
-                            'src/main/res/resource/main',
-                            'src/main/res/resource',
+                            'src/main/res/main',
                             'src/main/res/'
                     ]
         }
@@ -231,6 +228,8 @@ def configDefault(Project pro) {
             //flavorDimensions
             flavorDimensions androidConfig.flavorDimensions
 
+
+            //自定义常量字段
             buildConfigField "String", "SPLASH_URL", "\"${splash_resource.splash_url}\""
             buildConfigField "String", "SPLASH_CSSQUERY", "\"${splash_resource.splash_cssquery}\""
             buildConfigField "String", "SPLASH_ATTRIBUTEKEY", "\"${splash_resource.splash_attributekey}\""
@@ -269,6 +268,7 @@ def configLibAndroidDomain(Project pro) {
         compileSdkVersion androidConfig.compileSdkVersion
         defaultConfig {
             minSdkVersion androidConfig.minSdkVersion
+            targetSdkVersion androidConfig.targetSdkVersion
             versionCode androidConfig.versionCode
             versionName androidConfig.versionName
         }

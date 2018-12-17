@@ -18,4 +18,4 @@
 *.apk
 
 #本地配置文件
-app/resource/main/layout/test_layout.xml
+local.properties

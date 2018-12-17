@@ -3,6 +3,7 @@ package com.toaok.study.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.toaok.study.App;
 import com.toaok.study.databind.SplashDataBinder_BT;
 import com.toaok.study.model.vo.AppInfo;
 import com.toaok.study.module.home.activity.BaseSplashActivity;
@@ -20,13 +21,14 @@ public class SplashActivity_BT extends BaseSplashActivity<SplashDetagate_BT> {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppInfo appInfo=new AppInfo();
         if (mSplashBean == null) {
-            mSplashBean = new SplashBean_BT(AppInfo.getInstance());
+            mSplashBean = new SplashBean_BT(appInfo);
         } else {
             if (mSplashBean instanceof SplashBean_BT) {
-                ((SplashBean_BT) mSplashBean).setAppInfo(AppInfo.getInstance());
+                ((SplashBean_BT) mSplashBean).setAppInfo(appInfo);
             }else {
-                mSplashBean=new SplashBean_BT(AppInfo.getInstance(),mSplashBean);
+                mSplashBean=new SplashBean_BT(appInfo,mSplashBean);
             }
         }
         notifyModelChanged(mSplashBean);

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--font size(sp)-->
+    <dimen name="font_size_16">16sp</dimen>
+    <dimen name="font_size_18">18sp</dimen>
+    <dimen name="font_size_40">40sp</dimen>
+
+
+    <!--height(dp)-->
+
+    <!--wight(dp)-->
+
+</resources>

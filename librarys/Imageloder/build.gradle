@@ -5,6 +5,6 @@ configModuleBaseDependences project
 
 dependencies{
     implementation depLibConfig.glide
-    annotationProcessor depLibConfig.compiler
-    api project(path: ':Utilcode')
+    annotationProcessor depLibConfig.glide_compiler
+    implementation depLibConfig.glide_okhttp3_integration
 }

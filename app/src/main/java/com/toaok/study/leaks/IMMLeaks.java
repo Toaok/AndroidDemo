@@ -189,7 +189,7 @@ public class IMMLeaks {
     /**
      * 用于解决华为手机InputMethodManager.mLastSrvView引发的内存泄漏问题。
      * TODO 好像不起作用，还是发生内存泄漏
-     * @param application
+     * Should be called from {@link Activity#onDestroy()}.
      */
     public static void fixLeak(Application application) {
         if (!hasField) {

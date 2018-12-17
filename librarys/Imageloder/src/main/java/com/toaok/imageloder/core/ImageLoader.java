@@ -1,109 +1,94 @@
 package com.toaok.imageloder.core;
 
+import android.content.Context;
 import android.widget.ImageView;
 
+import com.toaok.imageloder.core.glide.GlideImageLoaderStrategy;
+
+
 /**
- * 使用了构建模式,封装了ImageView
- *
- * @author Toaok
- * @version 1.0  2018/9/10.
+ * Created by sj on 10/16/16.
  */
+
 public class ImageLoader {
 
     /**
-     * 图片类型(大：2,中:1,小:0)
+     * 指定当前图片加载器 Glide
+     * @return
      */
-    private int type;
+    protected static BaseImageLoaderStrategy getLoader() {
+        return GlideImageLoaderStrategy.getInstance();
+    }
 
     /**
-     * 解析url
+     * 自定义加载
+     * @param imageView
+     * @param imageUrl
+     * @param imageLoaderConfig
+     * @param listener
      */
-    private String url;
+    public static void loadImage(ImageView imageView, String imageUrl, ImageLoaderConfig imageLoaderConfig, LoaderListener listener) {
+        getLoader().loadImage(imageView, imageUrl, imageLoaderConfig, listener);
+    }
 
     /**
-     * 当图片加载失败时去加载图片
+     * 加载基础图片
+     * @param imageView
+     * @param imageUrl
      */
-    private int placeHolder;
+    public static void loadImage(ImageView imageView, String imageUrl){
+        getLoader().loadImage(imageView, imageUrl);
+    }
 
     /**
-     * ImageView 实例
+     * 先加载缩略图，再加载大图
+     * @param imageView
+     * @param imageUrl
+     * @param thumbnailUrl
      */
-    private ImageView imageView;
+    public static void loadImage(ImageView imageView, String imageUrl, String thumbnailUrl){
+        getLoader().loadImage(imageView, imageUrl, thumbnailUrl);
+    }
 
     /**
-     * wifi加载策略
+     * 加载圆图
+     * @param imageView
+     * @param imageUrl
      */
-    private int wifiStrategy;
-
-    private ImageLoader(Builder builder) {
-        this.type = builder.type;
-        this.url = builder.url;
-        this.placeHolder = builder.placeHolder;
-        this.imageView = builder.imageView;
-        this.wifiStrategy = builder.wifiStrategy;
+    public static void loadRoundedImage(ImageView imageView, String imageUrl){
+        getLoader().loadRoundedImage(imageView, imageUrl);
     }
 
-    public int getType() {
-        return type;
+
+    /**
+     * 加载Gif
+     * @param imageView
+     * @param imageUrl
+     */
+    public static void loadGif(ImageView imageView, String imageUrl) {
+        getLoader().loadGif(imageView, imageUrl);
     }
 
-    public String getUrl() {
-        return url;
+    /**
+     * 下载网络图片并保存
+     * @param context
+     * @param uri
+     */
+    public static void downloadImage(Context context, String uri, String savePath) {
+        getLoader().downloadImage(context, null, uri, savePath, null, false);
     }
 
-    public int getPlaceHolder() {
-        return placeHolder;
+    /**
+     *下载网络图片并保存
+     *
+     * @param context
+     * @param uri
+     * @param savePath
+     * @param listener
+     */
+    public static void downloadImage(Context context, String uri, String savePath, LoaderListener listener) {
+        getLoader().downloadImage(context, null, uri, savePath, null, false, listener);
     }
-
-    public ImageView getImageView() {
-        return imageView;
-    }
-
-    public int getWifiStrategy() {
-        return wifiStrategy;
-    }
-
-    public static class Builder {
-
-        private int type;
-
-        private String url;
-
-        private int placeHolder;
-
-        private ImageView imageView;
-
-        private int wifiStrategy;
-
-
-        public Builder type(int type) {
-            this.type = type;
-            return this;
-        }
-
-        public Builder url(String url) {
-            this.url = url;
-            return this;
-        }
-
-        public Builder placeHolder(int placeHolder) {
-            this.placeHolder = placeHolder;
-            return this;
-        }
-
-        public Builder imageView(ImageView imageView) {
-            this.imageView = imageView;
-            return this;
-        }
-
-        public Builder wifiStrategy(int wifiStrategy) {
-            this.wifiStrategy = wifiStrategy;
-            return this;
-        }
-
-        public ImageLoader builder() {
-            return new ImageLoader(this);
-        }
-    }
-
 }
+
+

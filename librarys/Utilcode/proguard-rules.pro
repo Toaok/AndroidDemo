@@ -16,9 +16,9 @@
 #   public *;
 #}
 
--keep class com.blankj.utilcode.** { *; }
--keepclassmembers class com.blankj.utilcode.** { *; }
--dontwarn com.blankj.utilcode.**
+-keep class com.toaok.utilcode.** { *; }
+-keepclassmembers class com.toaok.utilcode.** { *; }
+-dontwarn com.toaok.utilcode.**
 
 # @Keep
 -keep,allowobfuscation @interface android.support.annotation.Keep

@@ -44,7 +44,7 @@ public abstract class ActivityPresenter<T extends IDelegate> extends AppCompatAc
     }
 
     /**
-     * TODO 设置了Toolbar但没有显示,原因没有将toolbar添加到视图中
+     * 初始化toolbar
      */
     protected void initToolbar() {
         Toolbar toolbar=viewDelegate.getToolbar();

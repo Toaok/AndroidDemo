@@ -3,6 +3,7 @@ package com.toaok.themvp.databind;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 
 import com.toaok.themvp.model.IModel;
 import com.toaok.themvp.presenter.ActivityPresenter;

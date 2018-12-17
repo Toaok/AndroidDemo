@@ -10,12 +10,13 @@ import android.view.KeyEvent;
 
 import com.toaok.study.R;
 import com.toaok.study.module.base.presenter.activity.BaseToolbarActivity;
+import com.toaok.study.module.base.view.BaseToolbarDelegate;
 import com.toaok.study.module.other.fragment.WebViewFragment;
 
 /**
  *WebView页面
  */
-public class WebActivity extends BaseToolbarActivity {
+public class WebActivity extends BaseToolbarActivity<BaseToolbarDelegate> {
 
     public final static String EXTRA_TITLE = "EXTRA_TITLE";
     public final static String EXTRA_URL = "EXTRA_URL";
@@ -63,12 +64,7 @@ public class WebActivity extends BaseToolbarActivity {
         super.initToolbarView();
         Intent intent = getIntent();
         mToolbarBean.setTitleText(intent.getStringExtra(EXTRA_TITLE));
-        mToolbarBean.setRightText(intent.getBooleanExtra(EXTRA_ISSHARE, false)?getString(R.string.share_text):"");
-    }
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
+        mToolbarBean.setRightText(intent.getBooleanExtra(EXTRA_ISSHARE, false)?getString(R.string.right_share_text):"");
     }
 
     /**
@@ -91,6 +87,7 @@ public class WebActivity extends BaseToolbarActivity {
         return super.onKeyDown(keyCode, event);
     }
 
+
     @Override
     public void onClickLeftButton() {
         mWebViewFragment.goBack();
@@ -100,17 +97,26 @@ public class WebActivity extends BaseToolbarActivity {
     /**
      * 结束当前进程
      * 在finish中结束进程会导致闪屏问题
-     * 原因：{@link android.app.Activity#finish()}是立即将该Activity从当前栈顶移除，
-     * 并不会立即调用{@link android.app.Activity#onDestroy()}方法释放该Activity所占用的资源，
-     * 由于此时该Activity所占用的资源还未完全释放，调用{@link java.lang.System#exit(int)},
-     * 会直接结束当前进程，导致闪屏问题，所以应该在{@link this#onDestroy()}在中等Activity所占用资源释放后，
-     * 再结束当前线程
      */
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
+        /**
+         * 原因：{@link android.app.Activity#finish()}是立即将该Activity从当前栈顶移除，
+         * 并不会立即调用{@link android.app.Activity#onDestroy()}方法释放该Activity所占用的资源，
+         * 由于此时该Activity所占用的资源还未完全释放，调用{@link java.lang.System#exit(int)},
+         * 会直接结束当前进程，导致闪屏问题，所以应该在{@link this#onDestroy()}在中等Activity所占用资源释放后，
+         * 再结束当前线程
+         */
         System.exit(0);
     }
+
+    @Override
+    protected Class<BaseToolbarDelegate> getDelegateClass() {
+        return BaseToolbarDelegate.class;
+    }
+
     @Override
     protected Fragment createFragment() {
         Intent intent = getIntent();
