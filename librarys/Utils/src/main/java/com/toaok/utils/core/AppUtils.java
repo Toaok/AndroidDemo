@@ -31,15 +31,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2016/08/02
- *     desc  : utils about app
- * </pre>
+ * @author Toaok
+ * @version 1.0  2018/12/25.
  */
-public final class AppUtils {
-
+public class AppUtils {
     private AppUtils() {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
@@ -52,7 +47,7 @@ public final class AppUtils {
      */
     public static void registerAppStatusChangedListener(@NonNull final Object obj,
                                                         @NonNull final Utils.OnAppStatusChangedListener listener) {
-        Utils.getActivityLifecycle().addListener(obj, listener);
+        Utils.getActivityLifecycle().addOnAppStatusChangedListener(obj, listener);
     }
 
     /**
@@ -61,7 +56,7 @@ public final class AppUtils {
      * @param obj The object.
      */
     public static void unregisterAppStatusChangedListener(@NonNull final Object obj) {
-        Utils.getActivityLifecycle().removeListener(obj);
+        Utils.getActivityLifecycle().removeOnAppStatusChangedListener(obj);
     }
 
     /**
@@ -738,13 +733,13 @@ public final class AppUtils {
      */
     public static class AppInfo {
 
-        private String   packageName;
-        private String   name;
+        private String packageName;
+        private String name;
         private Drawable icon;
-        private String   packagePath;
-        private String   versionName;
-        private int      versionCode;
-        private boolean  isSystem;
+        private String packagePath;
+        private String versionName;
+        private int versionCode;
+        private boolean isSystem;
 
         public Drawable getIcon() {
             return icon;

@@ -54,10 +54,13 @@ public interface BaseImageLoaderStrategy {
     void loadGif(ImageView imageView, String imageUrl);
 
     /**
+     *
      * @param context
      * @param handler
      * @param uri
+     * @param savePath
      * @param name
+     * @param isInsertMedia
      */
     void downloadImage(Context context, Handler handler, String uri, String savePath, String name, boolean isInsertMedia);
 

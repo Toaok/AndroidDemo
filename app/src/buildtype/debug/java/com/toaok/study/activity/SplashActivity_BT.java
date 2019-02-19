@@ -3,11 +3,10 @@ package com.toaok.study.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.toaok.study.App;
 import com.toaok.study.databind.SplashDataBinder_BT;
 import com.toaok.study.model.vo.AppInfo;
 import com.toaok.study.module.home.activity.BaseSplashActivity;
-import com.toaok.study.view.SplashDetagate_BT;
+import com.toaok.study.view.SplashDelegate_BT;
 import com.toaok.study.vo.SplashBean_BT;
 import com.toaok.themvp.databind.DataBinder;
 
@@ -15,8 +14,7 @@ import com.toaok.themvp.databind.DataBinder;
  * Created by sj on 2016/11/25.
  */
 
-public class SplashActivity_BT extends BaseSplashActivity<SplashDetagate_BT> {
-
+public class SplashActivity_BT extends BaseSplashActivity<SplashDelegate_BT> {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,8 +33,8 @@ public class SplashActivity_BT extends BaseSplashActivity<SplashDetagate_BT> {
     }
 
     @Override
-    protected Class<SplashDetagate_BT> getDelegateClass() {
-        return SplashDetagate_BT.class;
+    protected Class<SplashDelegate_BT> getDelegateClass() {
+        return SplashDelegate_BT.class;
     }
 
     @Override

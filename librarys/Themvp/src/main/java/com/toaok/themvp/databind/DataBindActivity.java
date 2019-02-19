@@ -3,7 +3,6 @@ package com.toaok.themvp.databind;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.View;
 
 import com.toaok.themvp.model.IModel;
 import com.toaok.themvp.presenter.ActivityPresenter;
@@ -32,6 +31,7 @@ public abstract class DataBindActivity<T extends IDelegate> extends
     public <D extends IModel> void notifyModelChanged(D data){
         if(binder!=null&&viewDelegate!=null){
             binder.viewBindModel(viewDelegate,data);
+            data.setMessage("");
         }
     }
 }

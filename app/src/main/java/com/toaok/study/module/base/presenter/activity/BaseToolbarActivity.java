@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.ActionBar;
 
 import com.toaok.study.R;
 import com.toaok.study.base.presenter.activity.BaseActivity;
@@ -42,7 +43,7 @@ public abstract class BaseToolbarActivity<T extends BaseToolbarDelegate> extends
     @Override
     protected void initToolbar() {
         super.initToolbar();
-        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setDisplayShowTitleEnabled(false);
@@ -64,7 +65,8 @@ public abstract class BaseToolbarActivity<T extends BaseToolbarDelegate> extends
      */
     @Override
     public void onClickLeftButton() {
-        viewDelegate.toast("onClickLeftButton");
+        mToolbarBean.setMessage("onClickLeftButton");
+        notifyModelChanged(mToolbarBean);
         this.finish();
     }
 
@@ -73,7 +75,8 @@ public abstract class BaseToolbarActivity<T extends BaseToolbarDelegate> extends
      */
     @Override
     public void onClickRightText() {
-        viewDelegate.toast("onClickRightText");
+        mToolbarBean.setMessage("onClickRightText");
+        notifyModelChanged(mToolbarBean);
     }
 
     /**
@@ -81,7 +84,8 @@ public abstract class BaseToolbarActivity<T extends BaseToolbarDelegate> extends
      */
     @Override
     public void onClickRightButton() {
-        viewDelegate.toast("onClickRightButton");
+        mToolbarBean.setMessage("onClickRightButton");
+        notifyModelChanged(mToolbarBean);
     }
 
 
@@ -99,13 +103,9 @@ public abstract class BaseToolbarActivity<T extends BaseToolbarDelegate> extends
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        /*
-         * huwei emui 8.0 memory leaks
-         * */
         if (mToolbarBean != null) {
             mToolbarBean = null;
         }
-
     }
 
 }

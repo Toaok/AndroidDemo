@@ -11,6 +11,6 @@ import com.toaok.study.module.map.view.MapDelegate;
 public class MapDataBinder extends BaseDataBinder<MapDelegate,MapBean> {
     @Override
     public void viewBindModel(MapDelegate viewDelegate, MapBean data) {
-        viewDelegate.setTvTestString(data.getTestString());
+        super.viewBindModel(viewDelegate,data);
     }
 }

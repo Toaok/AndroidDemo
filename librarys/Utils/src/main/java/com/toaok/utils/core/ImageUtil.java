@@ -49,10 +49,9 @@ import java.io.OutputStream;
 
 /**
  * @author Toaok
- * @version 1.0  2018/11/26.
+ * @version 1.0  2018/12/25.
  */
-public final class ImageUtil {
-
+public class ImageUtil {
     private ImageUtil() {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }

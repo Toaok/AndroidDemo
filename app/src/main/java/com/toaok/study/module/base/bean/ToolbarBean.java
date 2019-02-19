@@ -19,6 +19,9 @@ public class ToolbarBean implements IModel{
     * */
     private String rightText;
 
+    private String message;
+
+
     public String getTitleText() {
         return titleText;
     }
@@ -33,5 +36,13 @@ public class ToolbarBean implements IModel{
 
     public void setRightText(String rightText) {
         this.rightText = rightText;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

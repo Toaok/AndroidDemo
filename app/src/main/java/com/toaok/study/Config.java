@@ -13,7 +13,8 @@ public class Config {
     public static final String PKG      = "com.toaok.study";
     public static final String TEST_PKG = "com.toaok.study";
     public static final String GITHUB   = "https://github.com/Toaok/AndroidDemo";
-    public static final String BLOG     = "";
+    public static final String BAIDU   = "https://www.baidu.com/";
+    public static final String BLOG     = "https://toaok.github.io";
     public static final String CACHE_PATH;
     public static final String TEST_APK_PATH;
 

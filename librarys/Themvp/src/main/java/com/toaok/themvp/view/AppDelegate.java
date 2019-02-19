@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import java.lang.ref.WeakReference;
+
 /**
  * View delegate base class
  * 视图代理的基类
@@ -73,6 +75,7 @@ public abstract class AppDelegate implements IDelegate {
 
     /**
      * 传递控件id
+     *
      * @param listener
      * @param ids
      */
@@ -100,11 +103,11 @@ public abstract class AppDelegate implements IDelegate {
     }
 
     public void toast(CharSequence msg) {
-        Toast.makeText(rootView.getContext(), msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
     }
 
     public <T extends Activity> T getActivity() {
-        return (T) rootView.getContext();
+        return new WeakReference<>((T) rootView.getContext()).get();
     }
 
 }

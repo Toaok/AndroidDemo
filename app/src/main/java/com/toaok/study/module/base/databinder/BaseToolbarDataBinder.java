@@ -16,6 +16,7 @@ public class BaseToolbarDataBinder extends BaseDataBinder<BaseToolbarDelegate, T
 
     @Override
     public void viewBindModel(BaseToolbarDelegate viewDelegate, ToolbarBean data) {
+        super.viewBindModel(viewDelegate,data);
         if (!TextUtils.isEmpty(data.getTitleText()))
             viewDelegate.setTitle(data.getTitleText());
         if (!TextUtils.isEmpty(data.getRightText()))

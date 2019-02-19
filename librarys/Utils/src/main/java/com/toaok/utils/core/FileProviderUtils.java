@@ -11,12 +11,13 @@ import com.toaok.utils.Utils;
 import java.io.File;
 
 /**
- * 类：FileProviderUtils Uri适配帮助类
+ * FileProviderUtils Uri适配帮助类
  * 从APP向外共享的文件URI时，必须使用该类进行适配，否则在7.0以上系统，会报错：FileUriExposedException(文件Uri暴露异常)
- * 作者： qxc
- * 日期：2018/2/23.
+ * @author Toaok
+ * @version 1.0  2019/1/29.
  */
 public class FileProviderUtils {
+
     /**
      * 从文件获得URI
      *

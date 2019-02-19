@@ -25,7 +25,7 @@ import com.toaok.imageloder.R;
 import com.toaok.imageloder.core.BaseImageLoaderStrategy;
 import com.toaok.imageloder.core.ImageLoaderConfig;
 import com.toaok.imageloder.core.LoaderListener;
-import com.toaok.imageloder.core.utils.ImageUtil;
+import com.toaok.imageloder.core.util.ImageUtil;
 
 import java.io.File;
 
@@ -79,7 +79,7 @@ public class GlideImageLoaderStrategy implements BaseImageLoaderStrategy {
 
     @Override
     public void loadImage(final ImageView imageView, String imageUrl, ImageLoaderConfig config, LoaderListener listener) {
-        final Context context = imageView.getContext();
+        final Context context = imageView.getContext().getApplicationContext();
         if (null == config) {
             config = defaultConfigBuilder;
         }
@@ -239,6 +239,7 @@ public class GlideImageLoaderStrategy implements BaseImageLoaderStrategy {
                 .downloadOnly().listener(new RequestListener<File>() {
             @Override
             public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<File> target, boolean isFirstResource) {
+                loaderListener.onError();
                 return false;
             }
 

@@ -6,5 +6,7 @@ package com.toaok.themvp.model;
  */
 public interface IModel {
 
+    String getMessage();
 
+    void setMessage(String message);
 }

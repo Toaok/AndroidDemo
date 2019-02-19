@@ -2,45 +2,51 @@ package com.toaok.study.utils;
 
 import android.os.Environment;
 
+import com.toaok.utils.core.AppUtils;
+
 import java.io.File;
 
+/**
+ * 外部存储
+ */
 public class FilePathUtil {
 
-    private static String getBaseDir(String childDir) {
-        return Environment.getExternalStorageDirectory().getPath() + "/AndroidDemo/" + childDir;
+    private static String getBaseDirPath(String childDir) {
+        return Environment.getExternalStorageDirectory().getPath() + "/" + AppUtils.getAppName() + "/" + childDir;
     }
 
-    public static String getCacheCrop() {
-        return checkAndMkdirs(getBaseDir("cache/crop/"));
+    public static String getCacheCropPath() {
+        return checkAndMkdirs(getBaseDirPath("cache/crop/"));
     }
 
-    public static String getCacheImage() {
-        return checkAndMkdirs(getBaseDir("cache/image/"));
+    public static String getCacheImagePath() {
+        return checkAndMkdirs(getBaseDirPath("cache/images/"));
     }
 
 
-    public static String getCacheImagePick() {
-        return checkAndMkdirs(getBaseDir("cache/image/")) + System.currentTimeMillis() + ".jpg";
+    public static String getCacheImagePickPath() {
+        return checkAndMkdirs(getBaseDirPath("cache/image/")) + System.currentTimeMillis() + ".jpg";
     }
 
-    public static String getCacheWeb() {
-        return checkAndMkdirs(getBaseDir("cache/web/"));
+    public static String getCacheWebPath() {
+        return checkAndMkdirs(getBaseDirPath("cache/web/"));
     }
 
     public static String getCache() {
-        return checkAndMkdirs(getBaseDir("cache/"));
+        return checkAndMkdirs(getBaseDirPath("cache/"));
     }
 
-    public static String getImage() {
-        return checkAndMkdirs(getBaseDir("image/"));
+    public static String getImagePath() {
+        return checkAndMkdirs(getBaseDirPath("images/"));
     }
 
-    public static String getAdImage() {
-        return checkAndMkdirs(getBaseDir("image/ad/"));
+    public static String getSplashImagePath() {
+        return checkAndMkdirs(getBaseDirPath("images/splash/"));
     }
 
     /**
      * 检查文件夹是否存在
+     *
      * @param dir
      * @return
      */
@@ -51,4 +57,5 @@ public class FilePathUtil {
         }
         return dir;
     }
+
 }

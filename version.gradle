@@ -1,6 +1,6 @@
 ext {
 
-    //app config info
+    //app version config info
     androidConfig = [
 
             applicationId    : "com.toaok.study",
@@ -13,24 +13,26 @@ ext {
             flavorDimensions : 'default'
     ]
 
-    //base version info
+    //base dependence version info
     baseVsCfg = [
             //gradle
-            gradle : '3.1.3',
+            gradle  : '3.1.3',
 
             //support
-            support: [
+            support : [
                     appcompat_v7     : '27.1.1',
                     design           : '27.1.1',
                     constraint_layout: '1.1.2'
             ],
 
             //test
-            test   : [
+            test    : [
                     junit        : '4.12',
                     runner       : '1.0.2',
                     espresso_core: '3.0.2'
-            ]
+            ],
+            //multidex
+            multidex: '1.0.2'
     ]
 
     //base dependence info
@@ -46,7 +48,10 @@ ext {
             //test
             junit            : "junit:junit:$baseVsCfg.test.junit",
             runner           : "com.android.support.test:runner:$baseVsCfg.test.runner",
-            espresso_core    : "com.android.support.test.espresso:espresso-core:$baseVsCfg.test.espresso_core"
+            espresso_core    : "com.android.support.test.espresso:espresso-core:$baseVsCfg.test.espresso_core",
+
+            //multidex
+            multidex         : "com.android.support:multidex:$baseVsCfg.multidex"
     ]
 
     //the third-party library version info
@@ -57,30 +62,54 @@ ext {
             glide        : '4.8.0',
             jsoup        : '1.11.3',
             gson         : '2.8.2',
-            rxpermissions: '0.10.2'
+            rxpermissions: '0.10.2',
+            gaode        : [
+                    map     : 'latest.integration',
+                    navi    : 'latest.integration',
+                    location: 'latest.integration',
+                    search  : 'latest.integration'
+            ]
+
     ]
 
     //the third-party library dependences info
     depLibConfig = [
             //rx
-            rxjava        : "io.reactivex.rxjava2:rxjava:$depLibVersion.rxjava",
-            rxandroid     : "io.reactivex.rxjava2:rxandroid:$depLibVersion.rxjava",
+            rxjava                   : "io.reactivex.rxjava2:rxjava:$depLibVersion.rxjava",
+            rxandroid                : "io.reactivex.rxjava2:rxandroid:$depLibVersion.rxjava",
             //okhttp
-            okhttp        : "com.squareup.okhttp3:okhttp:$depLibVersion.okhttp",
+            okhttp                   : "com.squareup.okhttp3:okhttp:$depLibVersion.okhttp",
             //retrofit
-            retrofit      : "com.squareup.retrofit2:retrofit:$depLibVersion.retrofit",
-            converter_gson: "com.squareup.retrofit2:converter-gson:$depLibVersion.retrofit",
-            adapter_rxjava: "com.squareup.retrofit2:adapter-rxjava:$depLibVersion.retrofit",
+            retrofit                 : "com.squareup.retrofit2:retrofit:$depLibVersion.retrofit",
+            converter_gson           : "com.squareup.retrofit2:converter-gson:$depLibVersion.retrofit",
+            adapter_rxjava           : "com.squareup.retrofit2:adapter-rxjava:$depLibVersion.retrofit",
             //glide
-            glide         : "com.github.bumptech.glide:glide:$depLibVersion.glide",
-            glide_compiler      : "com.github.bumptech.glide:compiler:$depLibVersion.glide",
+            glide                    : "com.github.bumptech.glide:glide:$depLibVersion.glide",
+            glide_compiler           : "com.github.bumptech.glide:compiler:$depLibVersion.glide",
             glide_okhttp3_integration: "com.github.bumptech.glide:okhttp3-integration:$depLibVersion.glide",
             //jsoup
-            jsoup         : "org.jsoup:jsoup:$depLibVersion.jsoup",
+            jsoup                    : "org.jsoup:jsoup:$depLibVersion.jsoup",
             //gson
-            gson          : "com.google.code.gson:gson:$depLibVersion.gson",
+            gson                     : "com.google.code.gson:gson:$depLibVersion.gson",
             //rxpermissions
-            rxpermissions : "com.github.tbruyelle:rxpermissions:$depLibVersion.rxpermissions"
+            rxpermissions            : "com.github.tbruyelle:rxpermissions:$depLibVersion.rxpermissions",
+
+            //gaode
+            //3d map
+            gaode_map                : "com.amap.api:3dmap:$depLibVersion.gaode.map",
+            //导航
+            gaode_navi               : "com.amap.api:navi-3dmap:$depLibVersion.gaode.navi",
+            //定位
+            gaode_location           : "com.amap.api:location:$depLibVersion.gaode.location",
+            //查询
+            gaode_search             : "com.amap.api:search:$depLibVersion.gaode.search",
 
     ]
+
+
+    //高德APP_KEY
+    gaode = [
+            APP_KEY: "eeb4c8860aee338e342a82e82f08f623"
+    ]
+
 }

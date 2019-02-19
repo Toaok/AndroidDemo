@@ -2,6 +2,7 @@ package com.toaok.study.module.other.widget;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -34,10 +35,19 @@ public class DWebView<T> extends WebView {
 
     private void init() {
 
+        /**
+         * Android 8.0以上的问题webView的bug
+         * java.lang.ClassNotFoundException: Didn't find class "android.webkit.SafeBrowsingResponse" on path: DexPathList[[zip file "/data/hw_init/system/app/WebViewGoogle/WebViewGoogle.apk"],nativeLibraryDirectories=[/data/hw_init/system/app/WebViewGoogle/lib/arm64, /data/hw_init/system/app/WebViewGoogle/WebViewGoogle.apk!/lib/arm64-v8a, /system/lib64, /vendor/lib64, /product/lib64, /system/lib64, /vendor/lib64, /product/lib64]]
+         */
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            //this.getSettings().setSafeBrowsingEnabled(false);
+        }
+
+
         this.getSettings().setJavaScriptEnabled(true);
         this.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
 
-        String cacheDirPath = FilePathUtil.getCacheWeb();
+        String cacheDirPath = FilePathUtil.getCacheWebPath();
         this.getSettings().setAppCachePath(cacheDirPath);
 
         this.getSettings().setDomStorageEnabled(true);
@@ -45,7 +55,6 @@ public class DWebView<T> extends WebView {
         this.getSettings().setAppCacheEnabled(true);
         this.getSettings().setAllowFileAccess(true);
 
-//        this.getSettings().setUseWideViewPort(true);
         this.getSettings().setLoadWithOverviewMode(true);
 
         this.setWebViewClient(new JWebViewClient());

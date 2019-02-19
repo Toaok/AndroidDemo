@@ -15,7 +15,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewGroup.MarginLayoutParams;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
@@ -27,15 +26,10 @@ import java.lang.reflect.Method;
 import static android.Manifest.permission.EXPAND_STATUS_BAR;
 
 /**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2016/09/23
- *     desc  : utils about bar
- * </pre>
+ * @author Toaok
+ * @version 1.0  2018/12/25.
  */
-public final class BarUtils {
-
+public class BarUtils {
     ///////////////////////////////////////////////////////////////////////////
     // status bar
     ///////////////////////////////////////////////////////////////////////////
@@ -148,7 +142,7 @@ public final class BarUtils {
         view.setTag(TAG_OFFSET);
         Object haveSetOffset = view.getTag(KEY_OFFSET);
         if (haveSetOffset != null && (Boolean) haveSetOffset) return;
-        MarginLayoutParams layoutParams = (MarginLayoutParams) view.getLayoutParams();
+        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
         layoutParams.setMargins(layoutParams.leftMargin,
                 layoutParams.topMargin + getStatusBarHeight(),
                 layoutParams.rightMargin,
@@ -165,7 +159,7 @@ public final class BarUtils {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
         Object haveSetOffset = view.getTag(KEY_OFFSET);
         if (haveSetOffset == null || !(Boolean) haveSetOffset) return;
-        MarginLayoutParams layoutParams = (MarginLayoutParams) view.getLayoutParams();
+        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
         layoutParams.setMargins(layoutParams.leftMargin,
                 layoutParams.topMargin - getStatusBarHeight(),
                 layoutParams.rightMargin,

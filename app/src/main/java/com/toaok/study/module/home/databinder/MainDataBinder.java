@@ -11,5 +11,6 @@ import com.toaok.study.module.home.view.FMainDelegate;
 public class MainDataBinder extends BaseDataBinder<FMainDelegate,MainBean> {
     @Override
     public void viewBindModel(FMainDelegate viewDelegate, MainBean data) {
+        super.viewBindModel(viewDelegate,data);
     }
 }

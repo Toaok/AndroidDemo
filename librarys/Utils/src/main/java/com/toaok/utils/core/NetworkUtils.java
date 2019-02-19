@@ -31,14 +31,11 @@ import static android.Manifest.permission.MODIFY_PHONE_STATE;
 import static android.content.Context.WIFI_SERVICE;
 
 /**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2016/08/02
- *     desc  : utils about network
- * </pre>
+ * @author Toaok
+ * @version 1.0  2018/12/25.
  */
-public final class NetworkUtils {
+public class NetworkUtils {
+
 
     private NetworkUtils() {
         throw new UnsupportedOperationException("u can't instantiate me...");
@@ -433,7 +430,7 @@ public final class NetworkUtils {
     @RequiresPermission(ACCESS_WIFI_STATE)
     public static String getIpAddressByWifi() {
         @SuppressLint("WifiManagerLeak")
-        WifiManager wm = (WifiManager) Utils.getApp().getSystemService(Context.WIFI_SERVICE);
+        WifiManager wm = (WifiManager) Utils.getApp().getSystemService(WIFI_SERVICE);
         if (wm == null) return "";
         return Formatter.formatIpAddress(wm.getDhcpInfo().ipAddress);
     }
@@ -446,7 +443,7 @@ public final class NetworkUtils {
     @RequiresPermission(ACCESS_WIFI_STATE)
     public static String getGatewayByWifi() {
         @SuppressLint("WifiManagerLeak")
-        WifiManager wm = (WifiManager) Utils.getApp().getSystemService(Context.WIFI_SERVICE);
+        WifiManager wm = (WifiManager) Utils.getApp().getSystemService(WIFI_SERVICE);
         if (wm == null) return "";
         return Formatter.formatIpAddress(wm.getDhcpInfo().gateway);
     }
@@ -459,7 +456,7 @@ public final class NetworkUtils {
     @RequiresPermission(ACCESS_WIFI_STATE)
     public static String getNetMaskByWifi() {
         @SuppressLint("WifiManagerLeak")
-        WifiManager wm = (WifiManager) Utils.getApp().getSystemService(Context.WIFI_SERVICE);
+        WifiManager wm = (WifiManager) Utils.getApp().getSystemService(WIFI_SERVICE);
         if (wm == null) return "";
         return Formatter.formatIpAddress(wm.getDhcpInfo().netmask);
     }
@@ -472,8 +469,9 @@ public final class NetworkUtils {
     @RequiresPermission(ACCESS_WIFI_STATE)
     public static String getServerAddressByWifi() {
         @SuppressLint("WifiManagerLeak")
-        WifiManager wm = (WifiManager) Utils.getApp().getSystemService(Context.WIFI_SERVICE);
+        WifiManager wm = (WifiManager) Utils.getApp().getSystemService(WIFI_SERVICE);
         if (wm == null) return "";
         return Formatter.formatIpAddress(wm.getDhcpInfo().serverAddress);
     }
+
 }

@@ -9,10 +9,12 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.os.MessageQueue;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -188,10 +190,9 @@ public class IMMLeaks {
 
     /**
      * 用于解决华为手机InputMethodManager.mLastSrvView引发的内存泄漏问题。
-     * TODO 好像不起作用，还是发生内存泄漏
      * Should be called from {@link Activity#onDestroy()}.
      */
-    public static void fixLeak(Application application) {
+    public static void fixHWInputMethodManerLeak(Application application) {
         if (!hasField) {
             return;
         }
@@ -219,5 +220,9 @@ public class IMMLeaks {
         }
     }
 
+
+    public static void fixActivityFragmentControllerLeak(FragmentActivity activity){
+
+    }
 
 }

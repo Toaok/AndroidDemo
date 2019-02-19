@@ -18,7 +18,7 @@ import com.toaok.utils.core.BarUtils;
 public class AMainDelegate extends BaseToolbarDelegate {
 
     private DrawerLayout mDrawerLayout;
-    NavigationView navigationView;
+    private NavigationView navigationView;
 
 
     @Override
@@ -34,11 +34,23 @@ public class AMainDelegate extends BaseToolbarDelegate {
         initDrawerLayout();
     }
 
+
+    public DrawerLayout getDrawerLayout() {
+        return mDrawerLayout;
+    }
+
+    public NavigationView getNavigationView() {
+        return navigationView;
+    }
+
     private void initDrawerLayout() {
         NavigationView.OnNavigationItemSelectedListener mListener = item -> {
             switch (item.getItemId()) {
                 case R.id.action_git_hub:
-                    WebActivity.startActivity(getActivity(), Config.GITHUB, getActivity().getString(R.string.git_hub), true);
+                    WebActivity.startActivity(getActivity(), Config.GITHUB, getActivity().getString(R.string.git_hub), true,true);
+                    break;
+                case R.id.action_blog:
+                    WebActivity.startActivity(getActivity(), Config.BLOG, getActivity().getString(R.string.blog), true,true);
                     break;
                 default:
                     break;

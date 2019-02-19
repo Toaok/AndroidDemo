@@ -7,14 +7,10 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 /**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2016/08/07
- *     desc  : utils about shell
- * </pre>
+ * @author Toaok
+ * @version 1.0  2018/12/25.
  */
-public final class ShellUtils {
+public class ShellUtils {
 
     private static final String LINE_SEP = System.getProperty("line.separator");
 
@@ -180,7 +176,7 @@ public final class ShellUtils {
      * The result of command.
      */
     public static class CommandResult {
-        public int    result;
+        public int result;
         public String successMsg;
         public String errorMsg;
 

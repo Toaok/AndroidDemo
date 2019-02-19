@@ -1,3 +1,6 @@
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+
 apply from: "version.gradle"
 ext {
     /**
@@ -23,11 +26,6 @@ ext {
      */
     host_prod = host.host_prod
 
-    configAndroidDomain = this.&configAndroidDomain
-    configBaseDependences = this.&configBaseDependences
-    configModuleBaseDependences = this.&configModuleBaseDependences
-    configLibDependences = this.&configLibDependences
-
     /**
      * 启动页图片资源
      */
@@ -36,14 +34,23 @@ ext {
             splash_cssquery    : 'div.article-content>div.img-container>img.large',
             splash_attributekey: 'src'
     ]
+
+    configAndroidDomain = this.&configAndroidDomain
+    configAppBaseDependences = this.&configAppBaseDependences
+    configModuleBaseDependences = this.&configModuleBaseDependences
+    configLibDependences = this.&configLibDependences
+
 }
 
-def configBaseDependences(Project pro) {
+//app base dependence
+def configAppBaseDependences(Project pro) {
     pro.dependencies {
 
         implementation baseDepCfg.appcompat_v7
         implementation baseDepCfg.constraint_layout
         implementation baseDepCfg.design
+
+        implementation baseDepCfg.multidex
 
         testImplementation baseDepCfg.junit
 
@@ -52,6 +59,7 @@ def configBaseDependences(Project pro) {
     }
 }
 
+//app dependences
 def configLibDependences(Project pro) {
     pro.dependencies {
 
@@ -76,6 +84,11 @@ def configLibDependences(Project pro) {
         //rxpermissions
         implementation depLibConfig.rxpermissions
 
+        //gaode
+        implementation depLibConfig.gaode_navi
+        implementation depLibConfig.gaode_location
+        implementation depLibConfig.gaode_search
+
         /**
          * jar
          */
@@ -96,20 +109,21 @@ def configLibDependences(Project pro) {
         implementation project(':Imageloder')
     }
 }
-
+//app domain
 def configAndroidDomain(Project pro) {
     if (pro.plugins.hasPlugin("com.android.application")) {
         configAppAndroidDomain(pro)
     } else {
-        configLibAndroidDomain(pro)
+        configModuleAndroidDomain(pro)
     }
 }
 
-
+//app main
 def configAppAndroidDomain(Project pro) {
     configDefault(pro)
     configField(pro)
     configSigningAndBuildType(pro)
+    configBuildType(pro)
     configProductFlavors(pro)
     configApkName(pro)
     configSourceSets(pro)
@@ -125,7 +139,7 @@ def configOption(Project pro) {
 
         dexOptions {
 //            incremental = true
-//            javaMaxHeapSize "4g"
+//            javaMaxHeapSize "4g"F
 //            jumboMode = true
         }
         //打包时排出以下文件
@@ -154,7 +168,7 @@ def configSourceSets(Project pro) {
     }
 }
 
-//config signing and buildType
+//config signing
 def configSigningAndBuildType(Project pro) {
     File signPropertiesFile = file('sign/keystore.properties')
     if (!signPropertiesFile.exists()) return
@@ -167,10 +181,15 @@ def configSigningAndBuildType(Project pro) {
                 storePassword(properties['storePassword'])
                 keyAlias(properties['keyAlias'])
                 keyPassword(properties['keyPassword'])
-                v1SigningEnabled true
-                v2SigningEnabled false
+                v2SigningEnabled true
             }
         }
+    }
+}
+
+//config build type
+def configBuildType(Project pro) {
+    pro.android {
         buildTypes {
             /*
            * minifyEnabled　是否开启混淆
@@ -183,6 +202,7 @@ def configSigningAndBuildType(Project pro) {
                 minifyEnabled true
                 shrinkResources true
                 zipAlignEnabled true
+                debuggable false
 
                 buildConfigField "String", "API_HOST", "\"${host_prod}\""
                 proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -225,14 +245,25 @@ def configDefault(Project pro) {
             targetSdkVersion androidConfig.targetSdkVersion
             versionCode androidConfig.versionCode
             versionName androidConfig.versionName
+
+            //分割 Dex 文件
+            multiDexEnabled true
+
             //flavorDimensions
             flavorDimensions androidConfig.flavorDimensions
 
+            //设置高德APPKEY到Manifest中
+            manifestPlaceholders.put("GAODE_KEY", rootProject.ext.gaode.APP_KEY)
 
             //自定义常量字段
             buildConfigField "String", "SPLASH_URL", "\"${splash_resource.splash_url}\""
             buildConfigField "String", "SPLASH_CSSQUERY", "\"${splash_resource.splash_cssquery}\""
             buildConfigField "String", "SPLASH_ATTRIBUTEKEY", "\"${splash_resource.splash_attributekey}\""
+
+            ndk {
+                //设置支持的SO库架构
+                abiFilters 'armeabi-v7a'
+            }
         }
     }
 
@@ -247,23 +278,22 @@ def configField(Project pro) {
 
 //config apk name
 def configApkName(Project pro) {
-
     pro.android.applicationVariants.all { variant ->
-        if (variant.buildType.name != "debug") {//不做判断，会在debug时不能直接调试安装
+        if (variant.buildType.name != "debug") {//在debug时不重命名安装包
             variant.getPackageApplication().outputDirectory = new File(project.rootDir.absolutePath + "/apk")
             variant.getPackageApplication().outputScope.apkDatas.forEach { apkData ->
-                apkData.outputFileName = androidConfig.appName + "_" + getUpperCase(variant.buildType.name) + "_" + variant.versionName.replace(".", "_") + ".apk"
+                apkData.outputFileName = androidConfig.appName + //APP名称
+                        "_" + getUpperCase(variant.buildType.name) + //打包方式
+                        "_" + variant.versionName + //APP版本
+                        "_" + getCurrentTime() + //打包时间
+                        ".apk"
             }
         }
     }
 }
 
-//大写
-def getUpperCase(String word) {
-    return word.substring(0, 1).toUpperCase() + word.substring(1, word.length())
-}
-
-def configLibAndroidDomain(Project pro) {
+//module config
+def configModuleAndroidDomain(Project pro) {
     pro.android {
         compileSdkVersion androidConfig.compileSdkVersion
         defaultConfig {
@@ -274,11 +304,15 @@ def configLibAndroidDomain(Project pro) {
         }
         buildTypes {
             release {
-                minifyEnabled false
+                minifyEnabled true
                 proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             }
-            dev {}
-            debug {}
+            dev {
+                minifyEnabled false
+            }
+            debug {
+                minifyEnabled false
+            }
         }
         lintOptions {
             abortOnError false
@@ -286,14 +320,26 @@ def configLibAndroidDomain(Project pro) {
     }
 }
 
+//module base dependences
 def configModuleBaseDependences(Project pro) {
     pro.dependencies {
         compileOnly baseDepCfg.appcompat_v7
         compileOnly baseDepCfg.constraint_layout
 
         testImplementation baseDepCfg.junit
-
         androidTestImplementation baseDepCfg.runner
         androidTestImplementation baseDepCfg.espresso_core
     }
+}
+
+//frist words uppercase
+def static getUpperCase(String word) {
+    return word.substring(0, 1).toUpperCase() + word.substring(1, word.length())
+}
+
+//get current time
+def static getCurrentTime() {
+    DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd HH-mm-ss")
+    String currentTime = dateFormat.format(new Date())
+    return currentTime
 }

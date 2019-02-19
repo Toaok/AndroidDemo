@@ -3,7 +3,7 @@ plugins {
 }
 //in config.gradle
 configAndroidDomain project
-configBaseDependences project
+configAppBaseDependences project
 configLibDependences project
 android {
     compileOptions {
