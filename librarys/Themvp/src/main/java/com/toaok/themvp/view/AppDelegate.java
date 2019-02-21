@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.StringRes;
 import android.support.v7.widget.Toolbar;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -100,6 +101,10 @@ public abstract class AppDelegate implements IDelegate {
         for (View view : views) {
             view.setOnClickListener(listener);
         }
+    }
+
+    public void toast(@StringRes int resId) {
+        toast(getActivity().getString(resId));
     }
 
     public void toast(CharSequence msg) {

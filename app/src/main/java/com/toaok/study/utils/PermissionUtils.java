@@ -1,5 +1,6 @@
 package com.toaok.study.utils;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.AppOpsManager;
 import android.content.Context;
@@ -9,9 +10,13 @@ import android.content.pm.ApplicationInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
+import android.support.annotation.StringRes;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+
+import com.toaok.utils.Utils;
+import com.toaok.utils.core.AppUtils;
 
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
@@ -146,10 +151,10 @@ public class PermissionUtils {
      * 自定义权限提示弹框
      *
      * @param context {@link Context}
-     * @param content {@link String} 提示信息
+     * @param resId {@link StringRes} 提示信息
      */
-    public static void showPermissionDialog(Context context, String content) {
-        getPermissionDialog(context, content, null).show();
+    public static void showPermissionDialog(Context context, @StringRes int resId) {
+        getPermissionDialog(context, resId, null).show();
     }
 
 
@@ -157,25 +162,25 @@ public class PermissionUtils {
      * 自定义权限提示弹框
      *
      * @param context {@link Context}
-     * @param content {@link String} 提示信息
+     * @param resId {@link StringRes} 提示信息
      * @return {@link AlertDialog}
      */
-    public static AlertDialog getPermissionDialog(Context context, String content) {
-        return getPermissionDialog(context, content, null);
+    public static AlertDialog getPermissionDialog(Context context,@StringRes int resId) {
+        return getPermissionDialog(context, resId, null);
     }
 
     /**
      * 自定义权限提示弹框
      *
      * @param context {@link Context}
-     * @param content {@link String} 提示信息
+     * @param resId {@link StringRes} 提示信息
      * @param cancel  {@link DialogInterface.OnCancelListener} 自定义取消事件
      * @return {@link AlertDialog}
      */
-    public static AlertDialog getPermissionDialog(final Context context, final String content, final DialogInterface.OnCancelListener cancel) {
+    public static AlertDialog getPermissionDialog(final Context context, final @StringRes int resId, final DialogInterface.OnCancelListener cancel) {
         initContext(context);
         AlertDialog alertDialog = new AlertDialog.Builder(wrContext.get())
-                .setMessage(content)
+                .setMessage(getPermissionPrompt(resId))
                 .setNegativeButton("取消", (dialog, which) -> {
                     if (cancel != null) {
                         dialog.dismiss();
@@ -210,5 +215,10 @@ public class PermissionUtils {
             localIntent.putExtra("com.android.settings.ApplicationPkgName", wrContext.get().getPackageName());
         }
         wrContext.get().startActivity(localIntent);
+    }
+
+    @SuppressLint("ResourceType")
+    public static String getPermissionPrompt(@StringRes int resId){
+        return Utils.getApp().getString(resId, AppUtils.getAppName(), AppUtils.getAppName());
     }
 }
