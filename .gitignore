@@ -14,8 +14,6 @@
 /.idea
 .idea
 /.idea/gradle.xml
-/apk
-*.apk
 
 #本地配置文件
 local.properties

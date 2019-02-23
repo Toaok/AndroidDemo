@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.toaok.utils" >
+    package="indi.toaok.utils" >
     <application>
         <!--
         Android 7.0 开始，系统对应用私有目录的访问权限进一步限制。

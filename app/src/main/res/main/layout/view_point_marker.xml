@@ -1,48 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@android:color/transparent">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/tv_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp"
         android:visibility="gone" />
 
     <TextView
         android:id="@+id/tv_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:textSize="@dimen/font_size_40"
+        android:layout_marginRight="5dp"
         android:visibility="gone" />
 
     <ImageView
         android:id="@+id/iv_point"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:src="@drawable/shape_oval_solid_0076ee_size_6" />
+        android:layout_below="@id/tv_top"
+        android:layout_toRightOf="@id/tv_left"
+        android:src="@drawable/shape_oval_solid_0076ee_size_6"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/tv_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp"
+
+        android:layout_toRightOf="@id/iv_point"
         android:visibility="gone" />
 
     <TextView
         android:id="@+id/tv_bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@id/iv_point"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
         android:visibility="gone" />
 </RelativeLayout>

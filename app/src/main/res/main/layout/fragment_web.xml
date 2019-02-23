@@ -12,7 +12,7 @@
 		android:layout_gravity="center_vertical"
 		android:progressDrawable="@drawable/shape_progress_web" />
 
-	<com.toaok.study.module.other.widget.DWebView
+	<indi.toaok.module.other.widget.DWebView
 		style="?android:attr/webViewStyle"
 		android:id="@+id/wv_content"
 		android:layout_width="match_parent"

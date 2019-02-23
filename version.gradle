@@ -3,7 +3,7 @@ ext {
     //app version config info
     androidConfig = [
 
-            applicationId    : "com.toaok.study",
+            applicationId    : "indi.toaok.study",
             appName          : "AndroidDemo",
             compileSdkVersion: 27,
             minSdkVersion    : 15,

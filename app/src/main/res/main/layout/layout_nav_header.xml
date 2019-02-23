@@ -10,7 +10,6 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_above="@+id/tv_desc"
-        android:layout_marginStart="16dp"
         android:src="@mipmap/ic_toaok_launcher" />
 
     <TextView
@@ -18,8 +17,8 @@
         android:layout_height="80dp"
         android:layout_above="@+id/tv_desc"
         android:gravity="center_vertical"
-        android:paddingLeft="18dp"
         android:text="@string/author"
+        android:layout_marginLeft="@dimen/layout_margin_18"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/font_size_40"
         android:textStyle="bold"
@@ -29,8 +28,6 @@
         android:id="@+id/tv_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
         android:text="@string/demo_of_desc"
         android:textColor="@color/colorWhite"

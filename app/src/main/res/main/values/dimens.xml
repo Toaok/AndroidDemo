@@ -6,8 +6,18 @@
     <dimen name="font_size_40">40sp</dimen>
 
 
+    <!--layout_margin(dp)-->
+    <dimen name="layout_margin_18">18dp</dimen>
+
+    <!--padding(dp)-->
+    <dimen name="padding_18">18dp</dimen>
+
     <!--height(dp)-->
+    <dimen name="height_180">180dp</dimen>
 
     <!--wight(dp)-->
+    <dimen name="wight_280">280dp</dimen>
+    <dimen name="wight_300">300dp</dimen>
+    <dimen name="wight_320">320dp</dimen>
 
 </resources>

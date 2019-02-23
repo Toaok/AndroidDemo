@@ -1,0 +1,1 @@
+package indi.toaok.module.other.view;import indi.toaok.R;import indi.toaok.base.view.BaseDelegate;import indi.toaok.base.view.BaseDelegate;/** * @author Toaok * @version 1.0  2018/9/8. */public class OtherDelegate extends BaseDelegate {    @Override    public int getRootLayoutId() {        return R.layout.fragment_other;    }}

@@ -1,11 +1,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/action_git_hub"
-        android:icon="@drawable/ic_github_black"
-        android:title="@string/git_hub" />
 
-    <item
-        android:id="@+id/action_blog"
-        android:icon="@drawable/ic_github_black"
-        android:title="@string/blog" />
+    <group android:id="@+id/menu_web_link">
+        <item
+            android:id="@+id/action_git_hub"
+            android:icon="@drawable/ic_github_fill"
+            android:title="@string/menu_item_git_hub" />
+
+        <item
+            android:id="@+id/action_blog"
+            android:icon="@drawable/ic_blog_fill"
+            android:title="@string/menu_item_blog" />
+        <item
+            android:id="@+id/action_website"
+            android:icon="@drawable/ic_website_fill"
+            android:title="@string/menu_item_website" />
+    </group>
+
+    <group>
+        <item
+            android:id="@+id/action_about"
+            android:icon="@drawable/ic_about_fill"
+            android:title="@string/menu_item_about" />
+    </group>
 </menu>

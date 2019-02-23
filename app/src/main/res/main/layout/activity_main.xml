@@ -16,10 +16,11 @@
     <!--NavigationView必须放在主布局下边，不然点击事件会失效-->
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/wight_300"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:fitsSystemWindows="true"
+        android:background="@drawable/bg_beautiful_girl"
+        android:fitsSystemWindows="false"
         app:headerLayout="@layout/layout_nav_header"
         app:menu="@menu/main_drawer" />
 
