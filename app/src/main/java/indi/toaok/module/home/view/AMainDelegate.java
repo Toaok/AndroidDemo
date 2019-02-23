@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -62,8 +63,14 @@ public class AMainDelegate extends BaseToolbarDelegate {
 
     public void setMenuItemSelectListener(OnMenuItemSelectListener listener) {
         navigationView.setNavigationItemSelectedListener(item -> {
-            mDrawerLayout.closeDrawers();
-            return listener.onMenuItemSelect(item);
+            boolean isSuccess = listener.onMenuItemSelect(item);
+            mDrawerLayout.post(new Runnable() {
+                @Override
+                public void run() {
+                    mDrawerLayout.closeDrawer(Gravity.LEFT,false);
+                }
+            });
+            return isSuccess;
         });
     }
 

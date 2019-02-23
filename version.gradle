@@ -7,7 +7,7 @@ ext {
             appName          : "AndroidDemo",
             compileSdkVersion: 27,
             minSdkVersion    : 15,
-            targetSdkVersion : 27,
+            targetSdkVersion : 25,
             versionCode      : 1_0_0,
             versionName      : '1.0.0',
             flavorDimensions : 'default'
