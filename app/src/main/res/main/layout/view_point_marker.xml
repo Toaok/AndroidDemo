@@ -1,23 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <TextView
+    <indi.toaok.module.map.widget.StrokeTextView
         android:id="@+id/tv_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="5dp"
-        android:visibility="gone" />
+        android:text="@string/menu_item_about"
+        android:textColor="@color/colorBlack"
+        android:visibility="gone"
+        app:isDrawStroke="true"
+        app:strokeColor="@color/colorWhite"
+        app:strokeSize="5dp" />
 
-    <TextView
+    <indi.toaok.module.map.widget.StrokeTextView
         android:id="@+id/tv_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginRight="5dp"
-        android:visibility="gone" />
+        android:text="@string/menu_item_about"
+        android:textColor="@color/colorBlack"
+        android:visibility="gone"
+        app:isDrawStroke="true"
+        app:strokeColor="@color/colorWhite"
+        app:strokeSize="5dp" />
 
     <ImageView
         android:id="@+id/iv_point"
@@ -26,24 +37,33 @@
         android:layout_below="@id/tv_top"
         android:layout_toRightOf="@id/tv_left"
         android:src="@drawable/shape_oval_solid_0076ee_size_6"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
-    <TextView
+    <indi.toaok.module.map.widget.StrokeTextView
         android:id="@+id/tv_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="5dp"
-
         android:layout_toRightOf="@id/iv_point"
-        android:visibility="gone" />
+        android:text="@string/menu_item_about"
+        android:textColor="@color/colorBlack"
+        android:visibility="gone"
+        app:isDrawStroke="true"
+        app:strokeColor="@color/colorWhite"
+        app:strokeSize="5dp" />
 
-    <TextView
+    <indi.toaok.module.map.widget.StrokeTextView
         android:id="@+id/tv_bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/iv_point"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
-        android:visibility="gone" />
+        android:text="@string/menu_item_about"
+        android:textColor="@color/colorBlack"
+        android:visibility="gone"
+        app:isDrawStroke="true"
+        app:strokeColor="@color/colorWhite"
+        app:strokeSize="5dp" />
 </RelativeLayout>

@@ -8,11 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import indi.toaok.R;
-
 import indi.toaok.module.map.marker.widget.MarkerView;
+import indi.toaok.module.map.widget.StrokeTextView;
 
 /**
  * @author Toaok
@@ -22,10 +21,10 @@ public class PointMarkerView extends RelativeLayout implements MarkerView{
 
     private static final String TAG = "PointMarkerView";
 
-    private TextView tvLeft;
-    private TextView tvRight;
-    private TextView tvTop;
-    private TextView tvBottom;
+    private StrokeTextView tvLeft;
+    private StrokeTextView tvRight;
+    private StrokeTextView tvTop;
+    private StrokeTextView tvBottom;
 
     private ImageView ivPoint;
 

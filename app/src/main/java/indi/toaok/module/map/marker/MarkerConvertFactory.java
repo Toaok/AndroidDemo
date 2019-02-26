@@ -43,43 +43,47 @@ public class MarkerConvertFactory {
                 if (centerPoint == null) {
                     //下
                     pointMarkerView.setBottomtName(value.getTitle());
-                    markerOptions.anchor(0.5f, 0.0f);
+                    bitmapDescriptor = showBottom(markerOptions, pointMarkerView);
                 } else {
                     //do something
                     if (value.getLatLng() != null) {
                         if (value.getLatLng().longitude > centerPoint.longitude) {
                             //右
                             pointMarkerView.setRightName(value.getTitle());
-                            showRight(markerOptions, pointMarkerView);
+                            bitmapDescriptor = showRight(markerOptions, pointMarkerView);
                         } else {
                             //左
                             pointMarkerView.setLeftName(value.getTitle());
-                            showLeft(markerOptions, pointMarkerView);
+                            bitmapDescriptor = showLeft(markerOptions, pointMarkerView);
                         }
                     }
                 }
                 return bitmapDescriptor;
             }
 
-            private void showTop(MarkerOptions markerOptions, PointMarkerView pointMarkerView) {
-                markerOptions.icon(BitmapDescriptorFactory.fromView(pointMarkerView));
+            private BitmapDescriptor showTop(MarkerOptions markerOptions, PointMarkerView pointMarkerView) {
+                BitmapDescriptor bitmapDescriptor = BitmapDescriptorFactory.fromView(pointMarkerView);
                 markerOptions.anchor(0.5f, pointMarkerView.getVerticalalProportion());
+                return bitmapDescriptor;
             }
 
-            private void showBottom(MarkerOptions markerOptions, PointMarkerView pointMarkerView) {
-                markerOptions.icon(BitmapDescriptorFactory.fromView(pointMarkerView));
+            private BitmapDescriptor showBottom(MarkerOptions markerOptions, PointMarkerView pointMarkerView) {
+                BitmapDescriptor bitmapDescriptor = BitmapDescriptorFactory.fromView(pointMarkerView);
                 markerOptions.anchor(0.5f, 1 - pointMarkerView.getVerticalalProportion());
+                return bitmapDescriptor;
             }
 
 
-            private void showLeft(MarkerOptions markerOptions, PointMarkerView pointMarkerView) {
-                markerOptions.icon(BitmapDescriptorFactory.fromView(pointMarkerView));
+            private BitmapDescriptor showLeft(MarkerOptions markerOptions, PointMarkerView pointMarkerView) {
+                BitmapDescriptor bitmapDescriptor = BitmapDescriptorFactory.fromView(pointMarkerView);
                 markerOptions.anchor(1f - pointMarkerView.getHorizontalProportion(), 0.5f);
+                return bitmapDescriptor;
             }
 
-            private void showRight(MarkerOptions markerOptions, PointMarkerView pointMarkerView) {
-                markerOptions.icon(BitmapDescriptorFactory.fromView(pointMarkerView));
+            private BitmapDescriptor showRight(MarkerOptions markerOptions, PointMarkerView pointMarkerView) {
+                BitmapDescriptor bitmapDescriptor = BitmapDescriptorFactory.fromView(pointMarkerView);
                 markerOptions.anchor(pointMarkerView.getHorizontalProportion(), 0.5f);
+                return bitmapDescriptor;
             }
 
 

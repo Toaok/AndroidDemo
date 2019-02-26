@@ -45,6 +45,7 @@ public class PointsMarkerConverter<T extends MarkerInfo> {
         markerOptions.zIndex(0);
         markerOptions.position(value.getLatLng());
         markerOptions.snippet(value.getTitle());
+        markerOptions.setFlat(true);
         markerOptions.icon(bitmapDescriptorBuilder.getBitmapDescriptor(markerOptions,value,centerPoint));
         gdMarkerOptions.setMarkerOptions(markerOptions);
         return gdMarkerOptions;
