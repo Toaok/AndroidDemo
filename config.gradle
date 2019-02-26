@@ -36,14 +36,14 @@ ext {
     ]
 
     configAndroidDomain = this.&configAndroidDomain
-    configAppBaseDependences = this.&configAppBaseDependences
+    configAppBaseDependences = this.&configAppBaseDependence
     configModuleBaseDependences = this.&configModuleBaseDependences
     configLibDependences = this.&configLibDependences
 
 }
 
 //app base dependence
-def configAppBaseDependences(Project pro) {
+def configAppBaseDependence(Project pro) {
     pro.dependencies {
 
         implementation baseDepCfg.appcompat_v7
@@ -122,6 +122,7 @@ def configAndroidDomain(Project pro) {
 def configAppAndroidDomain(Project pro) {
     configDefault(pro)
     configField(pro)
+    configNdk(pro)
     configSigningAndBuildType(pro)
     configBuildType(pro)
     configProductFlavors(pro)
@@ -251,19 +252,6 @@ def configDefault(Project pro) {
 
             //flavorDimensions
             flavorDimensions androidConfig.flavorDimensions
-
-            //设置高德APPKEY到Manifest中
-            manifestPlaceholders.put("GAODE_KEY", rootProject.ext.gaode.APP_KEY)
-
-            //自定义常量字段
-            buildConfigField "String", "SPLASH_URL", "\"${splash_resource.splash_url}\""
-            buildConfigField "String", "SPLASH_CSSQUERY", "\"${splash_resource.splash_cssquery}\""
-            buildConfigField "String", "SPLASH_ATTRIBUTEKEY", "\"${splash_resource.splash_attributekey}\""
-
-            ndk {
-                //设置支持的SO库架构
-                abiFilters 'armeabi-v7a'
-            }
         }
     }
 
@@ -271,8 +259,26 @@ def configDefault(Project pro) {
 
 //config Field
 def configField(Project pro) {
+
     pro.android.defaultConfig {
+
+        //设置高德APPKEY到Manifest中
+        manifestPlaceholders.put("GAODE_KEY", rootProject.ext.gaode.APP_KEY)
+
+        //自定义常量字段
+        buildConfigField "String", "SPLASH_URL", "\"${splash_resource.splash_url}\""
+        buildConfigField "String", "SPLASH_CSSQUERY", "\"${splash_resource.splash_cssquery}\""
+        buildConfigField "String", "SPLASH_ATTRIBUTEKEY", "\"${splash_resource.splash_attributekey}\""
+
         resValue "string", "app_name", androidConfig.appName
+    }
+}
+def configNdk(Project pro){
+    pro.android.defaultConfig{
+        ndk {
+            //设置支持的SO库架构
+//            abiFilters 'armeabi-v7a','x86_64'
+        }
     }
 }
 
