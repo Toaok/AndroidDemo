@@ -15,7 +15,7 @@
         android:visibility="gone"
         app:isDrawStroke="true"
         app:strokeColor="@color/colorWhite"
-        app:strokeSize="5dp" />
+        app:strokeSize="2dp" />
 
     <indi.toaok.module.map.widget.StrokeTextView
         android:id="@+id/tv_left"
@@ -28,7 +28,7 @@
         android:visibility="gone"
         app:isDrawStroke="true"
         app:strokeColor="@color/colorWhite"
-        app:strokeSize="5dp" />
+        app:strokeSize="2dp" />
 
     <ImageView
         android:id="@+id/iv_point"
@@ -51,7 +51,7 @@
         android:visibility="gone"
         app:isDrawStroke="true"
         app:strokeColor="@color/colorWhite"
-        app:strokeSize="5dp" />
+        app:strokeSize="2dp" />
 
     <indi.toaok.module.map.widget.StrokeTextView
         android:id="@+id/tv_bottom"
@@ -65,5 +65,5 @@
         android:visibility="gone"
         app:isDrawStroke="true"
         app:strokeColor="@color/colorWhite"
-        app:strokeSize="5dp" />
+        app:strokeSize="2dp" />
 </RelativeLayout>
