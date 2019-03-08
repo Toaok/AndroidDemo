@@ -29,7 +29,6 @@
 }
 #use Okhttp3
 -keep class com.bumptech.glide.integration.okhttp3.OkHttpGlideModule
--keep class com.bumptech.glide.integration.okhttp3.OkHttpLibraryGlideModule
 #if API down 17
 -dontwarn com.bumptech.glide.load.resource.bitmap.VideoDecoder
 #for DexGuard only

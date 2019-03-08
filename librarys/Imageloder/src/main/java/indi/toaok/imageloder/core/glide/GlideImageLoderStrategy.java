@@ -63,7 +63,7 @@ public class GlideImageLoderStrategy implements BaseImageLoderStrategy {
     }
 
     @SuppressLint("CheckResult")
-    private static void setListener(RequestBuilder request, final LoaderListener listener) {
+    private static void setListener(RequestBuilder<Bitmap> request, final LoaderListener listener) {
         request.listener(new RequestListener<Bitmap>() {
             @Override
             public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target, boolean isFirstResource) {
@@ -79,6 +79,7 @@ public class GlideImageLoderStrategy implements BaseImageLoderStrategy {
         });
     }
 
+    @SuppressLint("CheckResult")
     @Override
     public void loadImage(final ImageView imageView, String imageUrl, ImageLoderConfig config, LoaderListener listener) {
         final Context context = imageView.getContext().getApplicationContext();
@@ -172,15 +173,15 @@ public class GlideImageLoderStrategy implements BaseImageLoderStrategy {
         } catch (Exception e) {
             e.printStackTrace();
             Log.d("glide","异常"+e.getMessage());
-            if (imageView != null && config != null && config.getErrorResId() != 0) {
+            if (config != null && config.getErrorResId() != 0) {
                 imageView.setImageResource(config.getErrorResId());
             }
         }
     }
 
     /**
-     * @param imageView
-     * @param imageUrl
+     * @param imageView ImageView
+     * @param imageUrl  Url
      */
     @Override
     public void loadImage(ImageView imageView, String imageUrl) {
@@ -209,6 +210,7 @@ public class GlideImageLoderStrategy implements BaseImageLoderStrategy {
     public void loadGif(ImageView imageView, String imageUrl) {
     }
 
+    @SuppressLint("CheckResult")
     @Override
     public void downloadImage(final Context context, final Handler handler, final String uri, final String savePath, final String name, final boolean isInsertMedia) {
         Glide.with(context.getApplicationContext())
@@ -231,6 +233,7 @@ public class GlideImageLoderStrategy implements BaseImageLoderStrategy {
                 .load(uri);
     }
 
+    @SuppressLint("CheckResult")
     @Override
     public void downloadImage(final Context context, final Handler handler, final String uri,
                               final String savePath, final String name, final boolean isInsertMedia,

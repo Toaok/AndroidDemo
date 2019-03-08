@@ -307,9 +307,14 @@ def configModuleAndroidDomain(Project pro) {
             versionName androidConfig.versionName
         }
         buildTypes {
+            /*
+            * Note：
+            * 子module中混淆与主module不一样，如要使用子module的混淆文件则应使用consumerProguardFiles [混淆文件名]
+            * consumerProguardFiles 'proguard-rules.pro'
+            * */
             release {
                 minifyEnabled true
-                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+                consumerProguardFiles 'proguard-rules.pro'
             }
             debug {
                 minifyEnabled false
