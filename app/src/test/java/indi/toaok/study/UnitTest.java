@@ -9,7 +9,7 @@ import org.junit.Test;
  */
 public class UnitTest {
     @Test
-    public static void test() {
+    public void test() {
         CountDownTimer countDownTimer = new CountDownTimer(10);
         Thread thread1=new Thread(countDownTimer);
         System.out.println(Thread.currentThread()+":线程已创建");

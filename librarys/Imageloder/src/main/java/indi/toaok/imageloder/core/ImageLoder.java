@@ -3,32 +3,32 @@ package indi.toaok.imageloder.core;
 import android.content.Context;
 import android.widget.ImageView;
 
-import indi.toaok.imageloder.core.glide.GlideImageLoaderStrategy;
+import indi.toaok.imageloder.core.glide.GlideImageLoderStrategy;
 
 
 /**
  * Created by sj on 10/16/16.
  */
 
-public class ImageLoader {
+public class ImageLoder {
 
     /**
      * 指定当前图片加载器 Glide
      * @return
      */
-    protected static BaseImageLoaderStrategy getLoader() {
-        return GlideImageLoaderStrategy.getInstance();
+    protected static BaseImageLoderStrategy getLoader() {
+        return GlideImageLoderStrategy.getInstance();
     }
 
     /**
      * 自定义加载
      * @param imageView
      * @param imageUrl
-     * @param imageLoaderConfig
+     * @param imageLoderConfig
      * @param listener
      */
-    public static void loadImage(ImageView imageView, String imageUrl, ImageLoaderConfig imageLoaderConfig, LoaderListener listener) {
-        getLoader().loadImage(imageView, imageUrl, imageLoaderConfig, listener);
+    public static void loadImage(ImageView imageView, String imageUrl, ImageLoderConfig imageLoderConfig, LoaderListener listener) {
+        getLoader().loadImage(imageView, imageUrl, imageLoderConfig, listener);
     }
 
     /**

@@ -2,7 +2,6 @@ apply plugin: 'com.android.library'
 
 configAndroidDomain project
 configModuleBaseDependences project
-
 dependencies{
     implementation depLibConfig.glide
     annotationProcessor depLibConfig.glide_compiler

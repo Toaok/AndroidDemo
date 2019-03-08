@@ -21,44 +21,45 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.bumptech.glide.request.target.Target;
-import indi.toaok.imageloder.R;
 
 import java.io.File;
 
-import indi.toaok.imageloder.core.BaseImageLoaderStrategy;
-import indi.toaok.imageloder.core.ImageLoaderConfig;
+import indi.toaok.imageloder.R;
+import indi.toaok.imageloder.core.BaseImageLoderStrategy;
+import indi.toaok.imageloder.core.ImageLoder;
+import indi.toaok.imageloder.core.ImageLoderConfig;
 import indi.toaok.imageloder.core.LoaderListener;
 import indi.toaok.imageloder.core.util.ImageUtil;
 
 /**
  * Glide 加载器，当前工程使用Glide 作为图片Loader
- * 全局网络图片加载 请使用 {@link indi.toaok.imageloder.core.ImageLoader}
+ * 全局网络图片加载 请使用 {@link ImageLoder}
  * <p>
- * 如需要使用其他图片加载引擎 ， 请自定义ImageLoaderStrategy 并指定 {@link indi.toaok.imageloder.core.ImageLoader#getLoader()}
+ * 如需要使用其他图片加载引擎 ， 请自定义ImageLoaderStrategy 并指定 {@link ImageLoder#getLoader()}
  * Created by sj on 10/17/16.
  */
 
-public class GlideImageLoaderStrategy implements BaseImageLoaderStrategy {
+public class GlideImageLoderStrategy implements BaseImageLoderStrategy {
 
     // default config
-    public final static ImageLoaderConfig defaultConfigBuilder = new ImageLoaderConfig.Builder().
-            cropType(ImageLoaderConfig.CENTER_CROP)
+    private final static ImageLoderConfig defaultConfigBuilder = new ImageLoderConfig.Builder().
+            cropType(ImageLoderConfig.CENTER_CROP)
             .asBitmap(true)
             .placeHolderResId(R.drawable.bg_image_placeholder)
             .errorResId(R.drawable.bg_image_placeholder)
-            .diskCacheStrategy(ImageLoaderConfig.MDiskCacheStrategy.DATA)
-            .loadPriority(ImageLoaderConfig.LoadPriority.HIGH)
+            .diskCacheStrategy(ImageLoderConfig.MDiskCacheStrategy.DATA)
+            .loadPriority(ImageLoderConfig.LoadPriority.HIGH)
             .build();
 
-    private GlideImageLoaderStrategy() {
+    private GlideImageLoderStrategy() {
     }
 
-    public static GlideImageLoaderStrategy getInstance() {
+    public static GlideImageLoderStrategy getInstance() {
         return LazyHolder.strategy;
     }
 
     private static class LazyHolder {
-        public static final GlideImageLoaderStrategy strategy = new GlideImageLoaderStrategy();
+        static final GlideImageLoderStrategy strategy = new GlideImageLoderStrategy();
     }
 
     @SuppressLint("CheckResult")
@@ -79,7 +80,7 @@ public class GlideImageLoaderStrategy implements BaseImageLoaderStrategy {
     }
 
     @Override
-    public void loadImage(final ImageView imageView, String imageUrl, ImageLoaderConfig config, LoaderListener listener) {
+    public void loadImage(final ImageView imageView, String imageUrl, ImageLoderConfig config, LoaderListener listener) {
         final Context context = imageView.getContext().getApplicationContext();
         if (null == config) {
             config = defaultConfigBuilder;
@@ -95,7 +96,7 @@ public class GlideImageLoaderStrategy implements BaseImageLoaderStrategy {
             if (config.isAsGif()) {
                 //gif类型
                 RequestBuilder<GifDrawable> request = Glide.with(context).asGif().load(imageUrl);
-                if (config.getCropType() == ImageLoaderConfig.CENTER_CROP) {
+                if (config.getCropType() == ImageLoderConfig.CENTER_CROP) {
                     options.centerCrop();
                 } else {
                     options.fitCenter();
@@ -104,9 +105,9 @@ public class GlideImageLoaderStrategy implements BaseImageLoaderStrategy {
             } else if (config.isAsBitmap()) {
                 //bitmap 类型
                 RequestBuilder<Bitmap> request = Glide.with(context).asBitmap().load(imageUrl);
-                if (config.getCropType() == ImageLoaderConfig.CENTER_CROP) {
+                if (config.getCropType() == ImageLoderConfig.CENTER_CROP) {
                     options.centerCrop();
-                } else if (config.getCropType() == ImageLoaderConfig.CENTER_INSIDE) {//实现centerInside效果(imageview scaletype设置后，此处要使用request.dontTransform设置才生效)
+                } else if (config.getCropType() == ImageLoderConfig.CENTER_INSIDE) {//实现centerInside效果(imageview scaletype设置后，此处要使用request.dontTransform设置才生效)
                     options.dontTransform();
                 } else {
                     options.fitCenter();
@@ -115,7 +116,7 @@ public class GlideImageLoaderStrategy implements BaseImageLoaderStrategy {
             } else if (config.isCrossFade()) {
                 // TODO 渐入渐出动画
                 RequestBuilder request = Glide.with(context).load(imageUrl);
-                if (config.getCropType() == ImageLoaderConfig.CENTER_CROP) {
+                if (config.getCropType() == ImageLoderConfig.CENTER_CROP) {
                     options.centerCrop();
                 } else {
                     options.fitCenter();
@@ -123,7 +124,7 @@ public class GlideImageLoaderStrategy implements BaseImageLoaderStrategy {
                 builder = request;
             } else {
                 RequestBuilder request = Glide.with(context).load(imageUrl);
-                if (config.getCropType() == ImageLoaderConfig.CENTER_CROP) {
+                if (config.getCropType() == ImageLoderConfig.CENTER_CROP) {
                     options.centerCrop();
                 } else {
                     options.fitCenter();
@@ -193,14 +194,14 @@ public class GlideImageLoaderStrategy implements BaseImageLoaderStrategy {
 
     @Override
     public void loadRoundedImage(ImageView imageView, String imageUrl) {
-        ImageLoaderConfig roundConfigBuilder = new ImageLoaderConfig.Builder()
-                .cropType(ImageLoaderConfig.CENTER_CROP)
+        ImageLoderConfig roundConfigBuilder = new ImageLoderConfig.Builder()
+                .cropType(ImageLoderConfig.CENTER_CROP)
                 .asBitmap(true)
                 .cropCircle(true)
                 .placeHolderResId(R.drawable.bg_image_placeholder_round)
                 .errorResId(R.drawable.bg_image_placeholder)
-                .diskCacheStrategy(ImageLoaderConfig.MDiskCacheStrategy.DATA)
-                .loadPriority(ImageLoaderConfig.LoadPriority.HIGH).build();
+                .diskCacheStrategy(ImageLoderConfig.MDiskCacheStrategy.DATA)
+                .loadPriority(ImageLoderConfig.LoadPriority.HIGH).build();
         loadImage(imageView, imageUrl, roundConfigBuilder, null);
     }
 
@@ -208,7 +209,6 @@ public class GlideImageLoaderStrategy implements BaseImageLoaderStrategy {
     public void loadGif(ImageView imageView, String imageUrl) {
     }
 
-    @SuppressLint("CheckResult")
     @Override
     public void downloadImage(final Context context, final Handler handler, final String uri, final String savePath, final String name, final boolean isInsertMedia) {
         Glide.with(context.getApplicationContext())
@@ -231,7 +231,6 @@ public class GlideImageLoaderStrategy implements BaseImageLoaderStrategy {
                 .load(uri);
     }
 
-    @SuppressLint("CheckResult")
     @Override
     public void downloadImage(final Context context, final Handler handler, final String uri,
                               final String savePath, final String name, final boolean isInsertMedia,

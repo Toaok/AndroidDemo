@@ -18,13 +18,13 @@ import java.lang.annotation.RetentionPolicy;
  * @author Toaok
  * @version 1.0  2018/10/31.
  */
-public class ImageLoaderConfig {
+public class ImageLoderConfig {
 
     public static final int CENTER_CROP = 0;
     public static final int FIT_CENTER = 1;
     public static final int CENTER_INSIDE = 2;
 
-    private ImageLoaderConfig(Builder builder) {
+    private ImageLoderConfig(Builder builder) {
         placeHolderResId = builder.placeHolderResId;
         errorResId = builder.errorResId;
         crossFade = builder.crossFade;
@@ -496,8 +496,8 @@ public class ImageLoaderConfig {
             return this;
         }
 
-        public ImageLoaderConfig build() {
-            return new ImageLoaderConfig(this);
+        public ImageLoderConfig build() {
+            return new ImageLoderConfig(this);
         }
     }
 }

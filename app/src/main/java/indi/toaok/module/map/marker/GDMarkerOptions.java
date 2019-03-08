@@ -6,10 +6,13 @@ import com.amap.api.maps.model.MarkerOptions;
  * @author Toaok
  * @version 1.0  2019/2/14.
  */
-public class GDMarkerOptions {
+public class GDMarkerOptions<T> {
     private MarkerOptions markerOptions;
 
     private float rotateAngle;
+
+    private T object;
+
     public MarkerOptions getMarkerOptions() {
         return markerOptions;
     }
@@ -24,5 +27,13 @@ public class GDMarkerOptions {
 
     public void setRotateAngle(float rotateAngle) {
         this.rotateAngle = rotateAngle;
+    }
+
+    public T getObject() {
+        return object;
+    }
+
+    public void setObject(T object) {
+        this.object = object;
     }
 }

@@ -8,17 +8,17 @@ import android.widget.ImageView;
  * @author Toaok
  * @version 1.0  2018/9/10.
  */
-public interface BaseImageLoaderStrategy {
+public interface BaseImageLoderStrategy {
 
     /**
      * 自定义加载
      *
      * @param imageView
      * @param imageUrl
-     * @param imageLoaderConfig
+     * @param imageLoderConfig
      * @param listener
      */
-    void loadImage(ImageView imageView, String imageUrl, ImageLoaderConfig imageLoaderConfig, LoaderListener listener);
+    void loadImage(ImageView imageView, String imageUrl, ImageLoderConfig imageLoderConfig, LoaderListener listener);
 
     /**
      * 加载基础图片

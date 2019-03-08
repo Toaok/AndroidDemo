@@ -5,9 +5,9 @@ ext {
 
             applicationId    : "indi.toaok.study",
             appName          : "AndroidDemo",
-            compileSdkVersion: 27,
+            compileSdkVersion: 28,
             minSdkVersion    : 15,
-            targetSdkVersion : 25,
+            targetSdkVersion : 28,
             versionCode      : 1_0_0,
             versionName      : '1.0.0',
             flavorDimensions : 'default'
@@ -20,8 +20,8 @@ ext {
 
             //support
             support : [
-                    appcompat_v7     : '27.1.1',
-                    design           : '27.1.1',
+                    appcompat_v7     : '28.0.0',
+                    design           : '28.0.0',
                     constraint_layout: '1.1.2'
             ],
 

@@ -1,20 +1,4 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="indi.toaok.utils" >
-    <application>
-        <!--
-        Android 7.0 开始，系统对应用私有目录的访问权限进一步限制。
-        无法直接通过 file:// 这种形式的 Uri 直接读写该目录下的文件内容，
-        而是通过 FileProvider 访问。
-        -->
-        <provider
-            android:name="android.support.v4.content.FileProvider"
-            android:authorities="${applicationId}.fileProvider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths" />
-        </provider>
-    </application>
 
 </manifest>

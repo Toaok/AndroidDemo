@@ -159,12 +159,14 @@ def configSourceSets(Project pro) {
             //自定义资源文件目录，注意备份
             res.srcDirs =
                     [
+                            'src/main/res/',
                             'src/main/res/main',
-                            'src/main/res/'
+                            'src/main/res/map',
+                            'src/main/res/kline',
+                            'src/main/res/other'
                     ]
         }
         // special build type variants
-        dev.setRoot('src/buildtype/dev')
         debug.setRoot('src/buildtype/debug')
     }
 }
@@ -206,16 +208,6 @@ def configBuildType(Project pro) {
                 debuggable false
 
                 buildConfigField "String", "API_HOST", "\"${host_prod}\""
-                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            }
-
-            dev {
-                signingConfig signingConfigs.release
-                applicationIdSuffix ".dev"
-                minifyEnabled true
-                shrinkResources true
-                zipAlignEnabled true
-                buildConfigField "String", "API_HOST", "\"${host_default}\""
                 proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             }
 
@@ -273,11 +265,17 @@ def configField(Project pro) {
         resValue "string", "app_name", androidConfig.appName
     }
 }
-def configNdk(Project pro){
-    pro.android.defaultConfig{
+
+def configNdk(Project pro) {
+    pro.android.defaultConfig {
         ndk {
             //设置支持的SO库架构
-//            abiFilters 'armeabi-v7a','x86_64'
+            abiFilters
+            'armeabi'
+            'armeabi-v7a'
+            'arm64-v8a'
+            'x86'
+            'x86_64'
         }
     }
 }
@@ -291,7 +289,7 @@ def configApkName(Project pro) {
                 apkData.outputFileName = androidConfig.appName + //APP名称
                         "_" + getUpperCase(variant.buildType.name) + //打包方式
                         "_" + variant.versionName + //APP版本
-                        "_" + getCurrentTime() + //打包时间
+                        //"_" + getCurrentTime() + //打包时间
                         ".apk"
             }
         }
@@ -313,13 +311,11 @@ def configModuleAndroidDomain(Project pro) {
                 minifyEnabled true
                 proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             }
-            dev {
-                minifyEnabled false
-            }
             debug {
                 minifyEnabled false
             }
         }
+
         lintOptions {
             abortOnError false
         }
