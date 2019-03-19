@@ -4,12 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.graphics.drawable.Drawable;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
 
+import butterknife.BindDrawable;
 import butterknife.BindView;
 import indi.toaok.androiddemo.R;
 import indi.toaok.androiddemo.module.base.view.BaseToolbarDelegate;
@@ -21,11 +23,18 @@ import indi.toaok.androiddemo.utils.core.BarUtils;
  */
 public class AMainDelegate extends BaseToolbarDelegate {
 
+    //View
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
     @BindView(R.id.nav_view)
     NavigationView navigationView;
 
+
+    //Drable
+    @BindDrawable(R.drawable.ic_menu_white)
+    Drawable drawableMenuWhite;
+    @BindDrawable(R.drawable.ic_more_vert_white)
+    Drawable drawableMoreVertWhite;
 
     @Override
     public int getRootLayoutId() {
@@ -41,8 +50,8 @@ public class AMainDelegate extends BaseToolbarDelegate {
 
 
     protected void initToolbarView() {
-        setLeftIcon(R.drawable.ic_menu_white);
-        setRightIcon(R.drawable.ic_more_vert_white);
+        setLeftIcon(drawableMenuWhite);
+        setRightIcon(drawableMoreVertWhite);
     }
 
     public DrawerLayout getDrawerLayout() {
@@ -76,12 +85,7 @@ public class AMainDelegate extends BaseToolbarDelegate {
     public void setMenuItemSelectListener(OnMenuItemSelectListener listener) {
         navigationView.setNavigationItemSelectedListener(item -> {
             boolean isSuccess = listener.onMenuItemSelect(item);
-            mDrawerLayout.post(new Runnable() {
-                @Override
-                public void run() {
-                    mDrawerLayout.closeDrawer(Gravity.LEFT, false);
-                }
-            });
+            mDrawerLayout.post(() -> mDrawerLayout.closeDrawer(Gravity.LEFT, false));
             return isSuccess;
         });
     }

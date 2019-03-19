@@ -2,23 +2,19 @@ package indi.toaok.androiddemo.vo;
 
 import indi.toaok.androiddemo.model.vo.AppInfo;
 import indi.toaok.androiddemo.module.home.bean.SplashBean;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * @author Toaok
  * @version 1.0  2018/9/8.
  */
+@EqualsAndHashCode(callSuper=false)
+@Data
 public class SplashBean_BT extends SplashBean {
 
     private boolean appinfoDisplay;
     private AppInfo appInfo;
-
-    public boolean isAppinfoDisplay() {
-        return appinfoDisplay;
-    }
-
-    public void setAppinfoDisplay(boolean appinfoDisplay) {
-        this.appinfoDisplay = appinfoDisplay;
-    }
 
     public SplashBean_BT(AppInfo appInfo) {
         this.appInfo = appInfo;
@@ -30,14 +26,4 @@ public class SplashBean_BT extends SplashBean {
         //
         setSplashBean(splashBean);
     }
-
-    public AppInfo getAppInfo() {
-        return appInfo;
-    }
-
-    public void setAppInfo(AppInfo appInfo) {
-        this.appInfo = appInfo;
-    }
-
-
 }

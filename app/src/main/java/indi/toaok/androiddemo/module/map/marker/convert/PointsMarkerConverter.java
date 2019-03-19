@@ -14,7 +14,7 @@ import indi.toaok.androiddemo.module.map.marker.widget.MarkerView;
 
 public class PointsMarkerConverter<T extends MarkerInfo> {
 
-    public List<GDMarkerOptions> converts(List<T> values, MarkerViewBuilder markerViewBuilder, boolean isToCenter) {
+    public List<GDMarkerOptions> converts(List<T> values, MarkerViewBuilder<T> markerViewBuilder, boolean isToCenter) {
         if (values == null || values.isEmpty()) {
             return null;
         }
@@ -29,22 +29,23 @@ public class PointsMarkerConverter<T extends MarkerInfo> {
         return markerOptionsArrayList;
     }
 
-    public List<GDMarkerOptions> converts(List<T> values, MarkerViewBuilder markerViewBuilder) {
+    public List<GDMarkerOptions> converts(List<T> values, MarkerViewBuilder<T> markerViewBuilder) {
         return converts(values, markerViewBuilder, true);
     }
 
-    public GDMarkerOptions convert(T value, MarkerViewBuilder markerViewBuilder) {
+    public GDMarkerOptions convert(T value, MarkerViewBuilder<T> markerViewBuilder) {
         return convert(value, markerViewBuilder, null);
     }
 
-    private GDMarkerOptions convert(T value, MarkerViewBuilder markerViewBuilder, LatLng centerPoint) {
-        if (value == null) {
+    private GDMarkerOptions convert(T value, MarkerViewBuilder<T> markerViewBuilder, LatLng centerPoint) {
+        if (value == null || !(value instanceof MarkerInfo)) {
             return null;
         }
         GDMarkerOptions gdMarkerOptions = new GDMarkerOptions();
         MarkerView markerView = null;
-        if (markerViewBuilder != null && value instanceof MarkerInfo)
+        if (markerViewBuilder != null) {
             markerView = markerViewBuilder.getMarkerView(value, centerPoint);
+        }
         MarkerOptions markerOptions = new MarkerOptions()
                 .zIndex(0)
                 .position(value.getLatLng())

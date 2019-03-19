@@ -74,7 +74,7 @@ public class PermissionUtils {
         String pkg = wrContext.get().getApplicationContext().getPackageName();
         int uid = appInfo.uid;
 
-        Class appOpsClass;
+        Class<?> appOpsClass;
         /* Context.APP_OPS_MANAGER */
         try {
             appOpsClass = Class.forName(AppOpsManager.class.getName());
@@ -84,7 +84,11 @@ public class PermissionUtils {
             Field opPostNotificationValue = appOpsClass.getDeclaredField(OP_POST_NOTIFICATION);
 
             int value = (Integer) opPostNotificationValue.get(Integer.class);
-            return ((Integer) checkOpNoThrowMethod.invoke(mAppOps, value, uid, pkg) == AppOpsManager.MODE_ALLOWED);
+            if (((Integer) checkOpNoThrowMethod.invoke(mAppOps, value, uid, pkg) != AppOpsManager.MODE_ALLOWED)) {
+                return false;
+            } else {
+                return true;
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
