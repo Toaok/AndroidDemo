@@ -1,6 +1,7 @@
-apply plugin: 'com.android.library'
-// in config.gradle
-configAndroidDomain project
-configModuleBaseDependences project
-dependencies{
+apply {
+    from "${rootDir.path}/config_lib.gradle"
+    plugin "com.android.library"
 }
+// in config.gradle
+configAndroidModuleDomain project
+configModuleBaseDependences project

@@ -1,11 +1,13 @@
 package indi.toaok.themvp.presenter;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+
+import androidx.annotation.Nullable;
+
 import android.view.Menu;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import indi.toaok.themvp.view.IDelegate;
 
 /**
@@ -21,7 +23,7 @@ public abstract class ActivityPresenter<T extends IDelegate> extends AppCompatAc
 
     public ActivityPresenter() {
         try {
-            viewDelegate=getDelegateClass().newInstance();
+            viewDelegate = getDelegateClass().newInstance();
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -32,14 +34,14 @@ public abstract class ActivityPresenter<T extends IDelegate> extends AppCompatAc
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewDelegate.create(getLayoutInflater(),null,savedInstanceState);
+        viewDelegate.create(getLayoutInflater(), null, savedInstanceState);
         setContentView(viewDelegate.getRootView());
         initToolbar();
-        viewDelegate.initWidget();
+        viewDelegate.initView();
         bindEvenListener();
     }
 
-    protected void bindEvenListener(){
+    protected void bindEvenListener() {
 
     }
 
@@ -47,8 +49,8 @@ public abstract class ActivityPresenter<T extends IDelegate> extends AppCompatAc
      * 初始化toolbar
      */
     protected void initToolbar() {
-        Toolbar toolbar=viewDelegate.getToolbar();
-        if(toolbar!=null){
+        Toolbar toolbar = viewDelegate.getToolbar();
+        if (toolbar != null) {
             this.setSupportActionBar(toolbar);
         }
     }
@@ -60,9 +62,9 @@ public abstract class ActivityPresenter<T extends IDelegate> extends AppCompatAc
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        if(viewDelegate==null){
+        if (viewDelegate == null) {
             try {
-                viewDelegate=getDelegateClass().newInstance();
+                viewDelegate = getDelegateClass().newInstance();
             } catch (InstantiationException e) {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {
@@ -73,8 +75,8 @@ public abstract class ActivityPresenter<T extends IDelegate> extends AppCompatAc
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if(viewDelegate.getOptionsMenuId()!=0){
-            getMenuInflater().inflate(viewDelegate.getOptionsMenuId(),menu);
+        if (viewDelegate.getOptionsMenuId() != 0) {
+            getMenuInflater().inflate(viewDelegate.getOptionsMenuId(), menu);
         }
         return super.onCreateOptionsMenu(menu);
     }
@@ -82,7 +84,7 @@ public abstract class ActivityPresenter<T extends IDelegate> extends AppCompatAc
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        viewDelegate=null;
+        viewDelegate = null;
     }
 
     protected abstract Class<T> getDelegateClass();

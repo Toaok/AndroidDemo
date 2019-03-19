@@ -1,15 +1,7 @@
-plugins {
-    id "com.android.application"
+apply {
+    from "${rootDir.path}/config_app.gradle"
 }
 //in config.gradle
-configAndroidDomain project
+configAndroidAppDomain project
 configAppBaseDependences project
 configLibDependences project
-android {
-    compileOptions {
-        sourceCompatibility = '1.8'
-        targetCompatibility = '1.8'
-    }
-}
-dependencies {
-}

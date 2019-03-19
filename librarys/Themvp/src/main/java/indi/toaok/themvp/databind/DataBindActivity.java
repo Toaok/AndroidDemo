@@ -2,7 +2,8 @@ package indi.toaok.themvp.databind;
 
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.Nullable;
 
 import indi.toaok.themvp.model.IModel;
 import indi.toaok.themvp.presenter.ActivityPresenter;
@@ -23,15 +24,17 @@ public abstract class DataBindActivity<T extends IDelegate> extends
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binder=getDataBinder();
+        binder = getDataBinder();
     }
 
     public abstract DataBinder getDataBinder();
 
-    public <D extends IModel> void notifyModelChanged(D data){
-        if(binder!=null&&viewDelegate!=null){
-            binder.viewBindModel(viewDelegate,data);
-            data.setMessage("");
+    public <D extends IModel> void notifyModelChanged(D data) {
+        if (binder != null && viewDelegate != null) {
+            if (viewDelegate instanceof IDelegate && data instanceof IModel) {
+                binder.viewBindModel(viewDelegate, data);
+                data.setMessage("");
+            }
         }
     }
 }

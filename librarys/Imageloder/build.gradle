@@ -1,9 +1,12 @@
-apply plugin: 'com.android.library'
+apply {
+    from "${rootDir.path}/config_lib.gradle"
+    plugin "com.android.library"
+}
 
-configAndroidDomain project
+configAndroidModuleDomain project
 configModuleBaseDependences project
-dependencies{
-    implementation depLibConfig.glide
-    annotationProcessor depLibConfig.glide_compiler
-    implementation depLibConfig.glide_okhttp3_integration
+dependencies {
+    implementation dependencesLibrary.glide
+    annotationProcessor dependencesLibrary.glide_compiler
+    implementation dependencesLibrary.glide_okhttp3_integration
 }

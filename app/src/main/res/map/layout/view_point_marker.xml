@@ -4,7 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <indi.toaok.module.map.widget.StrokeTextView
+    <indi.toaok.androiddemo.module.map.widget.StrokeTextView
         android:id="@+id/tv_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
         app:strokeColor="@color/colorWhite"
         app:strokeSize="2dp" />
 
-    <indi.toaok.module.map.widget.StrokeTextView
+    <indi.toaok.androiddemo.module.map.widget.StrokeTextView
         android:id="@+id/tv_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
         android:src="@drawable/shape_oval_solid_0076ee_size_6"
         android:visibility="visible" />
 
-    <indi.toaok.module.map.widget.StrokeTextView
+    <indi.toaok.androiddemo.module.map.widget.StrokeTextView
         android:id="@+id/tv_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
         app:strokeColor="@color/colorWhite"
         app:strokeSize="2dp" />
 
-    <indi.toaok.module.map.widget.StrokeTextView
+    <indi.toaok.androiddemo.module.map.widget.StrokeTextView
         android:id="@+id/tv_bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

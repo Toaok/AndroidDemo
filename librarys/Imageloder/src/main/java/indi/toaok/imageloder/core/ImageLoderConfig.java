@@ -1,8 +1,8 @@
 package indi.toaok.imageloder.core;
 
 import android.graphics.drawable.Drawable;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.IntDef;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.IntDef;
 import android.view.View;
 
 import com.bumptech.glide.Priority;

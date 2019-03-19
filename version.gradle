@@ -2,8 +2,7 @@ ext {
 
     //app version config info
     androidConfig = [
-
-            applicationId    : "indi.toaok.study",
+            applicationId    : "indi.toaok.androiddemo",
             appName          : "AndroidDemo",
             compileSdkVersion: 28,
             minSdkVersion    : 15,
@@ -13,56 +12,99 @@ ext {
             flavorDimensions : 'default'
     ]
 
-    //base dependence version info
-    baseVsCfg = [
+    //kind of plugins version info
+    pluginsVsersion = [
             //gradle
-            gradle  : '3.1.3',
+            gradle     : '3.2.1',
+            butterknife: '10.1.0'
+    ]
 
-            //support
-            support : [
-                    appcompat_v7     : '28.0.0',
-                    design           : '28.0.0',
-                    constraint_layout: '1.1.2'
+    //plugins dependence info
+    pluginsDependence = [
+            gradle     : "com.android.tools.build:gradle:$pluginsVsersion.gradle",
+            butterknife: "com.jakewharton:butterknife-gradle-plugin:$pluginsVsersion.butterknife"
+    ]
+
+    //base dependence version info
+    baseDependdencsVersion = [
+            /**
+             * https://developer.android.google.cn/jetpack/androidx/migrate
+             */
+            androidx: [
+                    appcompat       : '1.0.0',
+                    material        : '1.0.0',
+                    constraintlayout: '1.1.2'
             ],
-
             //test
             test    : [
                     junit        : '4.12',
-                    runner       : '1.0.2',
-                    espresso_core: '3.0.2'
+                    runner       : '1.1.0',
+                    espresso_core: '3.1.0'
             ],
             //multidex
-            multidex: '1.0.2'
+            multidex: '2.0.0'
     ]
 
     //base dependence info
-    baseDepCfg = [
-            //gradle
-            gradle           : "com.android.tools.build:gradle:$baseVsCfg.gradle",
-
-            //support
-            appcompat_v7     : "com.android.support:appcompat-v7:$baseVsCfg.support.appcompat_v7",
-            design           : "com.android.support:design:$baseVsCfg.support.design",
-            constraint_layout: "com.android.support.constraint:constraint-layout:$baseVsCfg.support.constraint_layout",
+    baseDependences = [
+            //androidx
+            appcompat       : "androidx.appcompat:appcompat:$baseDependdencsVersion.androidx.appcompat",
+            material        : "com.google.android.material:material:$baseDependdencsVersion.androidx.material",
+            constraintlayout: "androidx.constraintlayout:constraintlayout:$baseDependdencsVersion.androidx.constraintlayout",
 
             //test
-            junit            : "junit:junit:$baseVsCfg.test.junit",
-            runner           : "com.android.support.test:runner:$baseVsCfg.test.runner",
-            espresso_core    : "com.android.support.test.espresso:espresso-core:$baseVsCfg.test.espresso_core",
+            junit           : "junit:junit:$baseDependdencsVersion.test.junit",
+            runner          : "androidx.test:runner:$baseDependdencsVersion.test.runner",
+            espresso_core   : "androidx.test.espresso:espresso-core:$baseDependdencsVersion.test.espresso_core",
 
             //multidex
-            multidex         : "com.android.support:multidex:$baseVsCfg.multidex"
+            multidex        : "androidx.multidex:multidex:$baseDependdencsVersion.multidex"
     ]
 
     //the third-party library version info
-    depLibVersion = [
+    dependencesLibraryVersion = [
+
+            /**
+             * https://projectlombok.org/setup/android
+             */
+            lombok       : '1.16.18',
+            /**
+             * https://github.com/JakeWharton/butterknife
+             */
+            butterknife  : '10.1.0',
+            /**
+             * https://github.com/ReactiveX/RxJava
+             * https://github.com/ReactiveX/RxAndroid
+             */
             rxjava       : '2.0.1',
+            /**
+             * https://github.com/square/okhttp
+             */
             okhttp       : '3.11.0',
+            /**
+             * https://github.com/square/retrofit
+             */
             retrofit     : '2.4.0',
+            /**
+             * https://github.com/bumptech/glide
+             */
             glide        : '4.8.0',
+            /**
+             * https://jsoup.org/
+             */
             jsoup        : '1.11.3',
+            /**
+             * https://github.com/google/gson
+             */
             gson         : '2.8.2',
+            /**
+             * https://github.com/tbruyelle/RxPermissions
+             * add maven { url 'https://jitpack.io' } in project build.gradle
+             */
             rxpermissions: '0.10.2',
+            /**
+             * https://lbs.amap.com/api/android-sdk/guide/create-project/android-studio-create-project
+             */
             gaode        : [
                     map     : 'latest.integration',
                     navi    : 'latest.integration',
@@ -73,36 +115,43 @@ ext {
     ]
 
     //the third-party library dependences info
-    depLibConfig = [
+    dependencesLibrary = [
+            //lombok
+            lombok                   : "org.projectlombok:lombok:$dependencesLibraryVersion.lombok",
+
+            //butterknife
+            butterknife              : "com.jakewharton:butterknife:$dependencesLibraryVersion.butterknife",
+            butterknife_compiler     : "com.jakewharton:butterknife-compiler:$dependencesLibraryVersion.butterknife",
+
             //rx
-            rxjava                   : "io.reactivex.rxjava2:rxjava:$depLibVersion.rxjava",
-            rxandroid                : "io.reactivex.rxjava2:rxandroid:$depLibVersion.rxjava",
+            rxjava                   : "io.reactivex.rxjava2:rxjava:$dependencesLibraryVersion.rxjava",
+            rxandroid                : "io.reactivex.rxjava2:rxandroid:$dependencesLibraryVersion.rxjava",
             //okhttp
-            okhttp                   : "com.squareup.okhttp3:okhttp:$depLibVersion.okhttp",
+            okhttp                   : "com.squareup.okhttp3:okhttp:$dependencesLibraryVersion.okhttp",
             //retrofit
-            retrofit                 : "com.squareup.retrofit2:retrofit:$depLibVersion.retrofit",
-            converter_gson           : "com.squareup.retrofit2:converter-gson:$depLibVersion.retrofit",
-            adapter_rxjava           : "com.squareup.retrofit2:adapter-rxjava:$depLibVersion.retrofit",
+            retrofit                 : "com.squareup.retrofit2:retrofit:$dependencesLibraryVersion.retrofit",
+            converter_gson           : "com.squareup.retrofit2:converter-gson:$dependencesLibraryVersion.retrofit",
+            adapter_rxjava           : "com.squareup.retrofit2:adapter-rxjava:$dependencesLibraryVersion.retrofit",
             //glide
-            glide                    : "com.github.bumptech.glide:glide:$depLibVersion.glide",
-            glide_compiler           : "com.github.bumptech.glide:compiler:$depLibVersion.glide",
-            glide_okhttp3_integration: "com.github.bumptech.glide:okhttp3-integration:$depLibVersion.glide",
+            glide                    : "com.github.bumptech.glide:glide:$dependencesLibraryVersion.glide",
+            glide_compiler           : "com.github.bumptech.glide:compiler:$dependencesLibraryVersion.glide",
+            glide_okhttp3_integration: "com.github.bumptech.glide:okhttp3-integration:$dependencesLibraryVersion.glide",
             //jsoup
-            jsoup                    : "org.jsoup:jsoup:$depLibVersion.jsoup",
+            jsoup                    : "org.jsoup:jsoup:$dependencesLibraryVersion.jsoup",
             //gson
-            gson                     : "com.google.code.gson:gson:$depLibVersion.gson",
+            gson                     : "com.google.code.gson:gson:$dependencesLibraryVersion.gson",
             //rxpermissions
-            rxpermissions            : "com.github.tbruyelle:rxpermissions:$depLibVersion.rxpermissions",
+            rxpermissions            : "com.github.tbruyelle:rxpermissions:$dependencesLibraryVersion.rxpermissions",
 
             //gaode
             //3d map
-            gaode_map                : "com.amap.api:3dmap:$depLibVersion.gaode.map",
+            gaode_map                : "com.amap.api:3dmap:$dependencesLibraryVersion.gaode.map",
             //导航
-            gaode_navi               : "com.amap.api:navi-3dmap:$depLibVersion.gaode.navi",
+            gaode_navi               : "com.amap.api:navi-3dmap:$dependencesLibraryVersion.gaode.navi",
             //定位
-            gaode_location           : "com.amap.api:location:$depLibVersion.gaode.location",
+            gaode_location           : "com.amap.api:location:$dependencesLibraryVersion.gaode.location",
             //查询
-            gaode_search             : "com.amap.api:search:$depLibVersion.gaode.search",
+            gaode_search             : "com.amap.api:search:$dependencesLibraryVersion.gaode.search",
 
     ]
 
@@ -111,5 +160,39 @@ ext {
     gaode = [
             APP_KEY: "eeb4c8860aee338e342a82e82f08f623"
     ]
+
+
+    /**
+     * host
+     */
+    host = [
+            /**
+             * 生产环境
+             */
+            host_prod: 'iwtoaok.iask.in:41346',
+            /**
+             * 开发环境
+             */
+            host_dev : '127.0.0.1:8080',
+    ]
+    /**
+     * 默认环境
+     */
+    host_default = host.host_dev
+
+    /**
+     * release 生产 环境
+     */
+    host_prod = host.host_prod
+
+    /**
+     * 启动页图片资源
+     */
+    splash_resource = [
+            splash_url         : 'https://baijiahao.baidu.com/s?id=1574517843319982&wfr=spider&for=pc&isFailFlag=1',
+            splash_cssquery    : 'div.article-content>div.img-container>img.large',
+            splash_attributekey: 'src'
+    ]
+
 
 }

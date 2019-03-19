@@ -1,0 +1,1 @@
+package indi.toaok.androiddemo.http.rx.api.login.request;public class RegisterRequest {}

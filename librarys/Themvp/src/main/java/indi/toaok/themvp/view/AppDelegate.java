@@ -2,10 +2,11 @@ package indi.toaok.themvp.view;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.StringRes;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.IdRes;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.StringRes;
+import androidx.appcompat.widget.Toolbar;
+
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,7 +57,7 @@ public abstract class AppDelegate implements IDelegate {
     }
 
     @Override
-    public void initWidget() {
+    public void initView() {
 
     }
 

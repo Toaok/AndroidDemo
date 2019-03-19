@@ -1,0 +1,1 @@
+package indi.toaok.androiddemo.model.vo;import lombok.Data;/** * @author Toaok * @version 1.0  2018/9/10. */@Datapublic class SplashImageBean {    private int id;    private String url;}
