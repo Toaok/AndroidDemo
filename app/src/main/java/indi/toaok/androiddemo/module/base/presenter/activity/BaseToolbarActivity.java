@@ -50,6 +50,11 @@ public abstract class BaseToolbarActivity<T extends BaseToolbarDelegate> extends
     }
 
 
+    public void setTitle(String title){
+        mToolbarBean.setTitleText(title);
+        notifyModelChanged(mToolbarBean);
+    }
+
     /**
      * Toolbar左按钮点击事件
      */

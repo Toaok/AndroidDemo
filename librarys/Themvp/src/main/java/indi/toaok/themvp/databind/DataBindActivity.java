@@ -33,7 +33,6 @@ public abstract class DataBindActivity<T extends IDelegate> extends
         if (binder != null && viewDelegate != null) {
             if (viewDelegate instanceof IDelegate && data instanceof IModel) {
                 binder.viewBindModel(viewDelegate, data);
-                data.setMessage("");
             }
         }
     }

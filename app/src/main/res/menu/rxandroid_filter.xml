@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/just"
+        android:title="@string/rx_filtering_debounce"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/repeat"
+        android:title="@string/rx_filtering_distinct"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/defer"
+        android:title="@string/rx_filtering_element_at"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/range"
+        android:title="@string/rx_filtering_filter"
+        app:showAsAction="never" />
+
+    <item
+
+        android:id="@+id/interval"
+        android:title="@string/rx_filtering_first"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/filter"
+        android:title="@string/rx_filtering_ignore_elements"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/take"
+        android:title="@string/rx_filtering_last"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/take_last"
+        android:title="@string/rx_filtering_sample"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/distinct"
+        android:title="@string/rx_filtering_skip"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/distinct_until_changed"
+        android:title="@string/rx_filtering_skip_last"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/first"
+        android:title="@string/rx_filtering_take"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/last"
+        android:title="@string/rx_filtering_take_last"
+        app:showAsAction="never" />
+
+</menu>

@@ -11,6 +11,6 @@ import indi.toaok.androiddemo.module.map.view.MapDelegate;
 public class MapDataBinder extends BaseDataBinder<MapDelegate,MapBean> {
     @Override
     public void viewBindModel(MapDelegate viewDelegate, MapBean data) {
-        super.viewBindModel(viewDelegate,data);
+        super.viewBindModel(viewDelegate, data);
     }
 }

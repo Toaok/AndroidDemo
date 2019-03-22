@@ -15,7 +15,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.NotificationManagerCompat;
 import android.util.Log;
 
-import indi.toaok.androiddemo.utils.core.AppUtils;
+import indi.toaok.utils.Utils;
+import indi.toaok.utils.core.AppUtils;
 
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;

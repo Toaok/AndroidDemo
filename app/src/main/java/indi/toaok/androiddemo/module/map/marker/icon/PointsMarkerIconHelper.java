@@ -9,7 +9,7 @@ import indi.toaok.androiddemo.R;
 
 import java.lang.ref.SoftReference;
 
-import indi.toaok.androiddemo.utils.Utils;
+import indi.toaok.utils.Utils;
 
 /**
  * @author Toaok

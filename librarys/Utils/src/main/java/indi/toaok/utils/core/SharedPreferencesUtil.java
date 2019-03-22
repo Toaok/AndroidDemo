@@ -1,4 +1,4 @@
-package indi.toaok.androiddemo.utils.core;
+package indi.toaok.utils.core;
 
 /**
  * @author Toaok

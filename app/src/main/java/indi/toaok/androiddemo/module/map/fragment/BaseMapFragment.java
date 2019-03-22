@@ -48,7 +48,7 @@ public abstract class BaseMapFragment<T extends BaseMapDelegate> extends BaseFra
     public void onDestroy() {
         super.onDestroy();
         if (mMapView != null) {
-           // mMapView.onDestroy();
+            mMapView.onDestroy();
             mMapView = null;
         }
     }

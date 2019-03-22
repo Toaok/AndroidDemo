@@ -1,18 +1,18 @@
 package indi.toaok.androiddemo.utils;
 
-import android.os.Environment;
-
-import indi.toaok.androiddemo.utils.core.AppUtils;
-
 import java.io.File;
+
+import indi.toaok.utils.core.AppUtils;
+import indi.toaok.utils.core.PathUtils;
 
 /**
  * 外部存储
  */
 public class FilePathUtil {
 
+
     private static String getBaseDirPath(String childDir) {
-        return Environment.getExternalStorageDirectory().getPath() + "/" + AppUtils.getAppName() + "/" + childDir;
+        return PathUtils.getInternalAppCachePath()+ "/" + AppUtils.getAppName() + "/" + childDir;
     }
 
     public static String getCacheCropPath() {

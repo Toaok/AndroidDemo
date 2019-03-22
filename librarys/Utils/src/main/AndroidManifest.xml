@@ -1,4 +1,3 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="indi.toaok.androiddemo.utils" >
+<manifest package="indi.toaok.utils">
 
 </manifest>

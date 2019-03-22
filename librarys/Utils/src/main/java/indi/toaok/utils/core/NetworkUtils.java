@@ -1,4 +1,4 @@
-package indi.toaok.androiddemo.utils.core;
+package indi.toaok.utils.core;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -11,7 +11,7 @@ import android.telephony.TelephonyManager;
 import android.text.format.Formatter;
 import android.util.Log;
 
-import indi.toaok.androiddemo.utils.Utils;
+import indi.toaok.utils.Utils;
 
 import java.lang.reflect.Method;
 import java.net.InetAddress;

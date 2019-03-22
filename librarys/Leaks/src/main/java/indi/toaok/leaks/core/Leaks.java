@@ -1,4 +1,4 @@
-package indi.leaks.core;
+package indi.toaok.leaks.core;
 
 import android.app.Application;
 import android.content.Context;

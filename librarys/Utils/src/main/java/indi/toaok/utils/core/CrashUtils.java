@@ -1,4 +1,4 @@
-package indi.toaok.androiddemo.utils.core;
+package indi.toaok.utils.core;
 
 import android.annotation.SuppressLint;
 import android.content.pm.PackageInfo;
@@ -23,7 +23,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-import indi.toaok.androiddemo.utils.Utils;
+import indi.toaok.utils.Utils;
 
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 

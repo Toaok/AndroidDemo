@@ -1,4 +1,4 @@
-package indi.toaok.androiddemo.utils;
+package indi.toaok.utils;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

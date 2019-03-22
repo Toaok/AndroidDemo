@@ -11,7 +11,7 @@ import android.widget.RelativeLayout;
 
 import indi.toaok.androiddemo.R;
 import indi.toaok.androiddemo.module.map.marker.widget.MarkerView;
-import indi.toaok.androiddemo.module.map.widget.StrokeTextView;
+import indi.toaok.androiddemo.module.comment.widget.StrokeTextView;
 
 /**
  * @author Toaok

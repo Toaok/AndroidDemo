@@ -5,6 +5,8 @@ import android.content.Context;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -83,23 +85,22 @@ public class DWebView<T> extends WebView {
         }
 
         @Override
-        public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+        public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
             if (onJWebViewProgressLinstener != null) {
                 onJWebViewProgressLinstener.cancelShowLoading();
             }
-            super.onReceivedError(view, errorCode, description, failingUrl);
+            super.onReceivedError(view, request, error);
         }
 
         @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+        public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
             if (onJWebViewOverrideUrlLoadingLinstener != null) {
-                OverrideUrlLoadingState overrideUrlLoadingState = onJWebViewOverrideUrlLoadingLinstener.shouldOverrideUrlLoading(view, url);
-                if(overrideUrlLoadingState != OverrideUrlLoadingState.Default) {
+                OverrideUrlLoadingState overrideUrlLoadingState = onJWebViewOverrideUrlLoadingLinstener.shouldOverrideUrlLoading(view, request);
+                if (overrideUrlLoadingState != OverrideUrlLoadingState.Default) {
                     return overrideUrlLoadingState != OverrideUrlLoadingState.False;
                 }
             }
-            view.loadUrl(url);
-            return super.shouldOverrideUrlLoading(view, url);
+            return super.shouldOverrideUrlLoading(view, request);
         }
     }
 
@@ -130,7 +131,7 @@ public class DWebView<T> extends WebView {
     }
 
     public interface OnJWebViewOverrideUrlLoadingLinstener {
-        OverrideUrlLoadingState shouldOverrideUrlLoading(WebView view, String url);
+        OverrideUrlLoadingState shouldOverrideUrlLoading(WebView view, WebResourceRequest request);
     }
 
     OnJWebViewProgressLinstener onJWebViewProgressLinstener;

@@ -1,4 +1,4 @@
-package indi.toaok.androiddemo.utils.core;
+package indi.toaok.utils.core;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -26,16 +26,7 @@ import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
-import androidx.annotation.ColorInt;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.FloatRange;
-import androidx.annotation.IntRange;
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.core.content.ContextCompat;
 import android.view.View;
-
-import indi.toaok.androiddemo.utils.Utils;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
@@ -46,6 +37,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.FloatRange;
+import androidx.annotation.IntRange;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
+import indi.toaok.utils.Utils;
 
 /**
  * @author Toaok

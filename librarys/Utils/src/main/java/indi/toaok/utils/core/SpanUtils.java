@@ -1,4 +1,4 @@
-package indi.toaok.androiddemo.utils.core;
+package indi.toaok.utils.core;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
@@ -50,7 +50,7 @@ import android.text.style.UnderlineSpan;
 import android.text.style.UpdateAppearance;
 import android.util.Log;
 
-import indi.toaok.androiddemo.utils.Utils;
+import indi.toaok.utils.Utils;
 
 import java.io.InputStream;
 import java.lang.annotation.Retention;

@@ -144,7 +144,8 @@ def configSourceSets(Project pro) {
                             'src/main/res/main',
                             'src/main/res/map',
                             'src/main/res/kline',
-                            'src/main/res/other'
+                            'src/main/res/other',
+                            'src/main/res/rxandroid',
                     ]
         }
         // special build type variants

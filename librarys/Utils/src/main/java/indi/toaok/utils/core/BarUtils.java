@@ -1,4 +1,4 @@
-package indi.toaok.androiddemo.utils.core;
+package indi.toaok.utils.core;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -19,7 +19,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
-import indi.toaok.androiddemo.utils.Utils;
+import indi.toaok.utils.Utils;
 
 import java.lang.reflect.Method;
 

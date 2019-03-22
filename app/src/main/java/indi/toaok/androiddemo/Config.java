@@ -2,7 +2,7 @@ package indi.toaok.androiddemo;
 
 import android.os.Environment;
 
-import indi.toaok.androiddemo.utils.Utils;
+import indi.toaok.utils.Utils;
 
 import java.io.File;
 

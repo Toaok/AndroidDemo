@@ -1,4 +1,4 @@
-package indi.toaok.androiddemo.module.map.widget;
+package indi.toaok.androiddemo.module.comment.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -17,6 +17,7 @@ import indi.toaok.androiddemo.R;
 
 
 /**
+ * 文字带边框的TextView
  * @author Toaok
  * @version 1.0  2019/2/25.
  */

@@ -1,7 +1,6 @@
 package indi.toaok.androiddemo;
 
-import indi.leaks.core.Leaks;
-import indi.toaok.androiddemo.App;
+import indi.toaok.leaks.core.Leaks;
 
 public class AppTest extends App {
     @Override

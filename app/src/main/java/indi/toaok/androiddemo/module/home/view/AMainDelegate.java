@@ -15,7 +15,7 @@ import butterknife.BindDrawable;
 import butterknife.BindView;
 import indi.toaok.androiddemo.R;
 import indi.toaok.androiddemo.module.base.view.BaseToolbarDelegate;
-import indi.toaok.androiddemo.utils.core.BarUtils;
+import indi.toaok.utils.core.BarUtils;
 
 /**
  * @author Toaok

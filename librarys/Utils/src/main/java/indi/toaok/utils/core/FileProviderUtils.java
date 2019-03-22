@@ -1,4 +1,4 @@
-package indi.toaok.androiddemo.utils.core;
+package indi.toaok.utils.core;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,7 +6,7 @@ import android.net.Uri;
 import android.os.Build;
 import androidx.core.content.FileProvider;
 
-import indi.toaok.androiddemo.utils.Utils;
+import indi.toaok.utils.Utils;
 
 import java.io.File;
 

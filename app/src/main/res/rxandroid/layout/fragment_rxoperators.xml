@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <Button
+        android:id="@+id/btn_creating_observables"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rx_creating_observables"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@id/btn_filtering_observables"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_filtering_observables"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rx_filtering_observables"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@id/btn_transforming_observables"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_creating_observables" />
+
+    <Button
+        android:id="@+id/btn_transforming_observables"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rx_transforming_observables"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@id/btn_combining_observables"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_filtering_observables" />
+
+    <Button
+        android:id="@+id/btn_combining_observables"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rx_combining_observables"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@id/btn_error_handling_operators"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_transforming_observables" />
+
+    <Button
+        android:id="@+id/btn_error_handling_operators"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rx_error_handling_operators"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@id/btn_observable_utility_operators"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_combining_observables" />
+
+    <Button
+        android:id="@+id/btn_observable_utility_operators"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rx_observable_utility_operators"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@id/btn_conditional_and_boolean_operators"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_error_handling_operators" />
+
+    <Button
+        android:id="@+id/btn_conditional_and_boolean_operators"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rx_conditional_and_boolean_operators"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@id/btn_mathematical_and_aggregate_operators"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_observable_utility_operators" />
+
+    <Button
+        android:id="@+id/btn_mathematical_and_aggregate_operators"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rx_mathematical_and_aggregate_operators"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@id/btn_backpressure_operators"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_conditional_and_boolean_operators" />
+
+    <Button
+        android:id="@+id/btn_backpressure_operators"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rx_backpressure_operators"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@id/btn_connectable_observable_operators"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_mathematical_and_aggregate_operators" />
+
+    <Button
+        android:id="@+id/btn_connectable_observable_operators"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rx_connectable_observable_operators"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@id/btn_operators_to_convert_observables"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_backpressure_operators" />
+
+    <Button
+        android:id="@+id/btn_operators_to_convert_observables"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rx_operators_to_convert_observables"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_connectable_observable_operators" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

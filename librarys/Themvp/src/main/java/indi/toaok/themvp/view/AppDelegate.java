@@ -2,6 +2,7 @@ package indi.toaok.themvp.view;
 
 import android.app.Activity;
 import android.os.Bundle;
+
 import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.StringRes;
@@ -28,8 +29,8 @@ public abstract class AppDelegate implements IDelegate {
 
     protected View rootView;
 
-    public abstract @LayoutRes
-    int getRootLayoutId();
+    @LayoutRes
+    public abstract int getRootLayoutId();
 
     @Override
     public void create(LayoutInflater inflater, ViewGroup container, Bundle saveInstanceState) {
@@ -92,6 +93,7 @@ public abstract class AppDelegate implements IDelegate {
 
     /**
      * 直接传View对象
+     *
      * @param listener
      * @param views
      */

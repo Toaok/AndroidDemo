@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/map"
+        android:title="@string/rx_transforming_buffer"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/flat_map"
+        android:title="@string/rx_transforming_flat_map"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/concat_map"
+        android:title="@string/rx_transforming_group_by"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/switch_map"
+        android:title="@string/rx_transforming_map"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/scan"
+        android:title="@string/rx_transforming_scan"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/group_by"
+        android:title="@string/rx_transforming_window"
+        app:showAsAction="never" />
+
+</menu>
