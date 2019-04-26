@@ -2,6 +2,12 @@ package indi.toaok.study;
 
 import org.junit.Test;
 
+import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
+
+import indi.toaok.androiddemo.http.rx.api.splash.SplashRequestBean;
+
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
@@ -10,21 +16,10 @@ import org.junit.Test;
 public class UnitTest {
     @Test
     public void test() {
-        CountDownTimer countDownTimer = new CountDownTimer(10);
-        Thread thread1=new Thread(countDownTimer);
-        System.out.println(Thread.currentThread()+":线程已创建");
         try {
-            Thread.sleep(3000);
-            System.out.println(Thread.currentThread()+":等待3秒,线程开始执行");
-            thread1.start();
-
-            Thread.sleep(3000);
-            System.out.println(Thread.currentThread()+":等待3秒,执行线程中断");
-            thread1.interrupt();
-            System.out.println(Thread.currentThread()+":等待3秒,线程重新开始执行");
-            Thread.sleep(1000);
-            thread1.run();
-        } catch (InterruptedException e) {
+            Map map=convertToMap(new SplashRequestBean());
+            System.out.println(map);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -67,6 +62,24 @@ public class UnitTest {
         }
     }
 
-    
+    public static HashMap<String, Object> convertToMap(Object obj)
+            throws Exception {
+
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        Field[] fields = obj.getClass().getDeclaredFields();
+        for (int i = 0, len = fields.length; i < len; i++) {
+            String varName = fields[i].getName();
+            boolean accessFlag = fields[i].isAccessible();
+            fields[i].setAccessible(true);
+
+            Object o = fields[i].get(obj);
+            if (o != null)
+                map.put(varName, o.toString());
+
+            fields[i].setAccessible(accessFlag);
+        }
+
+        return map;
+    }
 
 }

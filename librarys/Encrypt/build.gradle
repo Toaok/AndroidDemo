@@ -1,0 +1,13 @@
+apply {
+    from "${rootDir.path}/config_lib.gradle"
+    plugin "com.android.library"
+}
+
+// in config.gradle
+configAndroidModuleDomain project
+configModuleBaseDependences project
+configNdk project
+
+dependencies {
+
+}

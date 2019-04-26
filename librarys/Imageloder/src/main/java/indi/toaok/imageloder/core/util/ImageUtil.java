@@ -44,19 +44,6 @@ public class ImageUtil {
     private static final int BITMAP_QUALITY = 95;
 
     /**
-     * 保存网络下载的图片到指定地址 地址为{@link FilePathUtil#getImagePath()}
-     *
-     * @param context
-     * @param handler
-     * @param bitmap
-     * @param url
-     * @param name
-     */
-    public static void saveImage(Context context, Handler handler, Bitmap bitmap, String url, String name) {
-        saveImageAndRefresh(context, handler, bitmap, url, null, name, false);
-    }
-
-    /**
      * 保存网络下载的图片到指定地址，并插入相册可见
      *
      * @param context
@@ -106,18 +93,14 @@ public class ImageUtil {
      * @param context
      * @param bm        不能为空
      * @param url       不能为空
-     * @param savePath  为空则默认{@link FilePathUtil#getImagePath()}
+     * @param savePath  不能为空
      * @param name      文件名为空则 使用url哈希化为文件名
      * @param isRefresh
      * @return
      */
     public static String saveBitmapToSDcard(Context context, Bitmap bm, String url, String savePath, String name, boolean isRefresh) {
-        if (bm == null || TextUtils.isEmpty(url)) {
+        if (bm == null || TextUtils.isEmpty(url)||TextUtils.isEmpty(savePath)) {
             return null;
-        }
-
-        if (TextUtils.isEmpty(savePath)) {
-            savePath = FilePathUtil.getImagePath();
         }
 
         String filename = TextUtils.isEmpty(name) ? FileUtil.convertUrlToFileName(url) : name;
@@ -159,8 +142,8 @@ public class ImageUtil {
         return file.getAbsolutePath();
     }
 
-    public static Bitmap getSpalshCacheImage(String uri) {
-        File file = FileUtil.getSplashUrlCacheFile(uri);
+    public static Bitmap getCacheImage(String filepath,String uri) {
+        File file = FileUtil.getCacheFileFromUrl(filepath,uri);
         if (file != null) {
             return BitmapFactory.decodeFile(file.getPath());
         }

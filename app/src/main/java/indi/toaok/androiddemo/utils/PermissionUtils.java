@@ -222,6 +222,6 @@ public class PermissionUtils {
 
     @SuppressLint("ResourceType")
     private static String getPermissionPrompt(@StringRes int resId){
-        return Utils.getApp().getString(resId, AppUtils.getAppName(), AppUtils.getAppName());
+        return AppUtil.getApplication().getString(resId, AppUtils.getAppName(), AppUtils.getAppName());
     }
 }

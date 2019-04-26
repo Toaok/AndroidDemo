@@ -5,8 +5,9 @@ import android.graphics.drawable.BitmapDrawable;
 import java.util.List;
 
 import indi.toaok.androiddemo.R;
-import indi.toaok.androiddemo.base.recyclerview.BaseRecyclerAdapter;
-import indi.toaok.androiddemo.base.recyclerview.BaseViewHolder;
+
+import indi.toaok.androiddemo.module.base.recyclerview.BaseRecyclerAdapter;
+import indi.toaok.androiddemo.module.base.recyclerview.BaseViewHolder;
 import indi.toaok.androiddemo.module.rxandroid.bean.AppInfo;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -17,8 +18,7 @@ import io.reactivex.schedulers.Schedulers;
  * @author Toaok
  * @version 1.0  2019/3/13.
  */
-public class AppInfoListAdapter extends BaseRecyclerAdapter<AppInfo,BaseViewHolder> {
-
+public class AppInfoListAdapter extends BaseRecyclerAdapter<AppInfo, BaseViewHolder> {
 
     public AppInfoListAdapter(List<AppInfo> data) {
         super(data);

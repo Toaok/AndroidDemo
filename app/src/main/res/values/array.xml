@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="other_item">
+        <item>WebView</item>
+        <item>Call Phone</item>
+        <item>Install Other Apk</item>
+        <item>RxAndroid</item>
+    </string-array>
+</resources>

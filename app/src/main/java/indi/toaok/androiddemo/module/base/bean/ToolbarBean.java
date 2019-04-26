@@ -1,6 +1,6 @@
 package indi.toaok.androiddemo.module.base.bean;
 
-import indi.toaok.themvp.model.IModel;
+import indi.toaok.androiddemo.base.model.IBaseModel;
 import lombok.Data;
 
 /**
@@ -10,7 +10,7 @@ import lombok.Data;
  */
 
 @Data
-public class ToolbarBean implements IModel {
+public class ToolbarBean implements IBaseModel {
 
     /**
      * 标题

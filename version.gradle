@@ -131,7 +131,7 @@ ext {
             //retrofit
             retrofit                 : "com.squareup.retrofit2:retrofit:$dependencesLibraryVersion.retrofit",
             converter_gson           : "com.squareup.retrofit2:converter-gson:$dependencesLibraryVersion.retrofit",
-            adapter_rxjava           : "com.squareup.retrofit2:adapter-rxjava:$dependencesLibraryVersion.retrofit",
+            adapter_rxjava           : "com.squareup.retrofit2:adapter-rxjava2:$dependencesLibraryVersion.retrofit",
             //glide
             glide                    : "com.github.bumptech.glide:glide:$dependencesLibraryVersion.glide",
             glide_compiler           : "com.github.bumptech.glide:compiler:$dependencesLibraryVersion.glide",
@@ -169,11 +169,11 @@ ext {
             /**
              * 生产环境
              */
-            host_prod: 'iwtoaok.iask.in:41346',
+            host_prod: 'https://api.apiopen.top',
             /**
              * 开发环境
              */
-            host_dev : '127.0.0.1:8080',
+            host_dev : 'https://api.apiopen.top',
     ]
     /**
      * 默认环境
@@ -184,15 +184,5 @@ ext {
      * release 生产 环境
      */
     host_prod = host.host_prod
-
-    /**
-     * 启动页图片资源
-     */
-    splash_resource = [
-            splash_url         : 'https://baijiahao.baidu.com/s?id=1574517843319982&wfr=spider&for=pc&isFailFlag=1',
-            splash_cssquery    : 'div.article-content>div.img-container>img.large',
-            splash_attributekey: 'src'
-    ]
-
 
 }

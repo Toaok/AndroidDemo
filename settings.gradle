@@ -1,5 +1,6 @@
-include ':app', ':Leaks', ':Themvp', ':Imageloder', ':Utils'
+include ':app', ':Leaks', ':Themvp', ':Imageloder', ':Utils', ':Encrypt'
 project(':Leaks').projectDir = new File('librarys/Leaks')
 project(':Themvp').projectDir = new File('librarys/Themvp')
 project(':Imageloder').projectDir = new File('librarys/Imageloder')
 project(':Utils').projectDir = new File('librarys/Utils')
+project(':Encrypt').projectDir = new File('librarys/Encrypt')

@@ -1,4 +1,4 @@
-package indi.toaok.androiddemo.base.recyclerview;
+package indi.toaok.androiddemo.module.base.recyclerview;
 
 import android.util.SparseArray;
 import android.view.View;

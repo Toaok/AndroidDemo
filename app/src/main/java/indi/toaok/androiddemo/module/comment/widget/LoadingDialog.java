@@ -31,12 +31,7 @@ public class LoadingDialog extends AlertDialog {
         customLoadingDialog.setCanceledOnTouchOutside(false);
         customLoadingDialog.setCancelable(true);
         customLoadingDialog.show();
-        return new DialogDismissListener() {
-            @Override
-            public void onDismiss() {
-                customLoadingDialog.dismiss();
-            }
-        };
+        return () -> customLoadingDialog.dismiss();
     }
 
 

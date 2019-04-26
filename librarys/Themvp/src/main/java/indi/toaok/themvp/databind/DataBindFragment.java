@@ -1,8 +1,10 @@
 package indi.toaok.themvp.databind;
 
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import android.view.View;
 
 import indi.toaok.themvp.model.IModel;
@@ -16,7 +18,7 @@ import indi.toaok.themvp.view.IDelegate;
  * @author Toaok
  * @version 1.0  2018/9/7.
  */
-public abstract class DataBindFragment <T extends IDelegate> extends
+public abstract class DataBindFragment<T extends IDelegate> extends
         FragmentPresenter<T> {
 
     protected DataBinder binder;
@@ -24,15 +26,15 @@ public abstract class DataBindFragment <T extends IDelegate> extends
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binder=getDataBinder();
+        binder = getDataBinder();
     }
 
     protected abstract DataBinder getDataBinder();
 
 
-    public <D extends IModel> void notifyModelChanged(D data){
-        if(binder!=null){
-            binder.viewBindModel(viewDelegate,data);
+    public void notifyModelChanged(IModel data) {
+        if (binder != null) {
+            binder.viewBindModel(viewDelegate, data);
         }
     }
 }

@@ -5,8 +5,4 @@ package indi.toaok.themvp.model;
  * @version 1.0  2018/9/7.
  */
 public interface IModel {
-
-    String getMessage();
-
-    void setMessage(String message);
 }

@@ -1,4 +1,4 @@
-package indi.toaok.androiddemo.base.recyclerview;
+package indi.toaok.androiddemo.module.base.recyclerview;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -20,14 +20,17 @@ public abstract class BaseRecyclerAdapter<D, V extends BaseViewHolder> extends R
 
 
     protected Context mContext;
+    protected LayoutInflater mLayoutInflater;
+    protected RecyclerView.LayoutManager mLayoutManager;
+
+    protected OnItemClickListener mOnItemClickListener;
+    protected OnItemLongClickLiistener mOnItemLongClickLiistener;
 
     protected List<D> mData;
 
     protected boolean mIsUserAnimation;
 
-    protected RecyclerView.LayoutManager mLayoutManager;
 
-    public LayoutInflater mLayoutInflater;
 
     public BaseRecyclerAdapter(List<D> data) {
         this(data, true);
@@ -60,6 +63,17 @@ public abstract class BaseRecyclerAdapter<D, V extends BaseViewHolder> extends R
         this.mContext = parent.getContext();
         this.mLayoutInflater = LayoutInflater.from(mContext);
         BaseViewHolder baseViewHolder = new BaseViewHolder(mLayoutInflater.inflate(getItemLayoutId(), parent, false));
+        baseViewHolder.itemView.setOnClickListener(v -> {
+            if (mOnItemClickListener!=null){
+                mOnItemClickListener.onItemClick(v,baseViewHolder.getLayoutPosition());
+            }
+        });
+        baseViewHolder.itemView.setOnLongClickListener(v -> {
+            if(mOnItemLongClickLiistener!=null){
+                return mOnItemLongClickLiistener.onItemLongClick(v,baseViewHolder.getLayoutPosition());
+            }
+            return false;
+        });
         return (V) baseViewHolder;
     }
 
@@ -70,6 +84,13 @@ public abstract class BaseRecyclerAdapter<D, V extends BaseViewHolder> extends R
         }
     }
 
+
+    @Override
+    public int getItemViewType(int position) {
+
+        return super.getItemViewType(position);
+    }
+
     @Override
     public int getItemCount() {
         int count = 0;
@@ -77,6 +98,14 @@ public abstract class BaseRecyclerAdapter<D, V extends BaseViewHolder> extends R
             count = mData.size();
         }
         return count;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        mOnItemClickListener = onItemClickListener;
+    }
+
+    public void setOnItemLongClickLiistener(OnItemLongClickLiistener onItemLongClickLiistener) {
+        mOnItemLongClickLiistener = onItemLongClickLiistener;
     }
 
     public void append(D item) {
@@ -123,7 +152,7 @@ public abstract class BaseRecyclerAdapter<D, V extends BaseViewHolder> extends R
     }
 
     public interface OnItemLongClickLiistener {
-        void onItemLongClick(View view, int position);
+        boolean onItemLongClick(View view, int position);
     }
 
 }

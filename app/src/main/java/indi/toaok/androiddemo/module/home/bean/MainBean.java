@@ -1,6 +1,6 @@
 package indi.toaok.androiddemo.module.home.bean;
 
-import indi.toaok.themvp.model.IModel;
+import indi.toaok.androiddemo.base.model.IBaseModel;
 import lombok.Data;
 
 /**
@@ -8,6 +8,6 @@ import lombok.Data;
  * @version 1.0  2018/9/30.
  */
 @Data
-public class MainBean implements IModel {
+public class MainBean implements IBaseModel {
     private String message;
 }

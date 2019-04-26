@@ -100,6 +100,8 @@ def configLibDependences(Project pro) {
         implementation project(':Utils')
         //ImageLoader
         implementation project(':Imageloder')
+        //Encrypt
+        implementation project(':Encrypt')
     }
 }
 
@@ -204,7 +206,6 @@ def configBuildType(Project pro) {
 }
 
 //config ProductFlavors
-//config ProductFlavors
 def configProductFlavors(Project pro) {
     pro.android.productFlavors {
         androidDemo {}
@@ -233,19 +234,18 @@ def configDefault(Project pro) {
 
 }
 
+// 盐
+
 //config Field
 def configField(Project pro) {
-
+    def SALT = "indi.toaok.androiddemo"
     pro.android.defaultConfig {
 
         //设置高德APPKEY到Manifest中
         manifestPlaceholders.put("GAODE_KEY", rootProject.ext.gaode.APP_KEY)
 
         //自定义常量字段
-        buildConfigField "String", "SPLASH_URL", "\"${rootProject.ext.splash_resource.splash_url}\""
-        buildConfigField "String", "SPLASH_CSSQUERY", "\"${rootProject.ext.splash_resource.splash_cssquery}\""
-        buildConfigField "String", "SPLASH_ATTRIBUTEKEY", "\"${rootProject.ext.splash_resource.splash_attributekey}\""
-
+        buildConfigField "String", "SALT",  "\"${SALT}\""
 
         resValue "string", "app_name", androidConfig.appName
     }

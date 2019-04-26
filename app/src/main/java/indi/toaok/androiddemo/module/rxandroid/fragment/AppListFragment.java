@@ -8,7 +8,6 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import indi.toaok.androiddemo.base.presenter.fragment.BaseFragment;
 import indi.toaok.androiddemo.common.animation.Animation;
 import indi.toaok.androiddemo.module.rxandroid.bean.AppInfo;
@@ -44,12 +43,7 @@ public class AppListFragment extends BaseFragment<AppListDelegate> {
 
     private void init() {
         mAppListBean = new AppListBean();
-        mAppListBean.setRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                refreshAppList();
-            }
-        });
+        mAppListBean.setRefreshListener(() -> refreshAppList());
         refreshAppList();
     }
 
@@ -78,16 +72,16 @@ public class AppListFragment extends BaseFragment<AppListDelegate> {
                     mAppListBean.getAdapter().append(appInfo);
                     notifyModelChanged(mAppListBean);
                 }, throwable -> {//异常
-                    mAppListBean.setMesssage("Something went wrong!");
+                    mAppListBean.setMessage("Something went wrong!");
                     mAppListBean.setRefreshing(false);
                     notifyModelChanged(mAppListBean);
                 }, () -> {//完成
-                    mAppListBean.setMesssage("There is the list!");
+                    mAppListBean.setMessage("There is the list!");
                     mAppListBean.setRefreshing(false);
                     notifyModelChanged(mAppListBean);
                 }, disposable -> {//订阅时清除数据
                     mAppListBean.clearData();
-                    mAppListBean.setMesssage("list has subscribe!");
+                    mAppListBean.setMessage("list has subscribe!");
                     notifyModelChanged(mAppListBean);
                 });
     }

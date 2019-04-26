@@ -94,16 +94,16 @@ public class FileUtil {
     }
 
     /**
-     * 根据URL 查询Splash文件是否存在
+     * 根据URL查询文件是否存在
      * @param url
      * @return
      */
-    public static boolean isSplashUrlCacheExists(String url) {
-        if(TextUtils.isEmpty(FilePathUtil.getSplashImagePath()) || TextUtils.isEmpty(url)) {
+    public static boolean isExistsCacheFileFromUrl(String filepath,String url) {
+        if(TextUtils.isEmpty(filepath) || TextUtils.isEmpty(url)) {
             return false;
         }
         String filename = convertUrlToFileName(url);
-        File file = new File(FilePathUtil.getSplashImagePath() + filename);
+        File file = new File(filepath + filename);
         if (!file.exists()) {
             return false;
         }
@@ -111,16 +111,16 @@ public class FileUtil {
     }
 
     /**
-     * 获取缓存Splash图片文件 根据URL
+     * 获取缓存图片文件 根据URL
      * @param url
      * @return
      */
-    public static File getSplashUrlCacheFile(String url) {
-        if(TextUtils.isEmpty(FilePathUtil.getSplashImagePath()) || TextUtils.isEmpty(url)) {
+    public static File getCacheFileFromUrl(String filepath,String url) {
+        if(TextUtils.isEmpty(filepath) || TextUtils.isEmpty(url)) {
             return null;
         }
         String filename = convertUrlToFileName(url);
-        File file = new File(FilePathUtil.getSplashImagePath() + filename);
+        File file = new File(filepath + filename);
         if (!file.exists()) {
             return null;
         }

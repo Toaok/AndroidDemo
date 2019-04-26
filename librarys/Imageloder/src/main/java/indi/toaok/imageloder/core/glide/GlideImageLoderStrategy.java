@@ -5,9 +5,11 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
+
 import androidx.annotation.Nullable;
 import androidx.core.graphics.drawable.RoundedBitmapDrawable;
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
+
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -167,12 +169,12 @@ public class GlideImageLoderStrategy implements BaseImageLoderStrategy {
                     }
                 });
             } else {
-                Log.d("glide","成功");
+                Log.d("glide", "成功");
                 builder.into(imageView);
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Log.d("glide","异常"+e.getMessage());
+            Log.d("glide", "异常" + e.getMessage());
             if (config != null && config.getErrorResId() != 0) {
                 imageView.setImageResource(config.getErrorResId());
             }
@@ -214,10 +216,11 @@ public class GlideImageLoderStrategy implements BaseImageLoderStrategy {
     @Override
     public void downloadImage(final Context context, final Handler handler, final String uri, final String savePath, final String name, final boolean isInsertMedia) {
         Glide.with(context.getApplicationContext())
-                .downloadOnly()
-                .listener(new RequestListener<File>() {
+                .asBitmap()
+                .load(uri)
+                .listener(new RequestListener<Bitmap>() {
                     @Override
-                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<File> target, boolean isFirstResource) {
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target, boolean isFirstResource) {
                         if (handler != null) {
                             handler.sendEmptyMessage(ImageUtil.SAVE_IMAGE_FAIL);
                         }
@@ -225,12 +228,12 @@ public class GlideImageLoderStrategy implements BaseImageLoderStrategy {
                     }
 
                     @Override
-                    public boolean onResourceReady(File resource, Object model, Target<File> target, DataSource dataSource, boolean isFirstResource) {
-                        ImageUtil.saveImageAndRefresh(context, handler, BitmapFactory.decodeFile(resource.getPath()), uri, savePath, name, isInsertMedia);
+                    public boolean onResourceReady(Bitmap resource, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
+                        Bitmap bitmap = resource;
+                        ImageUtil.saveImageAndRefresh(context, handler, bitmap, uri, savePath, name, isInsertMedia);
                         return false;
                     }
-                })
-                .load(uri);
+                }).submit();
     }
 
     @SuppressLint("CheckResult")
@@ -239,20 +242,22 @@ public class GlideImageLoderStrategy implements BaseImageLoderStrategy {
                               final String savePath, final String name, final boolean isInsertMedia,
                               final LoaderListener loaderListener) {
         Glide.with(context.getApplicationContext())
-                .downloadOnly().listener(new RequestListener<File>() {
-            @Override
-            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<File> target, boolean isFirstResource) {
-                loaderListener.onError();
-                return false;
-            }
+                .asBitmap()
+                .load(uri)
+                .listener(new RequestListener<Bitmap>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target, boolean isFirstResource) {
+                        loaderListener.onError();
+                        return false;
+                    }
 
-            @Override
-            public boolean onResourceReady(File resource, Object model, Target<File> target, DataSource dataSource, boolean isFirstResource) {
-                Bitmap bitmap = BitmapFactory.decodeFile(resource.getPath());
-                ImageUtil.saveImageAndRefresh(context, handler, bitmap, uri, savePath, name, isInsertMedia);
-                loaderListener.onSuccess(bitmap);
-                return false;
-            }
-        }).load(uri);
+                    @Override
+                    public boolean onResourceReady(Bitmap resource, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
+                        Bitmap bitmap = resource;
+                        ImageUtil.saveImageAndRefresh(context, handler, bitmap, uri, savePath, name, isInsertMedia);
+                        loaderListener.onSuccess(bitmap);
+                        return false;
+                    }
+                }).submit();
     }
 }

@@ -3,6 +3,7 @@ apply from: "${rootDir.path}/version.gradle"
 ext {
     configAndroidModuleDomain = this.&configAndroidModuleDomain
     configModuleBaseDependences = this.&configModuleBaseDependences
+    configNdk=this.&configNdk
 }
 
 //app main

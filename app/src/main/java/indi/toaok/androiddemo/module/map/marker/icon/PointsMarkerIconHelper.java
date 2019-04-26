@@ -9,6 +9,7 @@ import indi.toaok.androiddemo.R;
 
 import java.lang.ref.SoftReference;
 
+import indi.toaok.androiddemo.utils.AppUtil;
 import indi.toaok.utils.Utils;
 
 /**
@@ -36,7 +37,7 @@ public class PointsMarkerIconHelper {
         if (pointBitmapDescriptorDefault != null && pointBitmapDescriptorDefault.get() != null) {
             return pointBitmapDescriptorDefault.get();
         } else {
-            pointBitmapDescriptorDefault = new SoftReference<>(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(Utils.getApp().getApplicationContext().getResources(), R.drawable.shape_oval_solid_0076ee_size_6)));
+            pointBitmapDescriptorDefault = new SoftReference<>(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(AppUtil.getApplication().getApplicationContext().getResources(), R.drawable.shape_oval_solid_0076ee_size_6)));
             return pointBitmapDescriptorDefault.get();
         }
     }

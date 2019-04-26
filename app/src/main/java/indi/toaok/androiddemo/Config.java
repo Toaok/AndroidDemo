@@ -2,6 +2,7 @@ package indi.toaok.androiddemo;
 
 import android.os.Environment;
 
+import indi.toaok.androiddemo.utils.AppUtil;
 import indi.toaok.utils.Utils;
 
 import java.io.File;
@@ -20,7 +21,7 @@ public class Config {
     public static final String TEST_APK_PATH;
 
     static {
-        File cacheDir = Utils.getApp().getExternalCacheDir();
+        File cacheDir = AppUtil.getApplication().getExternalCacheDir();
         if (cacheDir != null) {
             CACHE_PATH = cacheDir.getAbsolutePath();
         } else {
