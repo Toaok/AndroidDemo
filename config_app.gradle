@@ -71,10 +71,6 @@ def configLibDependences(Project pro) {
         implementation dependencesLibrary.converter_gson
         implementation dependencesLibrary.adapter_rxjava
 
-
-        //jsoup
-        implementation dependencesLibrary.jsoup
-
         //rxpermissions
         implementation dependencesLibrary.rxpermissions
 

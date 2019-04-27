@@ -1,7 +1,8 @@
 apply {
     from "${rootDir.path}/config_app.gradle"
 }
-
 configAndroidAppDomain project
 configAppBaseDependences project
 configLibDependences project
+dependencies {
+}

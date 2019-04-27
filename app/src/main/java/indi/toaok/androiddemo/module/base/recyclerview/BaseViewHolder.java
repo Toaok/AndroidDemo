@@ -23,6 +23,7 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
     public BaseViewHolder(@NonNull View itemView) {
         super(itemView);
         mViews = new SparseArray<>();
+
     }
 
 

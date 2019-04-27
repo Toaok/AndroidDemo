@@ -62,6 +62,7 @@ public abstract class BaseRecyclerAdapter<D, V extends BaseViewHolder> extends R
     public V onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         this.mContext = parent.getContext();
         this.mLayoutInflater = LayoutInflater.from(mContext);
+
         BaseViewHolder baseViewHolder = new BaseViewHolder(mLayoutInflater.inflate(getItemLayoutId(), parent, false));
         baseViewHolder.itemView.setOnClickListener(v -> {
             if (mOnItemClickListener!=null){
@@ -74,6 +75,7 @@ public abstract class BaseRecyclerAdapter<D, V extends BaseViewHolder> extends R
             }
             return false;
         });
+
         return (V) baseViewHolder;
     }
 

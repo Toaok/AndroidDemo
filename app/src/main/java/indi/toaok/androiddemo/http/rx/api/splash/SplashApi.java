@@ -20,7 +20,7 @@ public class SplashApi {
 
     interface Api {
         @FormUrlEncoded
-        @POST("/getImage")
+        @POST("/getImages")
         Observable<SplashResultBean> getImages(@FieldMap Map<String, Object> params);
     }
 

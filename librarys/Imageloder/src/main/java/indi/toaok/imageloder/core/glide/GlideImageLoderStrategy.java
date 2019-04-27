@@ -3,13 +3,7 @@ package indi.toaok.imageloder.core.glide;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Handler;
-
-import androidx.annotation.Nullable;
-import androidx.core.graphics.drawable.RoundedBitmapDrawable;
-import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
-
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -24,8 +18,9 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.bumptech.glide.request.target.Target;
 
-import java.io.File;
-
+import androidx.annotation.Nullable;
+import androidx.core.graphics.drawable.RoundedBitmapDrawable;
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 import indi.toaok.imageloder.R;
 import indi.toaok.imageloder.core.BaseImageLoderStrategy;
 import indi.toaok.imageloder.core.ImageLoder;

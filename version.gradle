@@ -169,11 +169,11 @@ ext {
             /**
              * 生产环境
              */
-            host_prod: 'https://api.apiopen.top',
+            host_prod: 'https://api.apiopen.top/',
             /**
              * 开发环境
              */
-            host_dev : 'https://api.apiopen.top',
+            host_dev : 'https://api.apiopen.top/',
     ]
     /**
      * 默认环境
