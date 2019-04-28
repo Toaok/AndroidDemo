@@ -1,4 +1,4 @@
-package indi.toaok.androiddemo.http.rx.api;
+package indi.toaok.androiddemo.http.rx.request;
 
 import android.util.Log;
 

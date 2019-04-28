@@ -16,10 +16,6 @@ public class Security {
      */
     public static native String getSalt(String key);
 
-    /**
-     * 开发者模式
-     */
-    public static native boolean isDz(String key);
 
     /**
      * 获取so库内置的签名数组，以为 , 分割

@@ -4,5 +4,4 @@ apply {
 configAndroidAppDomain project
 configAppBaseDependences project
 configLibDependences project
-dependencies {
-}
+configNdk project

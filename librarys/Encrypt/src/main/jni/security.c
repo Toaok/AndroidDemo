@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <android/log.h>
+#include <malloc.h>
 #include "constant.h"
 #include "signature.h"
 #include "openssl/crypt.h"
@@ -17,25 +18,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-/*
-Jnilib loade faild
-*/
-/*
-jint JNI_OnLoad(JavaVM *vm, void *reserved)
-{
-    JNIEnv *env = NULL;
-    if ((*vm)->GetEnv(vm, (void **)&env, JNI_VERSION_1_4) != JNI_OK)
-    {
-	return JNI_ERR;
-    }
-    if (verify_sign(env) == JNI_OK)
-    {
-	return JNI_VERSION_1_4;
-    }
-    return JNI_ERR;
-}
-*/
 
 JNIEXPORT jstring JNICALL Java_indi_toaok_ndk_Security_getSalt(JNIEnv *env, jclass object, jstring ketStr)
 {

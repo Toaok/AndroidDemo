@@ -14,17 +14,18 @@ import static org.junit.Assert.*;
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {
+        String key="abcd";
         String str = "dzcx";
         String strEn = null;
-        String strde = null;
+        String strDe = null;
         try {
-            strEn = Security.encrypt(str);
-            strde = Security.decrypt(strEn);
+            strEn = Security.encryptWithKey(key,str);
+            strDe = Security.decryptWithKey(key,strEn);
         } catch (Exception e) {
             e.printStackTrace();
         }
         System.out.println("加密前:" + str);
         System.out.println("加密后:" + strEn);
-        System.out.println("解密后:" + strde);
+        System.out.println("解密后:" + strDe);
     }
 }

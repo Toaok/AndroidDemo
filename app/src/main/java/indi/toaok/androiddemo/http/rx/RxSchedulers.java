@@ -3,10 +3,7 @@ package indi.toaok.androiddemo.http.rx;
 import android.util.Log;
 
 import indi.toaok.androiddemo.http.exception.ServerException;
-import indi.toaok.androiddemo.http.rx.api.IResponse;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.ObservableSource;
+import indi.toaok.androiddemo.http.rx.response.IResponse;
 import io.reactivex.ObservableTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.Observable;

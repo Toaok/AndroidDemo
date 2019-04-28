@@ -1,6 +1,7 @@
 package indi.toaok.androiddemo.http.rx;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.lang.ref.WeakReference;
 
@@ -12,6 +13,8 @@ import io.reactivex.disposables.Disposable;
  * @version 1.0  2019/4/25.
  */
 public abstract class  RxSubscriberHelper<T> implements Observer<T> {
+
+    private static final String TAG=RxSubscriberHelper.class.getSimpleName();
     public static class Builder {
 
         boolean isShowMessage = true;
@@ -83,6 +86,7 @@ public abstract class  RxSubscriberHelper<T> implements Observer<T> {
 
     @Override
     public void onSubscribe(Disposable d) {
+        Log.i(TAG,"onSubscribe");
         if (isShowLoad) {
             onShowLoading();
         }
@@ -90,6 +94,7 @@ public abstract class  RxSubscriberHelper<T> implements Observer<T> {
 
     @Override
     public void onError(Throwable e) {
+        Log.i(TAG,"onError");
         if (e != null) {
 
         }
@@ -98,6 +103,7 @@ public abstract class  RxSubscriberHelper<T> implements Observer<T> {
 
     @Override
     public void onComplete() {
+        Log.i(TAG,"onComplete");
         if (isShowLoad) {
             onDisssload();
         }

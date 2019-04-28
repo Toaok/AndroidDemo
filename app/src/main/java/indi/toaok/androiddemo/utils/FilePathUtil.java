@@ -10,9 +10,10 @@ import indi.toaok.utils.core.PathUtils;
  */
 public class FilePathUtil {
 
+    static final String sBasePath=PathUtils.getExternalStoragePath();
 
     private static String getBaseDirPath(String childDir) {
-        return PathUtils.getInternalAppCachePath()+ "/" + AppUtils.getAppName() + "/" + childDir;
+        return sBasePath+ "/" + AppUtils.getAppName() + "/" + childDir;
     }
 
     public static String getCacheCropPath() {

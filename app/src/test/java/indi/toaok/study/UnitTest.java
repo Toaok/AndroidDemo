@@ -6,7 +6,7 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
-import indi.toaok.androiddemo.http.rx.api.splash.SplashRequestBean;
+import indi.toaok.androiddemo.api.vo.request.SplashRequestBean;
 
 /**
  * Example local unit test, which will execute on the development machine (host).

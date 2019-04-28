@@ -3,7 +3,7 @@ apply from: "${rootDir.path}/version.gradle"
 ext {
     configAndroidModuleDomain = this.&configAndroidModuleDomain
     configModuleBaseDependences = this.&configModuleBaseDependences
-    configNdk=this.&configNdk
+    configNdk = this.&configNdk
 }
 
 //app main
@@ -25,12 +25,12 @@ def configModuleBaseDependences(Project pro) {
         implementation baseDependences.constraintlayout
 
         testImplementation baseDependences.junit
+        androidTestImplementation baseDependences.junit
         androidTestImplementation baseDependences.runner
         androidTestImplementation baseDependences.espresso_core
 
     }
 }
-
 
 //config Option
 def configOption(Project pro) {
@@ -111,7 +111,7 @@ def configField(Project pro) {
 }
 
 def configNdk(Project pro) {
-    pro.android{
+    pro.android {
         defaultConfig {
             externalNativeBuild {
                 cmake {
@@ -121,7 +121,7 @@ def configNdk(Project pro) {
         }
         externalNativeBuild {
             cmake {
-                path "CMakeLists.txt"
+                path file('CMakeLists.txt')
             }
         }
     }

@@ -1,4 +1,4 @@
-package indi.toaok.androiddemo.http.rx.api.splash;
+package indi.toaok.androiddemo.api.vo.request;
 
 /**
  * @author Toaok

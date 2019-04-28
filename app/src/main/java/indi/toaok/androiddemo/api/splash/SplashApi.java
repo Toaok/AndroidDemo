@@ -1,12 +1,16 @@
-package indi.toaok.androiddemo.http.rx.api.splash;
+package indi.toaok.androiddemo.api.splash;
 
+
+import android.util.Log;
 
 import java.util.Map;
 
+import indi.toaok.androiddemo.api.vo.request.SplashRequestBean;
+import indi.toaok.androiddemo.api.vo.response.SplashResultBean;
 import indi.toaok.androiddemo.http.rx.RequestManager;
 import indi.toaok.androiddemo.http.rx.RxSchedulers;
 import indi.toaok.androiddemo.http.rx.RxSubscriberHelper;
-import indi.toaok.androiddemo.http.rx.api.BaseRequestBody;
+import indi.toaok.androiddemo.http.rx.request.BaseRequestBody;
 import io.reactivex.Observable;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;

@@ -11,6 +11,7 @@ ext {
     configAndroidAppDomain = this.&configAndroidAppDomain
     configAppBaseDependences = this.&configAppBaseDependence
     configLibDependences = this.&configLibDependences
+    configNdk = this.&configNdk
 }
 
 //app main
@@ -160,7 +161,7 @@ def configSigningAndBuildType(Project pro) {
         properties.load(new FileInputStream(signPropertiesFile))
         signingConfigs {
             release {
-                storeFile new File(signPropertiesFile.getParent(),properties['keystore'])
+                storeFile new File(signPropertiesFile.getParent(), properties['keystore'])
                 storePassword(properties['storePassword'])
                 keyAlias(properties['keyAlias'])
                 keyPassword(properties['keyPassword'])
@@ -241,7 +242,7 @@ def configField(Project pro) {
         manifestPlaceholders.put("GAODE_KEY", rootProject.ext.gaode.APP_KEY)
 
         //自定义常量字段
-        buildConfigField "String", "SALT",  "\"${SALT}\""
+        buildConfigField "String", "SALT", "\"${SALT}\""
 
         resValue "string", "app_name", androidConfig.appName
     }
@@ -249,16 +250,9 @@ def configField(Project pro) {
 
 def configNdk(Project pro) {
     pro.android {
-        defaultConfig {
-            externalNativeBuild {
-                cmake {
-                    cppFlags ""
-                }
-            }
-        }
         externalNativeBuild {
             cmake {
-                path "CMakeLists.txt"
+                path file('../librarys/Encrypt/CMakeLists.txt')
             }
         }
     }

@@ -1,6 +1,7 @@
 #include <jni.h>
 #include <stdio.h>
 #include <android/log.h>
+#include <string.h>
 #include "constant.h"
 
 #define LOG_TAG "Security-native"

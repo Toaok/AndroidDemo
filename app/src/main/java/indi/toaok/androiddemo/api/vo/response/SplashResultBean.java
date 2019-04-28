@@ -1,8 +1,8 @@
-package indi.toaok.androiddemo.http.rx.api.splash;
+package indi.toaok.androiddemo.api.vo.response;
 
 import java.util.List;
 
-import indi.toaok.androiddemo.http.rx.api.BaseResponseBean;
+import indi.toaok.androiddemo.http.rx.response.BaseResponseBean;
 
 /**
  * @author Toaok
